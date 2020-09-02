@@ -20,10 +20,11 @@ public class DBConnector {
     public static final String DB_NAME= "pharmacy_management";
     public static final String ID= "id";
     public static final String NAME= "name";
+    public static final String ADMIN_TABLE= "admin_table";
     public static final String EMAIL= "email";
     public static final String PASSWORD= "password";
-    public static final String ACC_TYPE= "status";
-    public static final String IS_ACTIVE= " name ";
+    public static final String ACC_TYPE= "auth_type";
+    public static final String IS_ACTIVE= "status";
     public static final String REG_TIME= "reg_time";
     private Connection connection;
     private static DBConnector connector= new DBConnector();
@@ -41,16 +42,16 @@ public class DBConnector {
             statement.execute("CREATE DATABASE IF NOT EXISTS "+DB_NAME);
             
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" 
-                     + "DIUCPC","root", "root");
+                     + DB_NAME,"root", "root");
             statement = connection.createStatement();
 
-            statement.execute("CREATE TABLE IF NOT EXISTs admin( "
-                    + ID + " int(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,"
-                    + NAME+ " varchar(50) NOT NULL,"
-                    + EMAIL+ " varchar(50) NOT NULL,"
-                    + PASSWORD+ " varchar(50) NOT NULL,"
-                    + ACC_TYPE+" varchar(50) NOT NULL,"
-                    + IS_ACTIVE +" varchar(50) NOT NULL,"
+            statement.execute("CREATE TABLE IF NOT EXISTs "+ADMIN_TABLE+"( "
+                    + ID + " int(20) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
+                    + NAME+ " varchar(50) NOT NULL, "
+                    + EMAIL+ " varchar(50) NOT NULL, "
+                    + PASSWORD+ " varchar(50) NOT NULL, "
+                    + ACC_TYPE+" varchar(50) NOT NULL, "
+                    + IS_ACTIVE +" varchar(50) NOT NULL, "
                     + REG_TIME+" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP"
                     + ")");
 
