@@ -11,12 +11,22 @@ package com.pharmacy.admin;
  */
 public class Admin {
     
+    private int id;
     private String name;
     private String userName;
     private String password;
     private String acc_type;
     private boolean isActive;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
     public String getName() {
         return name;
     }

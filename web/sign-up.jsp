@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Sep 2, 2020, 3:24:48 PM
+    Document   : registration
+    Created on : Sep 2, 2020, 3:34:20 PM
     Author     : rktirtho
 --%>
 
@@ -19,8 +19,13 @@
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                     <div class="card card-signin my-5">
                         <div class="card-body">
-                            <h5 class="card-title bg-success text-center py-3">Login</h5>
+                            <h5 class="card-title bg-success text-center py-3">Sign Up</h5>
                             <form autocomplete="off" class="form-signin" action="user-check-out?cf=lg" method="post">
+                                <div class="form-label-group">
+                                    <label for="inputEmail">Name</label>
+                                    <input type="text" name="name" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                                </div>
+
                                 <div class="form-label-group">
                                     <label for="inputEmail">Email address</label>
                                     <input type="email" name="userName" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
@@ -28,6 +33,11 @@
 
                                 <div class="form-label-group">
                                     <label for="inputPassword">Password</label>
+                                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                </div>
+                                
+                                <div class="form-label-group">
+                                    <label for="inputPassword">Re type Password</label>
                                     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                                 </div>
 
@@ -44,6 +54,6 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </body>
 </html>
