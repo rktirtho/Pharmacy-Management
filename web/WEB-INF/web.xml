@@ -18,6 +18,17 @@
         <servlet-name>sign-up</servlet-name>
         <url-pattern>/sign-up</url-pattern>
     </servlet-mapping>
+    
+    
+    <!-- =================Admin Panel================-->
+    <servlet>
+        <servlet-name>dashboard</servlet-name>
+        <jsp-file>/jsps/admin-panel/Dashboard.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dashboard</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
      
      
      <!-- ========== Error Page Handeling===============--> 
