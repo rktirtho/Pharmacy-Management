@@ -5,6 +5,9 @@
  */
 package com.pharmacy.dao;
 
+import com.pharmacy.admin.Admin;
+import java.util.List;
+
 /**
  *
  * @author rktirtho
@@ -18,5 +21,15 @@ public class AdminDbHelper {
         return 0;
     }
     
-    public 
+    public List<Admin> getAllAdmin(){
+        return null;
+    }
+    
+    public Admin getById(){
+        return null;
+    }
+    
+    public Admin getByEmail(){
+        return null;
+    }
 }
