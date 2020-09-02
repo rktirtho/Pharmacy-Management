@@ -45,10 +45,10 @@
                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
                                     <label class="custom-control-label" for="customCheck1">Remember password</label>
                                 </div>-->
-                                <button class="btn my-3 btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                                <button class="btn my-3 btn-lg btn-primary btn-block text-uppercase" type="submit">Create Account</button>
                             </form>
                             <hr class="my-4">
-                            <a class="btn btn-lg btn-outline-success rounded btn-block " href="sign-up" >Create Account</a>
+                            <a class="btn btn-lg btn-outline-success rounded btn-block " href="${pageContext.request.contextPath}" >Sign in</a>
 
                         </div>
                     </div>
