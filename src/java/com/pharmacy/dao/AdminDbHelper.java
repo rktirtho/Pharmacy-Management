@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,16 +24,18 @@ public class AdminDbHelper {
     private static DBConnector connector = DBConnector.getInstance();
 
     public static void main(String[] args) {
-        Admin admin = new Admin();
-        admin.setName("Rejaul Karim");
-        admin.setUserName("rktirtho");
-        admin.setAccType("admin");
-        admin.setPassword("qwert");
-        admin.setIsActive(true);
+//        Admin admin = new Admin();
+//        admin.setName("Rejaul Karim");
+//        admin.setUserName("rktirtho");
+//        admin.setAccType("admin");
+//        admin.setPassword("qwert");
+//        admin.setIsActive(true);
 
-//        registration(admin);
-        Admin c = getBySession("5BC5AA2B60B983BD0F4270C99B516CDB");
-        System.out.println(c.getUserName());
+List<Admin> admins = AdminDbHelper.getAll();
+        for (Admin admin : admins) {
+            System.out.println(admin.getName());
+        }
+        
     }
 
     public static int login(String userName, String password, String session) {
@@ -107,17 +110,129 @@ public class AdminDbHelper {
         return status;
     }
 
-    public static List<Admin> getAllAdmin() {
-        return null;
+    public static List<Admin> getAll() {
+        List<Admin> admins = new ArrayList<>();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = connection.prepareCall
+        ("SELECT * FROM " + DBConnector.ADMIN_TABLE+
+                " WHERE "+DBConnector.IS_ACTIVE+" =?");
+            statement.setBoolean(1, true);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                Admin admin = new Admin();
+                inputer(admin, rs);
+                admins.add(admin);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return admins;
+
     }
 
-    public static Admin getById() {
-        return null;
+    public static Admin getById(int id) {
+        Admin admin = new Admin();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = connection.prepareCall(
+                    "SELECT * FROM " + DBConnector.ADMIN_TABLE
+                    + "  WHERE " + DBConnector.ID + " =?");
+            statement.setInt(1, id);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                inputer(admin, rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return admin;
+
     }
 
-    public Admin getByEmail() {
-        return null;
+    public Admin getByEmail(String email) {
+        Admin admin = new Admin();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = connection.prepareCall(
+                    "SELECT * FROM " + DBConnector.ADMIN_TABLE
+                    + "  WHERE " + DBConnector.EMAIL + " =?");
+            statement.setString(1, email);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                inputer(admin, rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return admin;
+
     }
+    
+    public static int delete(int id){
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        int status =0;
+        try {
+            statement = connection.prepareCall("DELETE FROM "
+                    + DBConnector.ADMIN_TABLE+" WHERE "+DBConnector.ID+"=?");
+            statement.setInt(1, id);
+            status = statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
+    }
+    
+    public static int approve(int id){
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        int status =0;
+        try {
+            statement = connection.prepareCall("UPDATE "
+                    + DBConnector.ADMIN_TABLE+" SET "+DBConnector.IS_ACTIVE
+                    +"=? WHERE "+DBConnector.ID+"=?");
+            statement.setBoolean(1, true);
+            statement.setInt(2, id);
+            status = statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
+    }
+    
+    public static int changePassword(String newPassword,String oldPawwrord , int id){
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        int status =0;
+        try {
+            statement = connection.prepareCall("UPDATE "
+                    + DBConnector.ADMIN_TABLE+" SET "+DBConnector.PASSWORD
+                    +"=? WHERE "+DBConnector.ID+"=?");
+            statement.setString(1, newPassword);
+            statement.setInt(2, id);
+            status = statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
+    }
+    
+    
+    
+    
 
     public static Admin getBySession(String sessionId) {
         Admin admin = new Admin();
@@ -141,6 +256,9 @@ public class AdminDbHelper {
         return admin;
 
     }
+    
+    
+    
 
     private static void inputer(Admin admin, ResultSet rs) {
         try {

@@ -45,6 +45,27 @@
         <servlet-name>dashboard</servlet-name>
         <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>all-admin</servlet-name>
+        <jsp-file>/jsps/admin-panel/employee.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>all-admin</servlet-name>
+        <url-pattern>/admins</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>all-product</servlet-name>
+        <jsp-file>/jsps/product/AllProduct.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>all-product</servlet-name>
+        <url-pattern>/all-product</url-pattern>
+    </servlet-mapping>
+     
+     
+     
      
      
      <!-- ========== Error Page Handeling===============--> 

@@ -124,6 +124,55 @@ List<Product> list = bHelper.getAll();
         return medicines;
     }
     
+     public List<Product> getById(int id) {
+        List<Product> medicines = new ArrayList<>();
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        ResultSet rs = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareCall("SELECT * FROM "+TABLE
+                    +" WHERE "+ID+"=?");
+            statement.setInt(1, id);
+                        rs = statement.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                inputter(rs, product);
+                medicines.add(product);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return medicines;
+    }
+     
+    public List<Product> getByType(String type) {
+        List<Product> medicines = new ArrayList<>();
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        ResultSet rs = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareCall("SELECT * FROM "+TABLE
+                    +" WHERE "+TYPE+"=?");
+            statement.setString(1, type);
+                        rs = statement.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                inputter(rs, product);
+                medicines.add(product);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return medicines;
+    }
+    
+    
     void inputter(ResultSet rs, Product product) throws SQLException{
         product.setName(rs.getString(NAME));
         product.setDescprition(rs.getString(DESCPRITION));

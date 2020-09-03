@@ -9,7 +9,7 @@
     <%
         boolean isLogin = false;
         isLogin = (boolean) session.getAttribute("loged");
-        if (!isLogin){
+        if (!isLogin) {
             response.sendRedirect(request.getContextPath());
         }
         Admin admin = AdminDbHelper.getBySession(session.getId());
@@ -106,8 +106,8 @@
                                         <li>
                                             <a href="#">My Sells</a>
                                         </li>
-                                        
-                                        
+
+
                                     </ul>
                                 </div>
                             </li>
@@ -128,13 +128,13 @@
                                             <a href="#">Update Product</a>
                                         </li>
                                         <li>
-                                            <a href="#">All Products</a>
+                                            <a href="all-product">All Products</a>
                                         </li>
-                                        
+
                                         <li>
                                             <a href="#">Need to Buy</a>
                                         </li>
-                                        
+
                                         <li>
                                             <a href="#">Out of Stock</a>
                                         </li>
@@ -157,7 +157,7 @@
                                         <li>
                                             <a href="#">Deactivate Accounts</a>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                             </li>
@@ -199,28 +199,28 @@
                                     </ul>
                                 </div>
                             </li>
-<!--                            <li class="header-menu">
-                                <span>Extra</span>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-book"></i>
-                                    <span>Documentation</span>
-                                    <span class="badge badge-pill badge-primary">Beta</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-calendar"></i>
-                                    <span>Calendar</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-folder"></i>
-                                    <span>Examples</span>
-                                </a>
-                            </li>-->
+                            <!--                            <li class="header-menu">
+                                                            <span>Extra</span>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-book"></i>
+                                                                <span>Documentation</span>
+                                                                <span class="badge badge-pill badge-primary">Beta</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-calendar"></i>
+                                                                <span>Calendar</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-folder"></i>
+                                                                <span>Examples</span>
+                                                            </a>
+                                                        </li>-->
                         </ul>
                     </div>
                     <!-- sidebar-menu  -->
@@ -264,28 +264,77 @@
                     </div>
                     <h5>More templates</h5>
                     <hr>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">          
-                            <div class="card rounded-0 p-0 shadow-sm">
-                                <img src="https://user-images.githubusercontent.com/25878302/58369568-a49b2480-7efc-11e9-9ca9-2be44afacda1.png" class="card-img-top rounded-0" alt="Angular pro sidebar">
-                                <div class="card-body text-center">
-                                    <h6 class="card-title">Angular Pro Sidebar</h6>
-                                    <a href="https://github.com/azouaoui-med/angular-pro-sidebar" target="_blank" class="btn btn-primary btn-sm">Github</a>
-                                    <a href="https://azouaoui-med.github.io/angular-pro-sidebar/demo/" target="_blank" class="btn btn-success btn-sm">Preview</a>
-                                </div>
-                            </div>          
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">          
-                            <div class="card rounded-0 p-0 shadow-sm">
-                                <img src="https://user-images.githubusercontent.com/25878302/58369258-33f20900-7ef8-11e9-8ff3-b277cb7ed7b4.PNG" class="card-img-top rounded-0" alt="Angular pro sidebar">
-                                <div class="card-body text-center">
-                                    <h6 class="card-title">Angular Dashboard</h6>
-                                    <a href="https://github.com/azouaoui-med/lightning-admin-angular" target="_blank" class="btn btn-primary btn-sm">Github</a>
-                                    <a href="https://azouaoui-med.github.io/lightning-admin-angular/demo/" target="_blank" class="btn btn-success btn-sm">Preview</a>
-                                </div>
-                            </div>          
-                        </div>
+
+                    <table >
+                        <tr>
+                            <th>Product Name</th>
+                            <th>In Stock</th>
+                            <th>Unit Size</th>
+                            <th>Buying Prize</th>
+                            <th>Selling Prize </th>
+                            <th>Discount</th>
+                            <th>Profit</th>
+                            <th>Inventor</th>
+                            <th></th>
+                        </tr>
+                    </table>
+                    <div class="my-2 card p-2">
+                        <table class="table table-striped table-bordered">
+                            <tr>
+                                <th>Product Name</th>
+                                <th>In Stock</th>
+                                <th>Unit Size</th>
+                                <th>Buying Prize</th>
+                                <th>Selling Prize </th>
+                                <th>Discount</th>
+                                <th>Profit</th>
+                                <th>Inventor</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td><a href="">Napa Extra</a></td>
+                                <td>5735</td>
+                                <td>1 Pcs</td>
+                                <td>1.00</td>
+                                <td>1.25</td>
+                                <td>5%</td>
+                                <td>0.20</td>
+                                <td><a href="">Rejaul Karim Tirtho</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">Napa Extra</a></td>
+                                <td>5735</td>
+                                <td>1 Pcs</td>
+                                <td>1.00</td>
+                                <td>1.25</td>
+                                <td>5%</td>
+                                <td>0.20</td>
+                                <td><a href="">Rejaul Karim Tirtho</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">Napa Extra</a></td>
+                                <td>5735</td>
+                                <td>1 Pcs</td>
+                                <td>1.00</td>
+                                <td>1.25</td>
+                                <td>5%</td>
+                                <td>0.20</td>
+                                <td><a href="">Rejaul Karim Tirtho</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">Napa Extra</a></td>
+                                <td>5735</td>
+                                <td>1 Pcs</td>
+                                <td>1.00</td>
+                                <td>1.25</td>
+                                <td>5%</td>
+                                <td>0.20</td>
+                                <td><a href="">Rejaul Karim Tirtho</a></td>
+                            </tr>
+                        </table>
                     </div>
+
+
                 </div>
 
             </main>
