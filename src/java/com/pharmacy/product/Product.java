@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  *
  * @author rktirtho
  */
-public class Medicine {
+public class Product {
     
     private int id;
     private String name;
