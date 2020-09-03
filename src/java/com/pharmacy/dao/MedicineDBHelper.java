@@ -40,7 +40,6 @@ public class MedicineDBHelper {
     private final String LAST_UPDATE = "_last_update";
     private final String AUTHOR_ID = "author_id";
     private final String EXPIRE_DATE = "_expire_date";
-    
 
     public static void main(String[] args) {
         MedicineDBHelper bHelper = new MedicineDBHelper();
@@ -62,7 +61,7 @@ public class MedicineDBHelper {
 //        medicine.setQuantity(700);
 //
 //        System.out.println(bHelper.insert(medicine));
-List<Product> list = bHelper.getAll();
+        List<Product> list = bHelper.getAll();
         for (Product product : list) {
             System.err.println(product.getName());
         }
@@ -109,8 +108,32 @@ List<Product> list = bHelper.getAll();
         ResultSet rs = null;
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareCall("SELECT * FROM "+TABLE);
-                        rs = statement.executeQuery();
+            statement = connection.prepareCall("SELECT * FROM " + TABLE);
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                inputter(rs, product);
+                medicines.add(product);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return medicines;
+    }
+
+    public List<Product> getById(int id) {
+        List<Product> medicines = new ArrayList<>();
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        ResultSet rs = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareCall("SELECT * FROM " + TABLE
+                    + " WHERE " + ID + "=?");
+            statement.setInt(1, id);
+            rs = statement.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
                 inputter(rs, product);
@@ -124,17 +147,26 @@ List<Product> list = bHelper.getAll();
         return medicines;
     }
     
-     public List<Product> getById(int id) {
+    
+    /**
+     * <p><b color="red">Method has some error.</b>
+     * Method query is not valid
+     * </p>
+     * @param inventor
+     * @return List of Product
+     * 
+     */
+    public List<Product> getByInventor(String inventor) {
         List<Product> medicines = new ArrayList<>();
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
         ResultSet rs = null;
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareCall("SELECT * FROM "+TABLE
-                    +" WHERE "+ID+"=?");
-            statement.setInt(1, id);
-                        rs = statement.executeQuery();
+            statement = connection.prepareCall("SELECT * FROM " + TABLE
+                    + " WHERE " + ID + "=?");
+            statement.setString(1, inventor);
+            rs = statement.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
                 inputter(rs, product);
@@ -147,7 +179,8 @@ List<Product> list = bHelper.getAll();
 
         return medicines;
     }
-     
+    
+
     public List<Product> getByType(String type) {
         List<Product> medicines = new ArrayList<>();
         DBConnector connector = DBConnector.getInstance();
@@ -155,10 +188,10 @@ List<Product> list = bHelper.getAll();
         ResultSet rs = null;
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareCall("SELECT * FROM "+TABLE
-                    +" WHERE "+TYPE+"=?");
+            statement = connection.prepareCall("SELECT * FROM " + TABLE
+                    + " WHERE " + TYPE + "=?");
             statement.setString(1, type);
-                        rs = statement.executeQuery();
+            rs = statement.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
                 inputter(rs, product);
@@ -171,9 +204,48 @@ List<Product> list = bHelper.getAll();
 
         return medicines;
     }
+
+    public int delete(int id) {
+        int status = 0;
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        ResultSet rs = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareCall("DELETE FROM "+TABLE+" WHERE "+ID+"=?");
+            statement.executeUpdate();
+
+            status = statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return status;
+    }
     
-    
-    void inputter(ResultSet rs, Product product) throws SQLException{
+    public int updatePrize(int id, double buyingPrize, double sellingPrize) {
+        int status = 0;
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        ResultSet rs = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareCall("UPDATE "+TABLE+" SET "
+            +UNIT_BUYING_PRIZE +"=?, "+UNIT_SELLING_PRIZE+"=? WHERE "+ID+"=?");
+            statement.setDouble(1, buyingPrize);
+            statement.setDouble(2, sellingPrize);
+            statement.setInt(3, id);
+            status = statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return status;
+    }
+
+    void inputter(ResultSet rs, Product product) throws SQLException {
         product.setName(rs.getString(NAME));
         product.setDescprition(rs.getString(DESCPRITION));
         product.setGroup(rs.getString(GROUP));
@@ -191,8 +263,5 @@ List<Product> list = bHelper.getAll();
 
 //    private Date expireDate;
 //    private String batchNo;
- 
-        
-
     }
 }

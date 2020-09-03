@@ -21,7 +21,9 @@ public class ProductService {
     
     private static MedicineDBHelper dbHelper = new MedicineDBHelper();
     public static List<Product> allProduct(){
+        
         return dbHelper.getAll();
     }
+    
     
 }

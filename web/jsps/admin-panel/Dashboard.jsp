@@ -348,6 +348,22 @@
 
         <script src="${pageContext.request.contextPath}/res/libs/bootstrap.js"></script>
         <script src="${pageContext.request.contextPath}/res/js/a-panel.js"></script>
+        
+        <script>
+            $('.close-btn').click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: 'webapi/cart/deleteCart/' + $(this).attr("id"),
+                    cache: false,
+                    success: function (data) {
+                        location.reload();
+
+                    }
+                });
+            });
+
+
+        </script>
 
     </body>
 
