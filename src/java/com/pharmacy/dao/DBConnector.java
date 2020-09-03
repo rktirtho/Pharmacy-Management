@@ -26,6 +26,7 @@ public class DBConnector {
     public static final String ACC_TYPE= "auth_type";
     public static final String IS_ACTIVE= "status";
     public static final String REG_TIME= "reg_time";
+    public static final String SESSION= "session_id";
     private Connection connection;
     private static DBConnector connector= new DBConnector();
 

@@ -20,10 +20,11 @@
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title bg-success text-center py-3">Login</h5>
-                            <form autocomplete="off" class="form-signin" action="user-check-out?cf=lg" method="post">
+                            <form autocomplete="off" class="form-signin" 
+                                  action="signin-check?cf=lg" method="post">
                                 <div class="form-label-group">
                                     <label for="inputEmail">Email address</label>
-                                    <input type="email" name="userName" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                                    <input type="text" name="userName" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                                 </div>
 
                                 <div class="form-label-group">
