@@ -31,11 +31,11 @@ public class AdminDbHelper {
 //        admin.setPassword("qwert");
 //        admin.setIsActive(true);
 
-List<Admin> admins = AdminDbHelper.getAll();
+        List<Admin> admins = AdminDbHelper.getNewRequest();
         for (Admin admin : admins) {
-            System.out.println(admin.getName());
+            System.out.println(admin);
         }
-        
+
     }
 
     public static int login(String userName, String password, String session) {
@@ -116,9 +116,59 @@ List<Admin> admins = AdminDbHelper.getAll();
         PreparedStatement statement = null;
         ResultSet rs = null;
         try {
-            statement = connection.prepareCall
-        ("SELECT * FROM " + DBConnector.ADMIN_TABLE+
-                " WHERE "+DBConnector.IS_ACTIVE+" =?");
+            statement = connection.prepareCall("SELECT * FROM " + DBConnector.ADMIN_TABLE
+                    + " WHERE " + DBConnector.IS_ACTIVE + " =?");
+            statement.setBoolean(1, true);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                Admin admin = new Admin();
+                inputer(admin, rs);
+                admins.add(admin);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return admins;
+
+    }
+
+    public static List<Admin> getNewRequest() {
+        List<Admin> admins = new ArrayList<>();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = connection.prepareCall("SELECT * FROM " + DBConnector.ADMIN_TABLE
+                    + " WHERE " + DBConnector.IS_ACTIVE + " =? and " 
+                    + DBConnector.IS_ACTIVE + "=?");
+            statement.setBoolean(1, false);
+            statement.setBoolean(2, false);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                Admin admin = new Admin();
+                inputer(admin, rs);
+                admins.add(admin);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return admins;
+
+    }
+
+    public static List<Admin> getDeleted() {
+        List<Admin> admins = new ArrayList<>();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = connection.prepareCall("SELECT * FROM " + DBConnector.ADMIN_TABLE
+                    + " WHERE " + DBConnector.IS_ACTIVE + " =? and " + DBConnector.IS_ACTIVE + "=?");
+            statement.setBoolean(1, false);
             statement.setBoolean(1, true);
             rs = statement.executeQuery();
 
@@ -180,14 +230,14 @@ List<Admin> admins = AdminDbHelper.getAll();
         return admin;
 
     }
-    
-    public static int delete(int id){
+
+    public static int delete(int id) {
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
-        int status =0;
+        int status = 0;
         try {
             statement = connection.prepareCall("DELETE FROM "
-                    + DBConnector.ADMIN_TABLE+" WHERE "+DBConnector.ID+"=?");
+                    + DBConnector.ADMIN_TABLE + " WHERE " + DBConnector.ID + "=?");
             statement.setInt(1, id);
             status = statement.executeUpdate();
         } catch (SQLException ex) {
@@ -195,32 +245,33 @@ List<Admin> admins = AdminDbHelper.getAll();
         }
         return status;
     }
-    
-    public static int approve(int id){
+
+    public static int approve(int id) {
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
-        int status =0;
+        int status = 0;
         try {
             statement = connection.prepareCall("UPDATE "
-                    + DBConnector.ADMIN_TABLE+" SET "+DBConnector.IS_ACTIVE
-                    +"=? WHERE "+DBConnector.ID+"=?");
+                    + DBConnector.ADMIN_TABLE + " SET " + DBConnector.IS_ACTIVE
+                    + "=? " + DBConnector.IS_RESPONSED + "=? WHERE " + DBConnector.ID + "=?");
             statement.setBoolean(1, true);
-            statement.setInt(2, id);
+            statement.setBoolean(2, true);
+            statement.setInt(3, id);
             status = statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return status;
     }
-    
-    public static int changePassword(String newPassword,String oldPawwrord , int id){
+
+    public static int changePassword(String newPassword, String oldPawwrord, int id) {
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
-        int status =0;
+        int status = 0;
         try {
             statement = connection.prepareCall("UPDATE "
-                    + DBConnector.ADMIN_TABLE+" SET "+DBConnector.PASSWORD
-                    +"=? WHERE "+DBConnector.ID+"=?");
+                    + DBConnector.ADMIN_TABLE + " SET " + DBConnector.PASSWORD
+                    + "=? WHERE " + DBConnector.ID + "=?");
             statement.setString(1, newPassword);
             statement.setInt(2, id);
             status = statement.executeUpdate();
@@ -229,10 +280,6 @@ List<Admin> admins = AdminDbHelper.getAll();
         }
         return status;
     }
-    
-    
-    
-    
 
     public static Admin getBySession(String sessionId) {
         Admin admin = new Admin();
@@ -256,9 +303,6 @@ List<Admin> admins = AdminDbHelper.getAll();
         return admin;
 
     }
-    
-    
-    
 
     private static void inputer(Admin admin, ResultSet rs) {
         try {

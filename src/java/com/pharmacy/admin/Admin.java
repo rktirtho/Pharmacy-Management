@@ -79,6 +79,11 @@ public class Admin {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
+
+    @Override
+    public String toString() {
+        return "Admin{" + "id=" + id + ", name=" + name + ", userName=" + userName + ", password=" + password + ", accType=" + accType + ", isActive=" + isActive + ", timestamp=" + timestamp + '}';
+    }
     
     
     

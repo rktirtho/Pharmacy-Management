@@ -149,13 +149,13 @@
                                 <div class="sidebar-submenu">
                                     <ul>
                                         <li>
-                                            <a href="" id="">All Employee</a>
+                                            <a href="##" id="all-employee">All Employee</a>
                                         </li>
                                         <li>
-                                            <a href="#">New Account Request</a>
+                                            <a href="#" id="new-request">Need to Approve</a>
                                         </li>
                                         <li>
-                                            <a href="#">Deactivate Accounts</a>
+                                            <a href="#" id="deleted">Deactivate Accounts</a>
                                         </li>
 
                                     </ul>
@@ -247,22 +247,10 @@
             <!-- sidebar-wrapper  -->
             <main class="page-content">
                 <div class="container-fluid">
-                    <h2>Pro Sidebar</h2>
+                    <h2>Product</h2>
                     <hr>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <p>This is a responsive sidebar template with dropdown menu based on bootstrap 4 framework.</p>
-                            <p> You can find the complete code on <a href="https://github.com/azouaoui-med/pro-sidebar-template" target="_blank">
-                                    Github</a>, it contains more themes and background image option</p>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <iframe src="https://ghbtns.com/github-btn.html?user=azouaoui-med&repo=pro-sidebar-template&type=star&count=true&size=large"
-                                    frameborder="0" scrolling="0" width="140px" height="30px"></iframe>
-                            <iframe src="https://ghbtns.com/github-btn.html?user=azouaoui-med&repo=pro-sidebar-template&type=fork&count=true&size=large"
-                                    frameborder="0" scrolling="0" width="140px" height="30px"></iframe>
-                        </div>
-                    </div>
-                    <h5>More templates</h5>
+                    
+                    <h5>All Product</h5>
                     <hr>
 
                    
@@ -286,6 +274,7 @@
         <script src="${pageContext.request.contextPath}/res/js/a-panel.js"></script>
         
         <script>
+            var domainName = "/Pharmacy_Management"
             $('.close-btn').click(function () {
                 $.ajax({
                     type: "GET",
@@ -301,14 +290,51 @@
             $('#all-product').click(function(){
                 
                 $.ajax({
-                    url: "/Pharmacy_Management/jsps/product/AllProduct.jsp",
+                    url: domainName+"/jsps/product/AllProduct.jsp",
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;
                     },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        alert("Faile")
-                    }
+                    
+                   
+                })
+            })
+            
+            $('#all-employee').click(function(){
+                
+                $.ajax({
+                    url: domainName+"/jsps/admin-panel/all-employee.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    },
+                    
+                   
+                })
+            })
+            
+            $('#new-request').click(function(){
+                
+                $.ajax({
+                    url: domainName+"/jsps/admin-panel/new-request.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    },
+                    
+                   
+                })
+            })
+            
+            $('#deleted').click(function(){
+                
+                $.ajax({
+                    url: domainName+"/jsps/admin-panel/deleted.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    },
+                    
                    
                 })
             })
@@ -317,5 +343,7 @@
         </script>
 
     </body>
+
+
 
 </html>
