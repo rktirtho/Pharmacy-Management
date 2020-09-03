@@ -20,7 +20,7 @@
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title bg-success text-center py-3">Sign Up</h5>
-                            <form autocomplete="off" class="form-signin" action="user-check-out?cf=lg" method="post">
+                            <form autocomplete="off" class="form-signin" action="signup-check?cf=sn" method="post">
                                 <div class="form-label-group">
                                     <label for="inputEmail">Name</label>
                                     <input type="text" name="name" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
@@ -38,8 +38,16 @@
                                 
                                 <div class="form-label-group">
                                     <label for="inputPassword">Re type Password</label>
-                                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                    <input type="password" name="re-password" id="inputPassword" class="form-control" placeholder="Password" required>
                                 </div>
+                                <div class="form-label-group">
+                                    <label for="inputPassword">Re type Password</label>
+                                    <select name="accType">
+                                        <option value="admin">Admin</option>
+                                        <option value="sellsman">Sells Man</option>
+                                    </select>
+                                </div>
+                               
 
 <!--                                <div class="custom-control custom-checkbox mb-3">
                                     <input type="checkbox" class="custom-control-input" id="customCheck1">

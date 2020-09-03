@@ -5,6 +5,8 @@
  */
 package com.pharmacy.admin;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author rktirtho
@@ -15,8 +17,9 @@ public class Admin {
     private String name;
     private String userName;
     private String password;
-    private String acc_type;
+    private String accType;
     private boolean isActive;
+    private Timestamp timestamp;
 
     public int getId() {
         return id;
@@ -51,13 +54,15 @@ public class Admin {
         this.password = password;
     }
 
-    public String getAcc_type() {
-        return acc_type;
+    public String getAccType() {
+        return accType;
     }
 
-    public void setAcc_type(String acc_type) {
-        this.acc_type = acc_type;
+    public void setAccType(String accType) {
+        this.accType = accType;
     }
+
+    
 
     public boolean isIsActive() {
         return isActive;
@@ -65,6 +70,14 @@ public class Admin {
 
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
     
     

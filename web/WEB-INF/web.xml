@@ -18,6 +18,14 @@
         <servlet-name>sign-up</servlet-name>
         <url-pattern>/sign-up</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>signup-check</servlet-name>
+        <jsp-file>/signup-check.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>signup-check</servlet-name>
+        <url-pattern>/signup-check</url-pattern>
+    </servlet-mapping>
     
     
     <!-- =================Admin Panel================-->
