@@ -1,8 +1,19 @@
 
+<%@page import="com.pharmacy.dao.AdminDbHelper"%>
+<%@page import="com.pharmacy.admin.Admin"%>
 <!------ Include the above in your HEAD tag ---------->
 
 <!DOCTYPE html>
 <html lang="en">
+
+    <%
+        boolean isLogin = false;
+        isLogin = (boolean) session.getAttribute("loged");
+        if (!isLogin){
+            response.sendRedirect(request.getContextPath());
+        }
+        Admin admin = AdminDbHelper.getBySession(session.getId());
+    %>
 
     <head>
         <meta charset="utf-8">
@@ -14,7 +25,7 @@
               href="${pageContext.request.contextPath}/res/libs/bootstrap.css"/>
         <link type="text/css" rel="stylesheet"
               href="${pageContext.request.contextPath}/res/css/a-panel.css"
-        
+
 
     </head>
 
@@ -37,10 +48,10 @@
                                  alt="User picture">
                         </div>
                         <div class="user-info">
-                            <span class="user-name">Jhon
-                                <strong>Smith</strong>
+                            <span class="user-name">
+                                <strong><%=admin.getName()%></strong>
                             </span>
-                            <span class="user-role">Administrator</span>
+                            <span class="user-role"><%=admin.getAccType()%></span>
                             <span class="user-status">
                                 <i class="fa fa-circle"></i>
                                 <span>Online</span>
@@ -75,37 +86,57 @@
                                 <div class="sidebar-submenu">
                                     <ul>
                                         <li>
-                                            <a href="#">Dashboard 1
+                                            <a href="#">Profit
                                                 <span class="badge badge-pill badge-success">Pro</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">Dashboard 2</a>
+                                            <a href="#">Total Sells</a>
                                         </li>
                                         <li>
-                                            <a href="#">Dashboard 3</a>
+                                            <a href="#">In Stock</a>
                                         </li>
+                                        <li>
+                                            <a href="#">Daily Sell</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Sell Statistics</a>
+                                        </li>
+                                        <!--sells man portal-->
+                                        <li>
+                                            <a href="#">My Sells</a>
+                                        </li>
+                                        
+                                        
                                     </ul>
                                 </div>
                             </li>
                             <li class="sidebar-dropdown">
                                 <a href="#">
                                     <i class="fa fa-shopping-cart"></i>
-                                    <span>E-commerce</span>
+                                    <span>Product</span>
                                     <span class="badge badge-pill badge-danger">3</span>
                                 </a>
                                 <div class="sidebar-submenu">
                                     <ul>
                                         <li>
-                                            <a href="#">Products
+                                            <a href="#">Add Products
 
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">Orders</a>
+                                            <a href="#">Update Product</a>
                                         </li>
                                         <li>
-                                            <a href="#">Credit cart</a>
+                                            <a href="#">All Products</a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="#">Need to Buy</a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="#">Out of Stock</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -113,25 +144,20 @@
                             <li class="sidebar-dropdown">
                                 <a href="#">
                                     <i class="far fa-gem"></i>
-                                    <span>Components</span>
+                                    <span>Employee</span>
                                 </a>
                                 <div class="sidebar-submenu">
                                     <ul>
                                         <li>
-                                            <a href="#">General</a>
+                                            <a href="#">All Employee</a>
                                         </li>
                                         <li>
-                                            <a href="#">Panels</a>
+                                            <a href="#">New Account Request</a>
                                         </li>
                                         <li>
-                                            <a href="#">Tables</a>
+                                            <a href="#">Deactivate Accounts</a>
                                         </li>
-                                        <li>
-                                            <a href="#">Icons</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Forms</a>
-                                        </li>
+                                        
                                     </ul>
                                 </div>
                             </li>
@@ -160,20 +186,20 @@
                             <li class="sidebar-dropdown">
                                 <a href="#">
                                     <i class="fa fa-globe"></i>
-                                    <span>Maps</span>
+                                    <span>My Profile</span>
                                 </a>
                                 <div class="sidebar-submenu">
                                     <ul>
                                         <li>
-                                            <a href="#">Google maps</a>
+                                            <a href="#">View Profile</a>
                                         </li>
                                         <li>
-                                            <a href="#">Open street map</a>
+                                            <a href="#">Edit Profile</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
-                            <li class="header-menu">
+<!--                            <li class="header-menu">
                                 <span>Extra</span>
                             </li>
                             <li>
@@ -194,7 +220,7 @@
                                     <i class="fa fa-folder"></i>
                                     <span>Examples</span>
                                 </a>
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
                     <!-- sidebar-menu  -->
@@ -270,10 +296,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
         <script src="${pageContext.request.contextPath}/res/libs/bootstrap.bundle.js"></script>
-        
+
         <script src="${pageContext.request.contextPath}/res/libs/bootstrap.js"></script>
         <script src="${pageContext.request.contextPath}/res/js/a-panel.js"></script>
-       
+
     </body>
 
 </html>

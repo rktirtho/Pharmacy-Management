@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 public class AdminDbHelper {
 
     private static DBConnector connector = DBConnector.getInstance();
-    
 
     public static void main(String[] args) {
         Admin admin = new Admin();
@@ -32,8 +31,8 @@ public class AdminDbHelper {
         admin.setIsActive(true);
 
 //        registration(admin);
-        int st = login("rktirtho", "qwert", "tuer");
-        System.out.println(st);
+        Admin c = getBySession("5BC5AA2B60B983BD0F4270C99B516CDB");
+        System.out.println(c.getUserName());
     }
 
     public static int login(String userName, String password, String session) {
@@ -69,10 +68,10 @@ public class AdminDbHelper {
 
         } finally {
             try {
-                if (!connection.isClosed()){
+                if (!connection.isClosed()) {
                     connection.close();
                 }
-                
+
                 statement.close();
                 rs.close();
             } catch (SQLException ex) {
@@ -108,15 +107,52 @@ public class AdminDbHelper {
         return status;
     }
 
-    public List<Admin> getAllAdmin() {
+    public static List<Admin> getAllAdmin() {
         return null;
     }
 
-    public Admin getById() {
+    public static Admin getById() {
         return null;
     }
 
     public Admin getByEmail() {
         return null;
+    }
+
+    public static Admin getBySession(String sessionId) {
+        Admin admin = new Admin();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = connection.prepareCall(
+                    "SELECT * FROM " + DBConnector.ADMIN_TABLE
+                    + "  WHERE " + DBConnector.SESSION + " =?");
+            statement.setString(1, sessionId);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                inputer(admin, rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return admin;
+
+    }
+
+    private static void inputer(Admin admin, ResultSet rs) {
+        try {
+            admin.setId(rs.getInt(DBConnector.ID));
+            admin.setName(rs.getString(DBConnector.NAME));
+            admin.setUserName(rs.getString(DBConnector.EMAIL));
+            admin.setAccType(rs.getString(DBConnector.ACC_TYPE));
+            admin.setTimestamp(rs.getTimestamp(DBConnector.REG_TIME));
+            admin.setIsActive(rs.getBoolean(DBConnector.IS_ACTIVE));
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }
