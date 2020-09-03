@@ -265,73 +265,9 @@
                     <h5>More templates</h5>
                     <hr>
 
-                    <table >
-                        <tr>
-                            <th>Product Name</th>
-                            <th>In Stock</th>
-                            <th>Unit Size</th>
-                            <th>Buying Prize</th>
-                            <th>Selling Prize </th>
-                            <th>Discount</th>
-                            <th>Profit</th>
-                            <th>Inventor</th>
-                            <th></th>
-                        </tr>
-                    </table>
-                    <div class="my-2 card p-2">
-                        <table class="table table-striped table-bordered">
-                            <tr>
-                                <th>Product Name</th>
-                                <th>In Stock</th>
-                                <th>Unit Size</th>
-                                <th>Buying Prize</th>
-                                <th>Selling Prize </th>
-                                <th>Discount</th>
-                                <th>Profit</th>
-                                <th>Inventor</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <td><a href="">Napa Extra</a></td>
-                                <td>5735</td>
-                                <td>1 Pcs</td>
-                                <td>1.00</td>
-                                <td>1.25</td>
-                                <td>5%</td>
-                                <td>0.20</td>
-                                <td><a href="">Rejaul Karim Tirtho</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="">Napa Extra</a></td>
-                                <td>5735</td>
-                                <td>1 Pcs</td>
-                                <td>1.00</td>
-                                <td>1.25</td>
-                                <td>5%</td>
-                                <td>0.20</td>
-                                <td><a href="">Rejaul Karim Tirtho</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="">Napa Extra</a></td>
-                                <td>5735</td>
-                                <td>1 Pcs</td>
-                                <td>1.00</td>
-                                <td>1.25</td>
-                                <td>5%</td>
-                                <td>0.20</td>
-                                <td><a href="">Rejaul Karim Tirtho</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="">Napa Extra</a></td>
-                                <td>5735</td>
-                                <td>1 Pcs</td>
-                                <td>1.00</td>
-                                <td>1.25</td>
-                                <td>5%</td>
-                                <td>0.20</td>
-                                <td><a href="">Rejaul Karim Tirtho</a></td>
-                            </tr>
-                        </table>
+                   
+                    <div class="my-2 card p-2" id="content">
+                        
                     </div>
 
 
@@ -368,7 +304,7 @@
                     url: "/Pharmacy_Management/jsps/product/AllProduct.jsp",
                     type: 'GET',
                     success: function (data) {
-                        alert("Success")
+                        document.getElementById("content").innerHTML = data;
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert("Faile")
