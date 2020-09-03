@@ -128,7 +128,7 @@
                                             <a href="#">Update Product</a>
                                         </li>
                                         <li>
-                                            <a href="all-product">All Products</a>
+                                            <a id="all-product">All Products</a>
                                         </li>
 
                                         <li>
@@ -149,7 +149,7 @@
                                 <div class="sidebar-submenu">
                                     <ul>
                                         <li>
-                                            <a href="#">All Employee</a>
+                                            <a href="" id="">All Employee</a>
                                         </li>
                                         <li>
                                             <a href="#">New Account Request</a>
@@ -361,6 +361,21 @@
                     }
                 });
             });
+            
+            $('#all-product').click(function(){
+                
+                $.ajax({
+                    url: "/Pharmacy_Management/jsps/product/AllProduct.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        alert("Success")
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Faile")
+                    }
+                   
+                })
+            })
 
 
         </script>
