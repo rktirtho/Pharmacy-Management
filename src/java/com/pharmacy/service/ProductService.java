@@ -25,5 +25,15 @@ public class ProductService {
         return dbHelper.getAll();
     }
     
+    public static List<Product> stockOut(){
+        
+        return dbHelper.getStockOut();
+    }
+    
+    public static List<Product> needToBuy(){
+        
+        return dbHelper.needToBuy();
+    }
+    
     
 }

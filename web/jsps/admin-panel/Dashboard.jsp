@@ -20,7 +20,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
-        <title>Sidebar template</title>
+        <title>Dashboard</title>
         <link type="text/css" rel="stylesheet" 
               href="${pageContext.request.contextPath}/res/libs/bootstrap.css"/>
         <link type="text/css" rel="stylesheet"
@@ -120,23 +120,23 @@
                                 <div class="sidebar-submenu">
                                     <ul>
                                         <li>
-                                            <a href="#">Add Products
+                                            <a href="add-product" target="_blank">Add Products
 
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">Update Product</a>
+                                            <a href="#" id="update-prduct">Update Product</a>
                                         </li>
                                         <li>
                                             <a id="all-product">All Products</a>
                                         </li>
 
                                         <li>
-                                            <a href="#">Need to Buy</a>
+                                            <a href="#" id="need-to-buy">Need to Purchase</a>
                                         </li>
 
                                         <li>
-                                            <a href="#">Out of Stock</a>
+                                            <a href="#" id="stock-out">Out of Stock</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -247,12 +247,7 @@
             <!-- sidebar-wrapper  -->
             <main class="page-content">
                 <div class="container-fluid">
-                    <h2>Product</h2>
-                    <hr>
                     
-                    <h5>All Product</h5>
-                    <hr>
-
                    
                     <div class="my-2 card p-2" id="content">
                         
@@ -299,6 +294,48 @@
                    
                 })
             })
+            $('#update-prduct').click(function(){
+                
+                $.ajax({
+                    url: domainName+"/jsps/product/update-product.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    },
+                    
+                   
+                })
+            })
+            
+            
+            $('#need-to-buy').click(function(){
+                
+                $.ajax({
+                    url: domainName+"/jsps/product/need-to-buy.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    },
+                    
+                   
+                })
+            })
+            
+            $('#stock-out').click(function(){
+                
+                $.ajax({
+                    url: domainName+"/jsps/product/stock-out.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    },
+                    
+                   
+                })
+            })
+            
+            
+            
             
             $('#all-employee').click(function(){
                 

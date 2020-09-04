@@ -1,14 +1,14 @@
 <%-- 
-    Document   : AllProduct
-    Created on : Sep 3, 2020, 1:38:42 PM
+    Document   : stock-out
+    Created on : Sep 4, 2020, 5:35:55 AM
     Author     : rktirtho
 --%>
 
 <%@page import="com.pharmacy.service.ProductService"%>
-<%@page import="java.util.List"%>
 <%@page import="com.pharmacy.product.Product"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,12 +16,13 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <h2>Out of Stock Product</h2>
+        <hr>
+        
         <%
-            List<Product> products = ProductService.allProduct();
+            List<Product> products = ProductService.stockOut();
             request.setAttribute("products", products);
         %>
-        <h2>Product List</h2>
-        <hr>
 
         <table class="table table-striped table-bordered">
             <tr>
@@ -49,8 +50,5 @@
                 </tr>
             </c:forEach>
         </table>
-
-
-
     </body>
 </html>

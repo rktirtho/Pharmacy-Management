@@ -37,6 +37,7 @@ public class MedicineDBHelper {
     private final String DISCOUNT = "_discount";
     private final String IS_AVAILABLE = "is_available";
     private final String QUANTITY = "_quantity";
+    private final String INVENTOR = "inventor";
     private final String LAST_UPDATE = "_last_update";
     private final String AUTHOR_ID = "author_id";
     private final String EXPIRE_DATE = "_expire_date";
@@ -76,7 +77,7 @@ public class MedicineDBHelper {
         try {
             statement = connection.prepareCall("insert into " + TABLE + " ("
                     + NAME + " ," + DESCPRITION + " ,"
-                    + GROUP + " ," + TYPE + " ," + AUTHOR_ID + " ,"
+                    + GROUP + " ," + TYPE + " ," + AUTHOR_ID + " ,"+INVENTOR+" ,"
                     + UNIT_SIZE + " ," + QUANTITY + " ,"
                     + UNIT_BUYING_PRIZE + " ," + UNIT_SELLING_PRIZE + " ,"
                     + PROFIT_PER_UNIT + " ," + DISCOUNT + " ,"
@@ -109,6 +110,57 @@ public class MedicineDBHelper {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareCall("SELECT * FROM " + TABLE);
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                inputter(rs, product);
+                medicines.add(product);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return medicines;
+    }
+    
+    
+    public List<Product> getStockOut() {
+        List<Product> medicines = new ArrayList<>();
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        ResultSet rs = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareCall("SELECT * FROM " 
+                    + TABLE+" WHERE "+QUANTITY+"<1");
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                inputter(rs, product);
+                medicines.add(product);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return medicines;
+    }
+    
+    /**
+     * When product quantity is less then 100
+     * @return List of Product
+     */
+    public List<Product> needToBuy() {
+        List<Product> medicines = new ArrayList<>();
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        ResultSet rs = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareCall("SELECT * FROM " 
+                    + TABLE+" WHERE "+QUANTITY+"<100");
             rs = statement.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
@@ -247,6 +299,7 @@ public class MedicineDBHelper {
 
     void inputter(ResultSet rs, Product product) throws SQLException {
         product.setName(rs.getString(NAME));
+        product.setInventor(rs.getString(INVENTOR));
         product.setDescprition(rs.getString(DESCPRITION));
         product.setGroup(rs.getString(GROUP));
         product.setType(rs.getString(TYPE));

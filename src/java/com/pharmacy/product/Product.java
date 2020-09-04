@@ -27,6 +27,7 @@ public class Product {
     private Date expireDate;
     private String batchNo;
     private double discount;
+    private String inventor;
     private boolean isAvailable;
     private int quantity;
     private Timestamp laspdate;
@@ -161,6 +162,14 @@ public class Product {
 
     public void setExpireDate(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getInventor() {
+        return inventor;
+    }
+
+    public void setInventor(String inventor) {
+        this.inventor = inventor;
     }
     
     
