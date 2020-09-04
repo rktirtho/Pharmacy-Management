@@ -63,6 +63,14 @@
         <servlet-name>add-product</servlet-name>
         <url-pattern>/add-product</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>sell</servlet-name>
+        <jsp-file>/jsps/sell/sell.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sell</servlet-name>
+        <url-pattern>/sell</url-pattern>
+    </servlet-mapping>
      
      
      
