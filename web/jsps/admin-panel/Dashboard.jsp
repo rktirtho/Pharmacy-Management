@@ -289,7 +289,7 @@
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;
-                    },
+                    }
                     
                    
                 })
@@ -301,7 +301,7 @@
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;
-                    },
+                    }
                     
                    
                 })
@@ -315,7 +315,7 @@
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;
-                    },
+                    }
                     
                    
                 })
@@ -344,7 +344,7 @@
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;
-                    },
+                    }
                     
                    
                 })
@@ -357,7 +357,7 @@
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;
-                    },
+                    }
                     
                    
                 })
@@ -370,7 +370,7 @@
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;
-                    },
+                    }
                     
                    
                 })

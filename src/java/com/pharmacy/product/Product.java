@@ -29,6 +29,7 @@ public class Product {
     private double discount;
     private String inventor;
     private boolean isAvailable;
+    private boolean isUpdated;
     private int quantity;
     private Timestamp laspdate;
 
@@ -171,6 +172,16 @@ public class Product {
     public void setInventor(String inventor) {
         this.inventor = inventor;
     }
+
+    public boolean isIsUpdated() {
+        return isUpdated;
+    }
+
+    public void setIsUpdated(boolean isUpdated) {
+        this.isUpdated = isUpdated;
+    }
+    
+    
     
     
     

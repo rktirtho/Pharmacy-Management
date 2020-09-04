@@ -47,22 +47,22 @@
                                 <label for="title">Title*</label> <input type="text" required
                                                                          class="form-control" id="title" name="title"
                                                                          aria-describedby="emailHelp" placeholder="Product Title">
-                              
+
                             </div>
-                            
-                            
-<!--                            <div class="col">
-                                    <div class="form-group" >
-                                        <label for="category">Category*</label> <select
-                                            required class="form-control" id="category" name="category"
-                                            aria-describedby="emailHelp"  onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
-                                            <option>Select Category</option>
-                                            <c:forEach var="c" items="${c}">
-                                                <option value="${c}">${c}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                </div>-->
+
+
+                            <!--                            <div class="col">
+                                                                <div class="form-group" >
+                                                                    <label for="category">Category*</label> <select
+                                                                        required class="form-control" id="category" name="category"
+                                                                        aria-describedby="emailHelp"  onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
+                                                                        <option>Select Category</option>
+                                                                        <c:forEach var="c" items="${c}">
+                                                                            <option value="${c}">${c}</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
+                                                            </div>-->
 
                             <!-- ===============================================Category, Brand, Model================================= -->
 
@@ -74,7 +74,7 @@
                                             aria-describedby="emailHelp">
                                             <option value="medicine">Medicine</option>
                                             <option value="health-buaty">Health & Buaty</option>
-                                            
+
                                         </select>
                                     </div>
                                 </div>
@@ -106,8 +106,53 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="model">Quantity*</label> <input type="text" required
-                                                                                 class="form-control" id="model" name="model"
-                                                                                 aria-describedby="emailHelp" placeholder="">
+                                                                                    class="form-control" id="model" name="model"
+                                                                                    aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-row mb-4">
+                                <div class="col">
+                                    <div class="form-group" >
+                                        <label for="category">Expired Date*</label> 
+                                        <input
+                                            type="date" class="form-control" id="regular_price" required
+                                            name="regularprice" aria-describedby="emailHelp"
+                                            placeholder="000000">
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-group" >
+                                        <label for="category">Group</label> <select
+                                            required class="form-control" id="sub_category" name="sub_category"
+                                            aria-describedby="emailHelp" >
+                                            <option>Select Category</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="brand">Brand*</label> 
+                                        <select
+                                            required class="form-control" id="brand" name="brand"
+                                            aria-describedby="emailHelp" >
+                                            <option>Select Brand</option>
+                                            <c:forEach var="b" items="${b}">
+                                                <option value="${b}">${b}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="model">Quantity*</label> <input type="text" required
+                                                                                    class="form-control" id="model" name="model"
+                                                                                    aria-describedby="emailHelp" placeholder="">
                                     </div>
                                 </div>
 
@@ -137,8 +182,8 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="discount">Selling Price*</label> <input type="text"
-                                                                                        required class="form-control" id="discount" name="discount"
-                                                                                        aria-describedby="emailHelp" placeholder="10/20">
+                                                                                            required class="form-control" id="discount" name="discount"
+                                                                                            aria-describedby="emailHelp" placeholder="10/20">
                                     </div>
                                 </div>
                                 <div class="col">
@@ -154,7 +199,7 @@
 
                         <!-- ===============================================Description================================= -->
 
-                        <div class="form-row mb-4">
+<!--                        <div class="form-row mb-4">
                             <div class="col">
                                 <div class="form-group">
                                     <label for="processor">Description</label>
@@ -164,7 +209,7 @@
                             </div>
 
 
-                        </div>
+                        </div>-->
 
                         <button class="btn btn-info my-4 btn-block" type="submit">Registration</button>
 
