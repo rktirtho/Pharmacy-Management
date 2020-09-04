@@ -14,24 +14,24 @@ import java.sql.Timestamp;
  */
 public class Product {
     
-    private int id;
+    private int id; // not in form
     private String name;
-    private String descprition;
-    private String group; // Peracitamole
+    private String descprition;// not in form
+    private String group; 
     private String type;  // tablet, Capsule, Injection etc
-    private int author;
+    private String author;
     private double unitSize;
     private double unitSellingPrize;
     private double unitBuyingPrize;
-    private double profitPerUnit;
-    private Date expireDate;
+    private double profitPerUnit; // not in form
+    private String expireDate;
     private String batchNo;
     private double discount;
     private String inventor;
-    private boolean isAvailable;
-    private boolean isUpdated;
+    private boolean isAvailable; // not in form
+    private boolean isUpdated;// not in form
     private int quantity;
-    private Timestamp laspdate;
+    private Timestamp laspdate; // not in form
 
     public int getId() {
         return id;
@@ -73,11 +73,11 @@ public class Product {
         this.type = type;
     }
 
-    public int getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(int author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
@@ -113,11 +113,11 @@ public class Product {
         this.profitPerUnit = profitPerUnit;
     }
 
-    public Date getExpireDate() {
+    public String getExpireDate() {
         return expireDate;
     }
 
-    public void setExpireDate(Date expireDate) {
+    public void setExpireDate(String expireDate) {
         this.expireDate = expireDate;
     }
 
@@ -161,10 +161,6 @@ public class Product {
         this.laspdate = laspdate;
     }
 
-    public void setExpireDate(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public String getInventor() {
         return inventor;
     }
@@ -179,6 +175,11 @@ public class Product {
 
     public void setIsUpdated(boolean isUpdated) {
         this.isUpdated = isUpdated;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" + "id=" + id + ", name=" + name + ", descprition=" + descprition + ", group=" + group + ", type=" + type + ", author=" + author + ", unitSize=" + unitSize + ", unitSellingPrize=" + unitSellingPrize + ", unitBuyingPrize=" + unitBuyingPrize + ", profitPerUnit=" + profitPerUnit + ", expireDate=" + expireDate + ", batchNo=" + batchNo + ", discount=" + discount + ", inventor=" + inventor + ", isAvailable=" + isAvailable + ", isUpdated=" + isUpdated + ", quantity=" + quantity + ", laspdate=" + laspdate + '}';
     }
     
     

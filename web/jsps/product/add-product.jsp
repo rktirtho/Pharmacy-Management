@@ -36,17 +36,17 @@
             <div class="col-md-9 " >
                 <div class="container">
                     <form autocomplete="off" class="border border-light p-5"
-                          action="ProductRegistrationCheck?act=adm" method="post"
-                          enctype="multipart/form-data">
+                          action="item-checkout?act=adm" method="post">
 
                         <p class="h4 mb-2 text-center">Add New Product</p>
 
                         <input type="hidden" value="" name="author_id">
                         <fieldset>
                             <div class="form-group">
-                                <label for="title">Title*</label> <input type="text" required
-                                                                         class="form-control" id="title" name="title"
-                                                                         aria-describedby="emailHelp" placeholder="Product Title">
+                                <label for="name">Title*</label> 
+                                <input type="text" required
+                                       class="form-control" id="title" name="name"
+                                       aria-describedby="name" placeholder="Product Title">
 
                             </div>
 
@@ -69,9 +69,10 @@
                             <div class="form-row mb-4">
                                 <div class="col">
                                     <div class="form-group" >
-                                        <label for="category">Category*</label> <select
-                                            required class="form-control" id="category" name="category"
-                                            aria-describedby="emailHelp">
+                                        <label for="category">Category*</label> 
+                                        <select
+                                            required class="form-control" id="category" name="type"
+                                            aria-describedby="category">
                                             <option value="medicine">Medicine</option>
                                             <option value="health-buaty">Health & Buaty</option>
 
@@ -81,33 +82,28 @@
 
                                 <div class="col">
                                     <div class="form-group" >
-                                        <label for="category">Group</label> <select
-                                            required class="form-control" id="sub_category" name="sub_category"
-                                            aria-describedby="emailHelp" >
-                                            <option>Select Category</option>
-                                        </select>
+                                        <label for="group">Group</label> 
+                                        <input type="text" required
+                                               class="form-control" id="title" name="group"
+                                               aria-describedby="name" placeholder="Peracitamole bp 500">
                                     </div>
                                 </div>
 
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="brand">Brand*</label> 
-                                        <select
-                                            required class="form-control" id="brand" name="brand"
-                                            aria-describedby="emailHelp" >
-                                            <option>Select Brand</option>
-                                            <c:forEach var="b" items="${b}">
-                                                <option value="${b}">${b}</option>
-                                            </c:forEach>
-                                        </select>
+                                        <input type="text" required
+                                               class="form-control" id="title" name="author"
+                                               aria-describedby="brand" placeholder="Peracitamole bp 500">
                                     </div>
                                 </div>
 
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="model">Quantity*</label> <input type="text" required
-                                                                                    class="form-control" id="model" name="model"
-                                                                                    aria-describedby="emailHelp" placeholder="">
+                                        <label for="quantity">Quantity*</label> 
+                                        <input type="text" required
+                                               class="form-control" id="quantity" name="quantity"
+                                               aria-describedby="quantity" placeholder="">
                                     </div>
                                 </div>
 
@@ -116,43 +112,40 @@
                             <div class="form-row mb-4">
                                 <div class="col">
                                     <div class="form-group" >
-                                        <label for="category">Expired Date*</label> 
+                                        <label for="expireDate">Expired Date*</label> 
                                         <input
-                                            type="date" class="form-control" id="regular_price" required
-                                            name="regularprice" aria-describedby="emailHelp"
+                                            type="date" class="form-control" id="regular_price"
+                                            name="expireDate" aria-describedby="expireDate"
                                             placeholder="000000">
                                     </div>
                                 </div>
 
                                 <div class="col">
                                     <div class="form-group" >
-                                        <label for="category">Group</label> <select
-                                            required class="form-control" id="sub_category" name="sub_category"
-                                            aria-describedby="emailHelp" >
-                                            <option>Select Category</option>
-                                        </select>
+                                        <label for="batchNo">Batch No</label>
+                                        <input
+                                            type="text" class="form-control" id="regular_price" 
+                                            name="batchNo" aria-describedby="batchNo"
+                                            placeholder="000000">
                                     </div>
                                 </div>
 
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="brand">Brand*</label> 
-                                        <select
-                                            required class="form-control" id="brand" name="brand"
-                                            aria-describedby="emailHelp" >
-                                            <option>Select Brand</option>
-                                            <c:forEach var="b" items="${b}">
-                                                <option value="${b}">${b}</option>
-                                            </c:forEach>
-                                        </select>
+                                        <label for="inventor">Inventor</label> 
+                                        <input
+                                            type="text" class="form-control" id="" 
+                                            name="inventor" aria-describedby="inventor"
+                                            disabled value="rktirtho">
                                     </div>
                                 </div>
 
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="model">Quantity*</label> <input type="text" required
-                                                                                    class="form-control" id="model" name="model"
-                                                                                    aria-describedby="emailHelp" placeholder="">
+                                        <label for="model">Quantity*</label> 
+                                        <input type="text" required
+                                               class="form-control" id="model" name="model"
+                                               aria-describedby="emailHelp" placeholder="">
                                     </div>
                                 </div>
 
@@ -165,32 +158,34 @@
                             <div class="form-row mb-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="regular_price">Unit Size*</label> <input
-                                            type="text" class="form-control" id="regular_price" required
-                                            name="regularprice" aria-describedby="emailHelp"
-                                            placeholder="000000">
+                                        <label for="unitSize">Unit Size*</label> <input
+                                            type="text" class="form-control" id="" 
+                                            name="unitSize" aria-describedby="unitSize"
+                                            placeholder="">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="regular_price">Purchase Price*</label> <input
-                                            type="text" class="form-control" id="regular_price" required
-                                            name="regularprice" aria-describedby="emailHelp"
-                                            placeholder="000000">
+                                        <label for="unitBuyingPrize">Purchase Price*</label> <input
+                                            type="text" class="form-control" id=""
+                                            name="unitBuyingPrize" aria-describedby="unitBuyingPrize"
+                                            placeholder="">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="discount">Selling Price*</label> <input type="text"
-                                                                                            required class="form-control" id="discount" name="discount"
-                                                                                            aria-describedby="emailHelp" placeholder="10/20">
+                                        <label for="unitSellingPrize">Selling Price*</label> 
+                                        <input type="text" required class="form-control" 
+                                               id="discount" name="unitSellingPrize"
+                                               aria-describedby="unitSellingPrize" placeholder="">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="discount">Discount%*</label> <input type="text"
-                                                                                        required class="form-control" id="discount" name="discount"
-                                                                                        aria-describedby="emailHelp" placeholder="10/20">
+                                        <label for="discount">Discount%*</label> 
+                                        <input type="text" required class="form-control" 
+                                               id="discount" name="discount"
+                                               aria-describedby="emailHelp" placeholder="">
                                     </div>
                                 </div>
 
@@ -199,17 +194,17 @@
 
                         <!-- ===============================================Description================================= -->
 
-<!--                        <div class="form-row mb-4">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="processor">Description</label>
-                                    <textarea rows="2" class="form-control" id="processor"
-                                              placeholder="Category" name="description"> </textarea>
-                                </div>
-                            </div>
-
-
-                        </div>-->
+                        <!--                        <div class="form-row mb-4">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="processor">Description</label>
+                                                            <textarea rows="2" class="form-control" id="processor"
+                                                                      placeholder="Category" name="description"> </textarea>
+                                                        </div>
+                                                    </div>
+                        
+                        
+                                                </div>-->
 
                         <button class="btn btn-info my-4 btn-block" type="submit">Registration</button>
 
