@@ -90,18 +90,30 @@
                                     <span class="badge badge-pill badge-warning">New</span>
                                 </a>
                                 <div class="sidebar-submenu">
-                                    <ul>
+                                    <ul>                                        
                                         <li>
                                             <a href="#">Profit
                                                 <span class="badge badge-pill badge-success">Pro</span>
                                             </a>
                                         </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-tachometer-alt"></i>
+                                    <span>Sells</span>
+
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
                                         <li>
-                                            <a href="#">Total Sells</a>
+                                            <a id="all-sell">
+                                                <span>All Sells</span>
+                                                <span class="badge badge-pill badge-warning">Done</span>
+                                            </a>
                                         </li>
-                                        <li>
-                                            <a href="#">In Stock</a>
-                                        </li>
+
                                         <li>
                                             <a href="#">Daily Sell</a>
                                         </li>
@@ -126,23 +138,37 @@
                                 <div class="sidebar-submenu">
                                     <ul>
                                         <li>
-                                            <a href="add-product" target="_blank">Add Products
+                                            <a href="add-product" target="_blank">
+                                                <span>Add Products</span>
+                                                <span class="badge badge-pill badge-warning">Done</span>
 
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" id="update-prduct">Update Product</a>
+                                            <a href="#" id="update-prduct">
+
+                                                Update Product
+                                            </a>
                                         </li>
                                         <li>
-                                            <a id="all-product">All Products</a>
+                                            <a id="all-product">
+
+                                                <span>All Products</span>
+                                                <span class="badge badge-pill badge-warning">Done</span>
+                                            </a>
                                         </li>
 
                                         <li>
-                                            <a href="#" id="need-to-buy">Need to Purchase</a>
+                                            <a href="#" id="need-to-buy">
+                                                <span>Need to Purchase</span>
+                                                <span class="badge badge-pill badge-warning">Done</span>
+                                            </a>
                                         </li>
 
                                         <li>
-                                            <a href="#" id="stock-out">Out of Stock</a>
+                                            <a id="stock-out"><span>Out of Stock</span>
+                                                <span class="badge badge-pill badge-warning">Done</span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -151,6 +177,8 @@
                                 <a href="#">
                                     <i class="far fa-gem"></i>
                                     <span>Employee</span>
+                                    <span class="badge badge-pill badge-warning">Done</span>
+
                                 </a>
                                 <div class="sidebar-submenu">
                                     <ul>
@@ -381,7 +409,21 @@
                 })
             })
 
+//=======================Sell============================
+
+            $('#all-sell').click(function () {
+
+                $.ajax({
+                    url: domainName + "/jsps/sell/all-sell.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    }
+
+                })
+            })
 //Profile
+
 
             $('#change-password').click(function () {
 
