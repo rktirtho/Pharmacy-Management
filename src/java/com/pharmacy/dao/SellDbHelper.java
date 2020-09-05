@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,16 +21,15 @@ import java.util.logging.Logger;
  * @author rktirtho
  */
 public class SellDbHelper {
-    
-    public String TABLE ="sell";
-    public String ID ="id";
-    public String PRODUCT_ID="product_id";
-    public String SELLER_ID="seller_id";
-    public String QUANTITY="quantity";
-    public String PRICE="price";
-    public String TIMESTAMP="sell_time";
 
-    
+    public String TABLE = "sell";
+    public String ID = "id";
+    public String PRODUCT_ID = "product_id";
+    public String SELLER_ID = "seller_id";
+    public String QUANTITY = "quantity";
+    public String PRICE = "price";
+    public String TIMESTAMP = "sell_time";
+
     public static void main(String[] args) {
         SellDbHelper helper = new SellDbHelper();
         SellModel sm = new SellModel();
@@ -38,20 +39,20 @@ public class SellDbHelper {
         sm.setPrice(10);
         System.out.println(helper.makeSell(sm));
     }
-    
-    public int makeSell(SellModel sm){
-        int status =0;
+
+    public int makeSell(SellModel sm) {
+        int status = 0;
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
-        
+
         try {
-            statement = connection.prepareCall("INSERT INTO "+TABLE
-                    +"("
-                    +PRODUCT_ID+", "
-                    +SELLER_ID+", "
-                    +QUANTITY+", "
-                    +PRICE+") values (?,?,?,?)"
+            statement = connection.prepareCall("INSERT INTO " + TABLE
+                    + "("
+                    + PRODUCT_ID + ", "
+                    + SELLER_ID + ", "
+                    + QUANTITY + ", "
+                    + PRICE + ") values (?,?,?,?)"
             );
             statement.setInt(1, sm.getProductId());
             statement.setInt(2, sm.getSellerId());
@@ -63,7 +64,34 @@ public class SellDbHelper {
         }
         return status;
     }
+
+    public List<SellModel> getAll() {
+        List<SellModel> sellModels = new ArrayList<>();
+
+        return sellModels;
+    }
+
+    public List<SellModel> getBySeller(int id) {
+        List<SellModel> sellModels = new ArrayList<>();
+
+        return sellModels;
+    }
+
+    public List<SellModel> getPerDay() {
+        List<SellModel> sellModels = new ArrayList<>();
+
+        return sellModels;
+    }
+
+    public List<SellModel> getPerDayBySeller() {
+        List<SellModel> sellModels = new ArrayList<>();
+
+        return sellModels;
+    }
     
-    
-    
+     public List<SellModel> getById(){
+        List<SellModel> sellModels = new ArrayList<>();
+        
+        return sellModels;
+    }
 }
