@@ -7,8 +7,10 @@ package com.pharmacy.dao;
 
 import com.pharmacy.product.Product;
 import com.pharmacy.sells.SellModel;
+import com.pharmacy.sells.SellView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -65,33 +67,44 @@ public class SellDbHelper {
         return status;
     }
 
-    public List<SellModel> getAll() {
-        List<SellModel> sellModels = new ArrayList<>();
+    public List<SellView> getAll() {
+        List<SellView> sells = new ArrayList<>();
 
-        return sellModels;
+        return sells;
     }
 
-    public List<SellModel> getBySeller(int id) {
-        List<SellModel> sellModels = new ArrayList<>();
+    public List<SellView> getBySeller(int id) {
+        List<SellView> sells = new ArrayList<>();
 
-        return sellModels;
+        return sells;
     }
 
-    public List<SellModel> getPerDay() {
-        List<SellModel> sellModels = new ArrayList<>();
+    public List<SellView> getPerDay() {
+        List<SellView> sells = new ArrayList<>();
 
-        return sellModels;
+        return sells;
     }
 
-    public List<SellModel> getPerDayBySeller() {
-        List<SellModel> sellModels = new ArrayList<>();
+    public List<SellView> getPerDayBySeller() {
+        List<SellView> sells = new ArrayList<>();
 
-        return sellModels;
+        return sells;
     }
     
-     public List<SellModel> getById(){
-        List<SellModel> sellModels = new ArrayList<>();
-        
-        return sellModels;
+     public List<SellView> getById(){
+        List<SellView> sells = new ArrayList<>();
+
+        return sells;
     }
+     
+     void inputter(ResultSet rs, SellView sm) throws SQLException{
+         sm.setId(rs.getInt(ID));
+         sm.setProductId(rs.getInt(PRODUCT_ID));
+         sm.setSellerId(rs.getInt(SELLER_ID));
+         sm.setProductName(rs.getString());
+         sm.setSellerName(rs.getString(TABLE));
+         sm.setQuantity(rs.getFloat(TABLE));
+         sm.setPrice(rs.getDouble(TABLE));
+         sm.setTime(rs.getTimestamp(TABLE));
+     }
 }
