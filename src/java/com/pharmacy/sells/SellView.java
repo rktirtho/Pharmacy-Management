@@ -84,6 +84,11 @@ public class SellView {
     public void setTime(Timestamp time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "SellView{" + "id=" + id + ", productId=" + productId + ", sellerId=" + sellerId + ", productName=" + productName + ", sellerName=" + sellerName + ", quantity=" + quantity + ", price=" + price + ", time=" + time + '}';
+    }
    
    
 }
