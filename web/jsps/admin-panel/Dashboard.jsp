@@ -74,6 +74,12 @@
                     <!-- sidebar-search  -->
                     <div class="sidebar-menu">
                         <ul>
+                            <li class="sidebar-dropdown">
+                                <a href="sell">
+                                    <i class="fa fa-chart-line"></i>
+                                    <span>Create Bill</span>
+                                </a>
+                            </li>
                             <li class="header-menu">
                                 <span>General</span>
                             </li>

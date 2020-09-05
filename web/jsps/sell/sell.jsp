@@ -47,10 +47,11 @@
                     </td>
                     <td><span id="unit-price"></span></td>
                     <td><input id="quantity" type="number" name="" /></td>
-                    <td><span>5%</span></td>
+                    <td><span>0.0%</span></td>
                     <td id="total">00.00</td>
                     <td><a class="btn btn-danger">Remove</a></td>
                 </tr>
+                
 
             </table>
             <div>
