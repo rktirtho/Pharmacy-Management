@@ -20,16 +20,23 @@ import java.util.logging.Logger;
  */
 public class SellDbHelper {
     
-    public String ID ="";
-    public String PRODUCT_ID="";
-    public String SELLER_ID="";
-    public String QUANTITY="";
-    public String PRICE="";
-    public String TIMESTAMP="";
+    public String TABLE ="sell";
+    public String ID ="id";
+    public String PRODUCT_ID="product_id";
+    public String SELLER_ID="seller_id";
+    public String QUANTITY="quantity";
+    public String PRICE="price";
+    public String TIMESTAMP="sell_time";
 
     
     public static void main(String[] args) {
-        
+        SellDbHelper helper = new SellDbHelper();
+        SellModel sm = new SellModel();
+        sm.setProductId(23);
+        sm.setSellerId(1);
+        sm.setQuantity(10);
+        sm.setPrice(10);
+        System.out.println(helper.makeSell(sm));
     }
     
     public int makeSell(SellModel sm){
@@ -39,14 +46,24 @@ public class SellDbHelper {
         PreparedStatement statement = null;
         
         try {
-            statement = connection.prepareCall("INSERT INTO "+""
+            statement = connection.prepareCall("INSERT INTO "+TABLE
+                    +"("
+                    +PRODUCT_ID+", "
+                    +SELLER_ID+", "
+                    +QUANTITY+", "
+                    +PRICE+") values (?,?,?,?)"
             );
+            statement.setInt(1, sm.getProductId());
+            statement.setInt(2, sm.getSellerId());
+            statement.setFloat(3, sm.getQuantity());
+            statement.setDouble(4, sm.getPrice());
+            status = statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
         return status;
     }
+    
+    
     
 }
