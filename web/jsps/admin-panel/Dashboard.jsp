@@ -194,7 +194,7 @@
                                             <a href="#">View Profile</a>
                                         </li>
                                         <li>
-                                            <a href="#">Edit Profile</a>
+                                            <a href="#" id="change-password">Change Password</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -247,10 +247,10 @@
             <!-- sidebar-wrapper  -->
             <main class="page-content">
                 <div class="container-fluid">
-                    
-                   
+
+
                     <div class="my-2 card p-2" id="content">
-                        
+
                     </div>
 
 
@@ -267,7 +267,7 @@
 
         <script src="${pageContext.request.contextPath}/res/libs/bootstrap.js"></script>
         <script src="${pageContext.request.contextPath}/res/js/a-panel.js"></script>
-        
+
         <script>
             var domainName = "/Pharmacy_Management"
             $('.close-btn').click(function () {
@@ -281,101 +281,114 @@
                     }
                 });
             });
-            
-            $('#all-product').click(function(){
-                
+
+            $('#all-product').click(function () {
+
                 $.ajax({
-                    url: domainName+"/jsps/product/AllProduct.jsp",
+                    url: domainName + "/jsps/product/AllProduct.jsp",
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;
                     }
-                    
-                   
+
+
                 })
             })
-            $('#update-prduct').click(function(){
-                
+            $('#update-prduct').click(function () {
+
                 $.ajax({
-                    url: domainName+"/jsps/product/update-product.jsp",
+                    url: domainName + "/jsps/product/update-product.jsp",
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;
                     }
-                    
-                   
+
+
                 })
             })
-            
-            
-            $('#need-to-buy').click(function(){
-                
+
+
+            $('#need-to-buy').click(function () {
+
                 $.ajax({
-                    url: domainName+"/jsps/product/need-to-buy.jsp",
+                    url: domainName + "/jsps/product/need-to-buy.jsp",
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;
                     }
-                    
-                   
+
+
                 })
             })
-            
-            $('#stock-out').click(function(){
-                
+
+            $('#stock-out').click(function () {
+
                 $.ajax({
-                    url: domainName+"/jsps/product/stock-out.jsp",
+                    url: domainName + "/jsps/product/stock-out.jsp",
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;
                     },
-                    
-                   
-                })
-            })
-            
-            
-            
-            
-            $('#all-employee').click(function(){
-                
-                $.ajax({
-                    url: domainName+"/jsps/admin-panel/all-employee.jsp",
-                    type: 'GET',
-                    success: function (data) {
-                        document.getElementById("content").innerHTML = data;
-                    }
-                    
-                   
-                })
-            })
-            
-            $('#new-request').click(function(){
-                
-                $.ajax({
-                    url: domainName+"/jsps/admin-panel/new-request.jsp",
-                    type: 'GET',
-                    success: function (data) {
-                        document.getElementById("content").innerHTML = data;
-                    }
-                    
-                   
-                })
-            })
-            
-            $('#deleted').click(function(){
-                
-                $.ajax({
-                    url: domainName+"/jsps/admin-panel/deleted.jsp",
-                    type: 'GET',
-                    success: function (data) {
-                        document.getElementById("content").innerHTML = data;
-                    }
-                    
-                   
+
                 })
             })
 
+
+
+
+            $('#all-employee').click(function () {
+
+                $.ajax({
+                    url: domainName + "/jsps/admin-panel/all-employee.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    }
+
+
+                })
+            })
+
+            $('#new-request').click(function () {
+
+                $.ajax({
+                    url: domainName + "/jsps/admin-panel/new-request.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    }
+
+
+                })
+            })
+
+            $('#deleted').click(function () {
+
+                $.ajax({
+                    url: domainName + "/jsps/admin-panel/deleted.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    }
+
+
+                })
+            })
+
+//Profile
+
+            $('#change-password').click(function () {
+
+                $.ajax({
+                    url: domainName + "/jsps/admin-panel/change-password.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    }
+
+
+                })
+            })
 
         </script>
 

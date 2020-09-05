@@ -61,6 +61,17 @@
         <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
     
+    
+    <servlet>
+        <servlet-name>approve-admin</servlet-name>
+        <jsp-file>/jsps/admin-panel/approve-admin.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>approve-admin</servlet-name>
+        <url-pattern>/approve-admin</url-pattern>
+    </servlet-mapping>
+
+    
 <!--    <servlet>
         <servlet-name>all-admin</servlet-name>
         <jsp-file>/jsps/admin-panel/employee.jsp</jsp-file>

@@ -39,8 +39,8 @@
                     <td>${a.getUserName()}</td>
                     <td>${a.getAccType()}</td>
                     <td>${a.getTimestamp()}</td>
-                    <td><a class="btn btn-success">Approve</a></td>
-                    <td><a class="btn btn-danger">Reject</a></td>
+                    <td><a href="approve-admin?response=1&id=${a.getId()}" class="btn btn-success">Approve</a></td>
+                    <td><a href="approve-admin?response=0&id=${a.getId()}"class="btn btn-danger">Reject</a></td>
                 </tr>
             </c:forEach>
         </table>

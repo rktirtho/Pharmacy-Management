@@ -4,6 +4,7 @@
     Author     : rktirtho
 --%>
 
+<%@page import="com.pharmacy.service.ProductService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="product" class="com.pharmacy.product.Product"/>
 <jsp:setProperty name="product" property="*" />
@@ -15,7 +16,16 @@
     </head>
     <body>
         <%
-            out.print(product);
+            product.setIsAvailable(true);
+            boolean inserted =  ProductService.insertProduct(product);
+            if (inserted) {
+                    out.print("Inserted");
+                } else {
+                out.print("Failed");
+                }
+
+
+
         %>
     </body>
 </html>

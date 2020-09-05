@@ -253,8 +253,26 @@ public class AdminDbHelper {
         try {
             statement = connection.prepareCall("UPDATE "
                     + DBConnector.ADMIN_TABLE + " SET " + DBConnector.IS_ACTIVE
-                    + "=? " + DBConnector.IS_RESPONSED + "=? WHERE " + DBConnector.ID + "=?");
+                    + "=?, " + DBConnector.IS_RESPONSED + "=? WHERE " + DBConnector.ID + "=?");
             statement.setBoolean(1, true);
+            statement.setBoolean(2, true);
+            statement.setInt(3, id);
+            status = statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
+    }
+    
+    public static int reject(int id) {
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        int status = 0;
+        try {
+            statement = connection.prepareCall("UPDATE "
+                    + DBConnector.ADMIN_TABLE + " SET " + DBConnector.IS_ACTIVE
+                    + "=?, " + DBConnector.IS_RESPONSED + "=? WHERE " + DBConnector.ID + "=?");
+            statement.setBoolean(1, false);
             statement.setBoolean(2, true);
             statement.setInt(3, id);
             status = statement.executeUpdate();

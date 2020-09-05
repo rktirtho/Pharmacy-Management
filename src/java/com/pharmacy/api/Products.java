@@ -11,6 +11,7 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -18,13 +19,20 @@ import javax.ws.rs.core.MediaType;
  * @author rktirtho
  */
 @Path("products")
-@Produces(MediaType.TEXT_PLAIN)
+@Produces(MediaType.APPLICATION_JSON)
 public class Products {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Product> getIt(){
         return ProductService.allProduct();
+    }
+    
+    @Path("search")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Product> search(@QueryParam("key")String key){
+        return ProductService.search(key);
     }
     
 }

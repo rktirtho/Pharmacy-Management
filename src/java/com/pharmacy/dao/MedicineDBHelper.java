@@ -64,11 +64,12 @@ public class MedicineDBHelper {
         medicine.setIsAvailable(true);
         medicine.setQuantity(0);
 
-        System.out.println(bHelper.insert(medicine));
-//        List<Product> list = bHelper.getAll();
-//        for (Product product : list) {
-//            System.err.println(product.getName());
-//        }
+//        System.out.println(bHelper.insert(medicine));
+        List<Product> list = bHelper.searchByKeyword("napa");
+        System.out.println(list.size());
+        for (Product product : list) {
+            System.err.println(product.getName());
+        }
 
     }
 
@@ -105,11 +106,7 @@ public class MedicineDBHelper {
                         + (product.getUnitBuyingPrize() * product.getQuantity()))
                         / (medicine.getQuantity() + product.getQuantity())
                 );
-                statement.setDouble(9,
-                        ((medicine.getUnitSellingPrize() * medicine.getQuantity())
-                        + (product.getUnitSellingPrize() * product.getQuantity()))
-                        / (medicine.getQuantity() + product.getQuantity())
-                );
+                statement.setDouble(9,medicine.getUnitSellingPrize());
                 statement.setDouble(10, medicine.getProfitPerUnit());
                 statement.setDouble(11, medicine.getDiscount());
                 statement.setBoolean(12, medicine.isIsAvailable());
@@ -150,7 +147,9 @@ public class MedicineDBHelper {
         ResultSet rs = null;
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareCall("SELECT * FROM " + TABLE);
+            statement = connection.prepareCall("SELECT * FROM " 
+                    + TABLE +" WHERE "+IS_UPDATED+"=?");
+            statement.setBoolean(1, true);
             rs = statement.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
@@ -163,6 +162,34 @@ public class MedicineDBHelper {
         }
 
         return medicines;
+    }
+    
+    
+    public List<Product> searchByKeyword(String key){
+        List<Product> products = new ArrayList<>();
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        ResultSet rs = null;
+        PreparedStatement statement = null;
+        
+        try {
+            statement = connection.prepareCall("SELECT * FROM "+TABLE
+                    +" WHERE "+NAME+" like ? and "+ IS_UPDATED+"=?");
+            statement.setString(1, "%"+key+"%");
+            statement.setBoolean(2, true);
+            
+            
+            rs = statement.executeQuery();
+            while (rs.next()) {                
+                Product product = new Product();
+                inputter(rs, product);
+                products.add(product);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return products;
     }
 
     public List<Product> getStockOut() {
@@ -351,14 +378,12 @@ public class MedicineDBHelper {
                     + GROUP + "=? and "
                     + AUTHOR_ID + "=? and "
                     + TYPE + "=? and "
-                    + INVENTOR + "=? and "
                     + IS_UPDATED + "=? "
             );
             statement.setString(1, product.getName());
             statement.setString(2, product.getGroup());
             statement.setString(3, product.getAuthor());
             statement.setString(4, product.getType());
-            statement.setString(5, product.getInventor());
             statement.setBoolean(6, true);
 
             rs = statement.executeQuery();
@@ -377,29 +402,21 @@ public class MedicineDBHelper {
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
-        System.out.println("UPDATE "
-                    + TABLE + " SET "+IS_UPDATED+"=? WHERE "
-                    + NAME + "=? and "
-                    + GROUP + "=? and "
-                    + AUTHOR_ID + "=? and "
-                    + TYPE + "=? and "
-                    + INVENTOR + "=?");
+        
         try {
             statement = connection.prepareCall("UPDATE "
                     + TABLE + " SET "+IS_UPDATED+"=? WHERE "
                     + NAME + "=? and "
                     + GROUP + "=? and "
                     + AUTHOR_ID + "=? and "
-                    + TYPE + "=? and "
-                    + INVENTOR + "=?"
+                    + TYPE + "=?"
             );
             statement.setBoolean(1, false);
             statement.setString(2, product.getName());
             statement.setString(3, product.getGroup());
             statement.setString(4, product.getAuthor());
             statement.setString(5, product.getType());
-            statement.setString(6, product.getInventor());
-
+            
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
@@ -419,14 +436,12 @@ public class MedicineDBHelper {
                     + NAME + "=? and "
                     + GROUP + "=? and "
                     + AUTHOR_ID + "=? and "
-                    + TYPE + "=? and "
-                    + INVENTOR + "=?"
+                    + TYPE + "=?"
             );
             statement.setString(1, product.getName());
             statement.setString(2, product.getGroup());
             statement.setString(3, product.getAuthor());
             statement.setString(4, product.getType());
-            statement.setString(5, product.getInventor());
 
             rs = statement.executeQuery();
 
@@ -442,6 +457,8 @@ public class MedicineDBHelper {
     }
 
     void inputter(ResultSet rs, Product product) throws SQLException {
+        
+        product.setId(rs.getInt(ID));
         product.setName(rs.getString(NAME));
         product.setInventor(rs.getString(INVENTOR));
         product.setDescprition(rs.getString(DESCPRITION));

@@ -4,9 +4,20 @@
     Author     : rktirtho
 --%>
 
+<%@page import="com.pharmacy.dao.AdminDbHelper"%>
+<%@page import="com.pharmacy.admin.Admin"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%
+        boolean isLogin = false;
+        isLogin = (boolean) session.getAttribute("loged");
+        if (!isLogin) {
+            response.sendRedirect(request.getContextPath());
+        }
+        Admin admin = AdminDbHelper.getBySession(session.getId());
+    %>
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" rel="stylesheet" 
@@ -135,19 +146,23 @@
                                         <label for="inventor">Inventor</label> 
                                         <input
                                             type="text" class="form-control" id="" 
-                                            name="inventor" aria-describedby="inventor"
-                                            disabled value="rktirtho">
+                                            name="" aria-describedby="inventor" 
+                                            value="rktirtho" >
+                                        <input
+                                            type="hidden" class="form-control" id="" 
+                                            name="inventor" aria-describedby="inventor" 
+                                            value="<%=admin.getUserName()%>" >
                                     </div>
                                 </div>
 
-                                <div class="col">
+<!--                                <div class="col">
                                     <div class="form-group">
                                         <label for="model">Quantity*</label> 
                                         <input type="text" required
                                                class="form-control" id="model" name="model"
                                                aria-describedby="emailHelp" placeholder="">
                                     </div>
-                                </div>
+                                </div>-->
 
                             </div>
                         </fieldset>

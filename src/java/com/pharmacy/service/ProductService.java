@@ -35,5 +35,12 @@ public class ProductService {
         return dbHelper.needToBuy();
     }
     
+    public static boolean insertProduct(Product product){
+        return dbHelper.insert(product);
+    }
+    public static List<Product> search(String key){
+        return dbHelper.searchByKeyword(key);
+    }
+    
     
 }
