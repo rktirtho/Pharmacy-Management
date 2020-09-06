@@ -32,10 +32,10 @@
                 </p>
 
             </div>
-            <table id="items" class="table table-striped table-bordered">
+            <table id="items" class="table table-striped table-bordered text-center">
                 <tr>
                     <th width="400px">Name</th>
-                    <th>Unit Price</th>
+                    <th>Unit Price(<small>With Discount</small>)</th>
                     <th>Quantity</th>
                     <th>Discount</th>
                     <th>Total</th>
@@ -48,7 +48,7 @@
                     </td>
                     <td><span id="unit-price"></span></td>
                     <td><input id="quantity" type="number" name="" /></td>
-                    <td><span>0.0%</span></td>
+                    <td><span id="discount">0.0%</span></td>
                     <td id="total">00.00</td>
                     <td><a class="btn btn-danger">Remove</a></td>
                 </tr>
@@ -109,10 +109,11 @@
 
                 $('.item-entry').on("focusout", function () {
                     $('#unit-price').html(dataList[0].unitSellingPrize)
+                    $('#discount').html(dataList[0].discount+" %")
 
                 });
 
-                $('#quantity').on("focusout", function () {
+                $('#quantity').keyup(function () {
 //                    console.log("out");
                     var q = $(this).val();
                     $('#total').html(dataList[0].unitSellingPrize * q)
