@@ -11,13 +11,14 @@
 <html>
     <%
         boolean isLogin = false;
+        String satus = request.getParameter("status");
         isLogin = (boolean) session.getAttribute("loged");
         if (!isLogin) {
             response.sendRedirect(request.getContextPath());
         }
         Admin admin = AdminDbHelper.getBySession(session.getId());
     %>
-    
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" rel="stylesheet" 
@@ -155,14 +156,14 @@
                                     </div>
                                 </div>
 
-<!--                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="model">Quantity*</label> 
-                                        <input type="text" required
-                                               class="form-control" id="model" name="model"
-                                               aria-describedby="emailHelp" placeholder="">
-                                    </div>
-                                </div>-->
+                                <!--                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label for="model">Quantity*</label> 
+                                                                        <input type="text" required
+                                                                               class="form-control" id="model" name="model"
+                                                                               aria-describedby="emailHelp" placeholder="">
+                                                                    </div>
+                                                                </div>-->
 
                             </div>
                         </fieldset>
@@ -220,8 +221,20 @@
                         
                         
                                                 </div>-->
+                        
+                            <%
+                                if (satus != null) {
+                                    if(satus.equals("1")){
+                                        out.print("<h6 class=''>Successfully Inserted");
+                                    }else{
+                                        out.print("Failed. Try again");
+                                    }
 
-                        <button class="btn btn-info my-4 btn-block" type="submit">Registration</button>
+                                } 
+                            %>
+                        </h6>
+
+                        <button class="btn btn-info my-4 btn-toolbar text-red" type="submit">Registration</button>
 
 
                     </form>

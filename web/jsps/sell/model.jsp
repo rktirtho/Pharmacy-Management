@@ -24,9 +24,9 @@
         <option>Pu</option>
     </datalist>
 <script>
-//    $('.item-entry').keyup(function () {
-//        console.log($(this).val())
-//    });
+    $('.item-entry').keyup(function () {
+        console.log($(this).val())
+    });
     
      $('.item-entry').keyup(function () {
                 var text = $(this).val();

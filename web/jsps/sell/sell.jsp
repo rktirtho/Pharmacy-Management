@@ -24,6 +24,7 @@
                 <p class="text-center my-1">
                     <span>
                         <%
+                            
                             LocalDateTime date = LocalDateTime.now();
                             out.print(date);
                         %>
@@ -51,7 +52,7 @@
                     <td id="total">00.00</td>
                     <td><a class="btn btn-danger">Remove</a></td>
                 </tr>
-                
+
 
             </table>
             <div>
@@ -72,25 +73,19 @@
             $(document).ready(function () {
                 var domainName = "/Pharmacy_Management"
                 $('#add-more').click(function () {
-                    
+
                     $.ajax({
                         url: domainName + "/jsps/sell/model.jsp",
                         type: 'GET',
                         success: function (data) {
                             document.getElementById('items').innerHTML = '<option>' + data + '</option>'
-//                            $('#items').in('<option>'+data+'</option>')
+                            $('#items').in('<option>' + data + '</option>')
                         }
                     });
-                    
-                    //                    $('#items').append('<tr>'
-                    //                    +'<td ><input class="item-entry" style="width: 380px" type="text" name="" /></td>+'
-                    //                    +'<td></td>+'
-                    //                    +'<td><input type="number" name="" /></td>+'
-                    //                    +'<td></td>+'
-                    //                    +'<td><a class="btn btn-danger">Remove</a></td>+'
-                    //                +'</tr>');
+
+
                 });
-                
+
                 var dataList;
                 $('.item-entry').keyup(function () {
                     $('#name-m').empty();
@@ -99,7 +94,7 @@
                         url: domainName + "/webapi/products/search?key=" + text,
                         //                    console.log(text);
                         type: 'GET',
-                        
+
                         success: function (data) {
                             dataList = data;
                             for (var i = 0; i < data.length; i++) {
@@ -107,26 +102,26 @@
 //                                $('#name-m').empty();
                                 $('#name-m').append('<option class="oid">' + data[i].name + '</option')
                             }
-                            
+
                         }
                     });
                 });
-                
+
                 $('.item-entry').on("focusout", function () {
                     $('#unit-price').html(dataList[0].unitSellingPrize)
-                    
+
                 });
-                
+
                 $('#quantity').on("focusout", function () {
 //                    console.log("out");
-                    var q= $(this).val();
-                    $('#total').html(dataList[0].unitSellingPrize*q)
-                    
+                    var q = $(this).val();
+                    $('#total').html(dataList[0].unitSellingPrize * q)
+
                 });
             });
-            
+
             console.log(dataList);
-            
+
         </script>
 
     </body>

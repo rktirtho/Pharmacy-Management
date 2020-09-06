@@ -62,14 +62,15 @@ public class MedicineDBHelper {
         medicine.setExpireDate("4682-345");
         medicine.setDiscount(5);
         medicine.setIsAvailable(true);
-        medicine.setQuantity(0);
+        medicine.setQuantity(20);
 
-//        System.out.println(bHelper.insert(medicine));
-        List<Product> list = bHelper.searchByKeyword("napa");
-        System.out.println(list.size());
-        for (Product product : list) {
-            System.err.println(product.getName());
-        }
+        System.out.println(bHelper.insert(medicine));
+//System.out.println(bHelper.updateQuantity(medicine));
+//        List<Product> list = bHelper.searchByKeyword("napa");
+//        System.out.println(list.size());
+//        for (Product product : list) {
+//            System.err.println(product.getName());
+//        }
 
     }
 
@@ -101,6 +102,7 @@ public class MedicineDBHelper {
                 statement.setObject(5, medicine.getAuthor());
                 statement.setDouble(6, medicine.getUnitSize());
                 statement.setDouble(7, medicine.getQuantity() + product.getQuantity());
+                System.out.println(medicine.getQuantity() + product.getQuantity());
                 statement.setDouble(8,
                         ((medicine.getUnitBuyingPrize() * medicine.getQuantity())
                         + (product.getUnitBuyingPrize() * product.getQuantity()))
@@ -114,7 +116,7 @@ public class MedicineDBHelper {
                 statement.setString(14, medicine.getBatchNo());
                 statement.setString(15, medicine.getInventor());
                 statement.setBoolean(16, true);
-                isUpdated(product);
+                System.out.println(updateQuantity(product));
             } else {
                 statement.setString(1, medicine.getName());
                 statement.setString(2, medicine.getDescprition());
@@ -384,7 +386,7 @@ public class MedicineDBHelper {
             statement.setString(2, product.getGroup());
             statement.setString(3, product.getAuthor());
             statement.setString(4, product.getType());
-            statement.setBoolean(6, true);
+            statement.setBoolean(5, true);
 
             rs = statement.executeQuery();
 
@@ -398,29 +400,32 @@ public class MedicineDBHelper {
         return product1;
     }
 
-    private void isUpdated(Product product) {
+    private int updateQuantity(Product product) {
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
-        
+        int status =0;
         try {
             statement = connection.prepareCall("UPDATE "
                     + TABLE + " SET "+IS_UPDATED+"=? WHERE "
                     + NAME + "=? and "
                     + GROUP + "=? and "
                     + AUTHOR_ID + "=? and "
-                    + TYPE + "=?"
+                    + TYPE + "=? and "
+                    + IS_UPDATED + "=?"
             );
             statement.setBoolean(1, false);
             statement.setString(2, product.getName());
             statement.setString(3, product.getGroup());
             statement.setString(4, product.getAuthor());
             statement.setString(5, product.getType());
+            statement.setBoolean(6, true);
             
-            statement.executeUpdate();
+            status = statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return status;
 
     }
 

@@ -15,15 +15,12 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <p align="center">Loading...</p>
         <%
             product.setIsAvailable(true);
-            boolean inserted =  ProductService.insertProduct(product);
-            if (inserted) {
-                    out.print("Inserted");
-                } else {
-                out.print("Failed");
-                }
+            boolean inserted = ProductService.insertProduct(product);
 
+            response.sendRedirect("add-product?status=1");
 
 
         %>
