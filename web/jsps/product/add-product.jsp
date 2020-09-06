@@ -225,16 +225,16 @@
                             <%
                                 if (satus != null) {
                                     if(satus.equals("1")){
-                                        out.print("<h6 class=''>Successfully Inserted");
+                                        out.print("<h6 class='text-success text-center'>Successfully Inserted");
                                     }else{
-                                        out.print("Failed. Try again");
+                                        out.print("<h6 class='text-danger text-center'>Failed. Try again");
                                     }
 
                                 } 
                             %>
-                        </h6>
+                       
 
-                        <button class="btn btn-info my-4 btn-toolbar text-red" type="submit">Registration</button>
+                        <button class="btn btn-info my-4 btn-block " type="submit">Registration</button>
 
 
                     </form>
