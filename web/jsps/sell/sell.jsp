@@ -4,11 +4,22 @@
     Author     : rktirtho
 --%>
 
+<%@page import="com.pharmacy.dao.AdminDbHelper"%>
+<%@page import="com.pharmacy.admin.Admin"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.time.LocalDate"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%
+        boolean isLogin = false;
+        isLogin = (boolean) session.getAttribute("loged");
+        if (!isLogin) {
+            response.sendRedirect(request.getContextPath());
+        }
+        Admin admin = AdminDbHelper.getBySession(session.getId());
+
+    %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" rel="stylesheet" 
@@ -16,22 +27,26 @@
         <title>Selling</title>
     </head>
     <body>
+        <div class="card my-2 sticky-top"  >
+            <h4 class="text-center my-1">Janata Pharmacy Ltd.</h4>
+            <p class="text-center my-1">12/C, Bangla Bazar, Dhaka-1100</p>
+            <p class="text-center my-1">
+                <span>
+                    <%                        LocalDateTime date = LocalDateTime.now();
+                        out.print(date);
+                    %>
+                </span>
+            </p>
+            
+            <div class="" style="position: absolute; right: 50px; top: 10px">
+                <b>Sells man:</b><br>
+                <strong><%= admin.getName() %></strong>
+            </div> 
+        </div>
 
-        <div class="container-fluid">
-            <div class="card my-2">
-                <h4 class="text-center my-1">Janata Pharmacy Ltd.</h4>
-                <p class="text-center my-1">12/C, Bangla Bazar, Dhaka-1100</p>
-                <p class="text-center my-1">
-                    <span>
-                        <%
-                            
-                            LocalDateTime date = LocalDateTime.now();
-                            out.print(date);
-                        %>
-                    </span>
-                </p>
 
-            </div>
+        <div class="container-fluid mb-6">
+
             <table id="items" class="table table-striped table-bordered text-center">
                 <tr>
                     <th width="400px">Name</th>
@@ -52,16 +67,152 @@
                     <td id="total">00.00</td>
                     <td><a class="btn btn-danger">Remove</a></td>
                 </tr>
+                <tr>
+                    <td ><input list="name-m" class="item-entry" 
+                                style="width: 380px" type="text" name="" 
+                                />
+                    </td>
+                    <td><span id="unit-price"></span></td>
+                    <td><input id="quantity" type="number" name="" /></td>
+                    <td><span id="discount">0.0%</span></td>
+                    <td id="total">00.00</td>
+                    <td><a class="btn btn-danger">Remove</a></td>
+                </tr>
+                <tr>
+                    <td ><input list="name-m" class="item-entry" 
+                                style="width: 380px" type="text" name="" 
+                                />
+                    </td>
+                    <td><span id="unit-price"></span></td>
+                    <td><input id="quantity" type="number" name="" /></td>
+                    <td><span id="discount">0.0%</span></td>
+                    <td id="total">00.00</td>
+                    <td><a class="btn btn-danger">Remove</a></td>
+                </tr>
+                <tr>
+                    <td ><input list="name-m" class="item-entry" 
+                                style="width: 380px" type="text" name="" 
+                                />
+                    </td>
+                    <td><span id="unit-price"></span></td>
+                    <td><input id="quantity" type="number" name="" /></td>
+                    <td><span id="discount">0.0%</span></td>
+                    <td id="total">00.00</td>
+                    <td><a class="btn btn-danger">Remove</a></td>
+                </tr>
+                <tr>
+                    <td ><input list="name-m" class="item-entry" 
+                                style="width: 380px" type="text" name="" 
+                                />
+                    </td>
+                    <td><span id="unit-price"></span></td>
+                    <td><input id="quantity" type="number" name="" /></td>
+                    <td><span id="discount">0.0%</span></td>
+                    <td id="total">00.00</td>
+                    <td><a class="btn btn-danger">Remove</a></td>
+                </tr>
+                <tr>
+                    <td ><input list="name-m" class="item-entry" 
+                                style="width: 380px" type="text" name="" 
+                                />
+                    </td>
+                    <td><span id="unit-price"></span></td>
+                    <td><input id="quantity" type="number" name="" /></td>
+                    <td><span id="discount">0.0%</span></td>
+                    <td id="total">00.00</td>
+                    <td><a class="btn btn-danger">Remove</a></td>
+                </tr>
+                <tr>
+                    <td ><input list="name-m" class="item-entry" 
+                                style="width: 380px" type="text" name="" 
+                                />
+                    </td>
+                    <td><span id="unit-price"></span></td>
+                    <td><input id="quantity" type="number" name="" /></td>
+                    <td><span id="discount">0.0%</span></td>
+                    <td id="total">00.00</td>
+                    <td><a class="btn btn-danger">Remove</a></td>
+                </tr>
+                <tr>
+                    <td ><input list="name-m" class="item-entry" 
+                                style="width: 380px" type="text" name="" 
+                                />
+                    </td>
+                    <td><span id="unit-price"></span></td>
+                    <td><input id="quantity" type="number" name="" /></td>
+                    <td><span id="discount">0.0%</span></td>
+                    <td id="total">00.00</td>
+                    <td><a class="btn btn-danger">Remove</a></td>
+                </tr>
+                <tr>
+                    <td ><input list="name-m" class="item-entry" 
+                                style="width: 380px" type="text" name="" 
+                                />
+                    </td>
+                    <td><span id="unit-price"></span></td>
+                    <td><input id="quantity" type="number" name="" /></td>
+                    <td><span id="discount">0.0%</span></td>
+                    <td id="total">00.00</td>
+                    <td><a class="btn btn-danger">Remove</a></td>
+                </tr>
+                <tr>
+                    <td ><input list="name-m" class="item-entry" 
+                                style="width: 380px" type="text" name="" 
+                                />
+                    </td>
+                    <td><span id="unit-price"></span></td>
+                    <td><input id="quantity" type="number" name="" /></td>
+                    <td><span id="discount">0.0%</span></td>
+                    <td id="total">00.00</td>
+                    <td><a class="btn btn-danger">Remove</a></td>
+                </tr>
+                <tr>
+                    <td ><input list="name-m" class="item-entry" 
+                                style="width: 380px" type="text" name="" 
+                                />
+                    </td>
+                    <td><span id="unit-price"></span></td>
+                    <td><input id="quantity" type="number" name="" /></td>
+                    <td><span id="discount">0.0%</span></td>
+                    <td id="total">00.00</td>
+                    <td><a class="btn btn-danger">Remove</a></td>
+                </tr>
+                <tr>
+                    <td ><input list="name-m" class="item-entry" 
+                                style="width: 380px" type="text" name="" 
+                                />
+                    </td>
+                    <td><span id="unit-price"></span></td>
+                    <td><input id="quantity" type="number" name="" /></td>
+                    <td><span id="discount">0.0%</span></td>
+                    <td id="total">00.00</td>
+                    <td><a class="btn btn-danger">Remove</a></td>
+                </tr>
+                <tr>
+                    <td ><input list="name-m" class="item-entry" 
+                                style="width: 380px" type="text" name="" 
+                                />
+                    </td>
+                    <td><span id="unit-price"></span></td>
+                    <td><input id="quantity" type="number" name="" /></td>
+                    <td><span id="discount">0.0%</span></td>
+                    <td id="total">00.00</td>
+                    <td><a class="btn btn-danger">Remove</a></td>
+                </tr>
 
 
             </table>
             <div>
-                <button class="px-4 mr-4" style="display: block" id="add-more">Add More</button>
+                <button class="px-4" style="display: block" id="add-more">Add More</button>
             </div>
             <div class="my-3 border py-3">
-                <b class="p-3">Total: </b><span class=" p-3">456356</span>
+                
             </div>
 
+        </div>
+        <div class="fixed-bottom bg-white p-4" >
+            <h6 class="text-right">Total :5,000 BDT</h6>
+            <a class="btn btn-outline-primary float-right">Complete</a>
         </div>
         <datalist id="name-m">
 
@@ -109,7 +260,8 @@
 
                 $('.item-entry').on("focusout", function () {
                     $('#unit-price').html(dataList[0].unitSellingPrize)
-                    $('#discount').html(dataList[0].discount+" %")
+                    $('#discount').html(dataList[0].discount + " %")
+
 
                 });
 
