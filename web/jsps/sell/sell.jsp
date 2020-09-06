@@ -27,7 +27,7 @@
         <title>Selling</title>
     </head>
     <body>
-        <div class="card my-2 sticky-top"  >
+        <div class="card my-2 "  >
             <h4 class="text-center my-1">Janata Pharmacy Ltd.</h4>
             <p class="text-center my-1">12/C, Bangla Bazar, Dhaka-1100</p>
             <p class="text-center my-1">
@@ -211,8 +211,11 @@
 
         </div>
         <div class="fixed-bottom bg-white p-4" >
-            <h6 class="text-right">Total :5,000 BDT</h6>
-            <a class="btn btn-outline-primary float-right">Complete</a>
+            <h5 class="text-right mx-5 ">Total :5,000 BDT</h5>
+            <a class="btn btn-primary px-5 mx-3 float-right">Order</a>
+            <a class="btn btn-warning px-5 mx-3 float-right">Cancle</a>
+            <a class="btn btn-danger px-5 mx-3 float-right">Suspend</a>
+            <a class="btn btn-outline-primary mx-3 float-right">Complete</a>
         </div>
         <datalist id="name-m">
 
