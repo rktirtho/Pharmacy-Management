@@ -254,7 +254,7 @@
                         dataList = data;
                         for (var i = 0; i < data.length; i++) {
                             //                            console.log(data[i]);
-//                                $('#name-m').empty();
+                            $('#name-m').empty();
                             if (text !== "") {
                                 $('#name-m').append('<option class="oid">' + data[i].name + '</option');
                             }
@@ -265,6 +265,12 @@
             });
 
             $('input').on("change", function () {
+                $('#unit-price').html(dataList[0].unitSellingPrize)
+                $('#discount').html(dataList[0].discount + " %")
+
+
+            });
+            $('tr input').on("focusout", function () {
                 $('#unit-price').html(dataList[0].unitSellingPrize)
                 $('#discount').html(dataList[0].discount + " %")
 
