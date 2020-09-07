@@ -43,180 +43,45 @@
                 <strong><%= admin.getName()%></strong>
             </div> 
         </div>
+        <div class="sticky-top bg-white display-block p-4 mb-2 border" >
+            <h5 class="text-right mx-5 ">Total :5,000 BDT</h5>
+            <a class="btn btn-primary px-5 mx-3 float-right">Order</a>
+            <a class="btn btn-warning px-5 mx-3 float-right">Cancle</a>
+            <a class="btn btn-danger px-5 mx-3 float-right">Suspend</a>
+            <a class="btn btn-outline-primary mx-3 float-right" id="add-more">Add More</a>
+        </div>
 
 
-        <div class="container-fluid mb-6">
+        <div class="container-fluid">
 
-            <table id="items" class="table table-striped table-bordered text-center">
+            <table id="items" class="table 
+                   table-striped table-bordered text-center">
                 <tr>
                     <th width="400px">Name</th>
                     <th>Unit Price(<small>With Discount</small>)</th>
                     <th>Quantity</th>
                     <th>Discount</th>
                     <th>Total</th>
-                    <th colspan="2">Total</th>
+                    <th colspan="2"></th>
                 </tr>
-                <tr>
-                    <td><input list="name-m" class="item-entry" 
-                               style="width: 380px" type="text" name="" 
-                               />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-                <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-                <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-                <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-                <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-                <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-                <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-                <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-                <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-                <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-                <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-                <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-                <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
-                    </td>
-                    <td><span id="unit-price"></span></td>
-                    <td><input id="quantity" type="number" name="" /></td>
-                    <td><span id="discount">0.0%</span></td>
-                    <td id="total">00.00</td>
-                    <td><a class="btn btn-danger">Remove</a></td>
-                </tr>
-
-
+                <!--                <tr>
+                                    <td><input list="name-m" class="item-entry" 
+                                               style="width: 380px" type="text" name=""/>
+                                    </td>
+                                    <td><span id="unit-price"></span></td>
+                                    <td><input id="quantity" type="number" name="" /></td>
+                                    <td><span id="discount">0.0%</span></td>
+                                    <td id="total">00.00</td>
+                                    <td><a class="btn btn-danger">Remove</a></td>
+                                </tr>-->
             </table>
-            <div>
-                <button class="px-4" style="display: block" id="add-more">Add More</button>
-            </div>
+
             <div class="my-3 border py-3">
 
             </div>
 
         </div>
-        <div class="fixed-bottom bg-white p-4" >
-            <h5 class="text-right mx-5 ">Total :5,000 BDT</h5>
-            <a class="btn btn-primary px-5 mx-3 float-right">Order</a>
-            <a class="btn btn-warning px-5 mx-3 float-right">Cancle</a>
-            <a class="btn btn-danger px-5 mx-3 float-right">Suspend</a>
-            <a class="btn btn-outline-primary mx-3 float-right">Complete</a>
-        </div>
+
         <datalist id="name-m">
 
         </datalist>
@@ -224,68 +89,73 @@
         <script src="${pageContext.request.contextPath}/res/libs/bootstrap.bundle.js"></script>
         <script src="${pageContext.request.contextPath}/res/libs/bootstrap.js"></script>
         <script>
-//            $(document).ready(function () {
-            $('#name-m').empty();
-            var domainName = "/Pharmacy_Management"
-            $('#add-more').click(function () {
+            $(document).ready(function () {
                 $('#name-m').empty();
-                $.ajax({
-                    url: domainName + "/jsps/sell/model.jsp",
-                    type: 'GET',
-                    success: function (data) {
-                        document.getElementById('items').innerHTML = '<option>' + data + '</option>'
-                        $('#items').in('<option>' + data + '</option>')
-                    }
-                });
+                var domainName = "/Pharmacy_Management"
 
 
-            });
-
-            var dataList;
-            $('.item-entry').keyup(function () {
-                $('#name-m').empty();
-                var text = $(this).val();
-                $.ajax({
-                    url: domainName + "/webapi/products/search?key=" + text,
-                    //                    console.log(text);
-                    type: 'GET',
-
-                    success: function (data) {
-                        dataList = data;
-                        for (var i = 0; i < data.length; i++) {
-                            //                            console.log(data[i]);
-                            $('#name-m').empty();
-                            if (text !== "") {
-                                $('#name-m').append('<option class="oid">' + data[i].name + '</option');
-                            }
-                        }
-
-                    }
-                });
-            });
-
-            $('input').on("change", function () {
-                $('#unit-price').html(dataList[0].unitSellingPrize)
-                $('#discount').html(dataList[0].discount + " %")
-
-
-            });
-            $('tr input').on("focusout", function () {
-                $('#unit-price').html(dataList[0].unitSellingPrize)
-                $('#discount').html(dataList[0].discount + " %")
-
-
-            });
-
-            $('#quantity').keyup(function () {
-//                    console.log("out");
-                var q = $(this).val();
-                $('#total').html(dataList[0].unitSellingPrize * q)
-
-            });
-//            });
+//                $('#add-more').click(function () {
+//                    $.ajax({
+//                        url: domainName + "/jsps/sell/model.jsp",
+//                        type: 'GET',
+//                        success: function (data) {
+////                        document.getElementById('items').innerHTML = '<option>' + data + '</option>'
+//                            $('#items').append(data)
+//                        }
+//                    });
 //
-//            console.log(dataList);
+//
+//                });
+
+
+                $('#add-more').click(function () {
+                    $('#items').append('<tr>'
+                            + '<td ><input list="name-m" class="item-entry" id="" style="width: 380px" type="text" name="" /></td>'
+                            + '<td></td>'
+                            + '<td><input type="number" name="" /></td>'
+                            + '<td></td>'
+                            + '<td></td>'
+                            + '<td><a class="btn btn-danger" c>Remove</a></td>'
+                            + '</tr>)')
+                });
+                var dataList;
+                $('.item-entry').keyup(function () {
+                    $('#name-m').empty();
+                    var text = $(this).val();
+                    $.ajax({
+                        url: domainName + "/webapi/products/search?key=" + text,
+                        type: 'GET',
+                        success: function (data) {
+                            dataList = data;
+                            for (var i = 0; i < data.length; i++) {
+                                $('#name-m').empty();
+                                if (text !== "") {
+                                    $('#name-m').append('<option class="oid">' + data[i].name + '</option');
+                                }
+                            }
+
+                        }
+                    });
+                });
+                $('input').on("change", function () {
+                    $('#unit-price').html(dataList[0].unitSellingPrize)
+                    $('#discount').html(dataList[0].discount + " %")
+
+
+                });
+                $('tr input').on("focusout", function () {
+                    $('#unit-price').html(dataList[0].unitSellingPrize)
+                    $('#discount').html(dataList[0].discount + " %")
+
+
+                });
+                $('#quantity').keyup(function () {
+                    var q = $(this).val();
+                    $('#total').html(dataList[0].unitSellingPrize * q)
+
+                });
+            })
+                    ;
 
         </script>
 
