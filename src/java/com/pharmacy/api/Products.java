@@ -32,6 +32,7 @@ public class Products {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Product> search(@QueryParam("key")String key){
+        
         return ProductService.search(key);
     }
     

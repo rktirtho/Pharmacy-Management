@@ -46,31 +46,31 @@ public class MedicineDBHelper {
 
     public static void main(String[] args) {
         MedicineDBHelper bHelper = new MedicineDBHelper();
-        Product medicine = new Product();
-        medicine.setName("Max Pro");
-        medicine.setDescprition("not data");
-        medicine.setAuthor("ACI");
-        medicine.setInventor("Fahim");
-        medicine.setGroup("peracitame");
-        medicine.setBatchNo("fdfdf");
-        medicine.setUnitBuyingPrize(5.0);
-        medicine.setUnitSellingPrize(6.5);
-        medicine.setUnitSize(1);
-        medicine.setType("Tablet");
-        long mills = System.currentTimeMillis();
-        Date date = new Date(mills);
-        medicine.setExpireDate("4682-345");
-        medicine.setDiscount(5);
-        medicine.setIsAvailable(true);
-        medicine.setQuantity(20);
+//        Product medicine = new Product();
+//        medicine.setName("Max Pro");
+//        medicine.setDescprition("not data");
+//        medicine.setAuthor("ACI");
+//        medicine.setInventor("Fahim");
+//        medicine.setGroup("peracitame");
+//        medicine.setBatchNo("fdfdf");
+//        medicine.setUnitBuyingPrize(5.0);
+//        medicine.setUnitSellingPrize(6.5);
+//        medicine.setUnitSize(1);
+//        medicine.setType("Tablet");
+//        long mills = System.currentTimeMillis();
+//        Date date = new Date(mills);
+//        medicine.setExpireDate("4682-345");
+//        medicine.setDiscount(5);
+//        medicine.setIsAvailable(true);
+//        medicine.setQuantity(20);
 
-        System.out.println(bHelper.insert(medicine));
+//        System.out.println(bHelper.insert(medicine));
 //System.out.println(bHelper.updateQuantity(medicine));
-//        List<Product> list = bHelper.searchByKeyword("napa");
-//        System.out.println(list.size());
-//        for (Product product : list) {
-//            System.err.println(product.getName());
-//        }
+        List<Product> list = bHelper.searchByKeyword("nap");
+        System.out.println(list.size());
+        for (Product product : list) {
+            System.err.println(product.getName());
+        }
 
     }
 

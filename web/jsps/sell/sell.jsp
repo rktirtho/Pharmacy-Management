@@ -37,10 +37,10 @@
                     %>
                 </span>
             </p>
-            
+
             <div class="" style="position: absolute; right: 50px; top: 10px">
                 <b>Sells man:</b><br>
-                <strong><%= admin.getName() %></strong>
+                <strong><%= admin.getName()%></strong>
             </div> 
         </div>
 
@@ -57,9 +57,9 @@
                     <th colspan="2">Total</th>
                 </tr>
                 <tr>
-                    <td ><input list="name-m" class="item-entry" 
-                                style="width: 380px" type="text" name="" 
-                                />
+                    <td><input list="name-m" class="item-entry" 
+                               style="width: 380px" type="text" name="" 
+                               />
                     </td>
                     <td><span id="unit-price"></span></td>
                     <td><input id="quantity" type="number" name="" /></td>
@@ -206,7 +206,7 @@
                 <button class="px-4" style="display: block" id="add-more">Add More</button>
             </div>
             <div class="my-3 border py-3">
-                
+
             </div>
 
         </div>
@@ -224,59 +224,62 @@
         <script src="${pageContext.request.contextPath}/res/libs/bootstrap.bundle.js"></script>
         <script src="${pageContext.request.contextPath}/res/libs/bootstrap.js"></script>
         <script>
-            $(document).ready(function () {
-                var domainName = "/Pharmacy_Management"
-                $('#add-more').click(function () {
-
-                    $.ajax({
-                        url: domainName + "/jsps/sell/model.jsp",
-                        type: 'GET',
-                        success: function (data) {
-                            document.getElementById('items').innerHTML = '<option>' + data + '</option>'
-                            $('#items').in('<option>' + data + '</option>')
-                        }
-                    });
-
-
+//            $(document).ready(function () {
+            $('#name-m').empty();
+            var domainName = "/Pharmacy_Management"
+            $('#add-more').click(function () {
+                $('#name-m').empty();
+                $.ajax({
+                    url: domainName + "/jsps/sell/model.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById('items').innerHTML = '<option>' + data + '</option>'
+                        $('#items').in('<option>' + data + '</option>')
+                    }
                 });
 
-                var dataList;
-                $('.item-entry').keyup(function () {
-                    $('#name-m').empty();
-                    var text = $(this).val();
-                    $.ajax({
-                        url: domainName + "/webapi/products/search?key=" + text,
-                        //                    console.log(text);
-                        type: 'GET',
 
-                        success: function (data) {
-                            dataList = data;
-                            for (var i = 0; i < data.length; i++) {
-                                //                            console.log(data[i]);
+            });
+
+            var dataList;
+            $('.item-entry').keyup(function () {
+                $('#name-m').empty();
+                var text = $(this).val();
+                $.ajax({
+                    url: domainName + "/webapi/products/search?key=" + text,
+                    //                    console.log(text);
+                    type: 'GET',
+
+                    success: function (data) {
+                        dataList = data;
+                        for (var i = 0; i < data.length; i++) {
+                            //                            console.log(data[i]);
 //                                $('#name-m').empty();
-                                $('#name-m').append('<option class="oid">' + data[i].name + '</option')
+                            if (text !== "") {
+                                $('#name-m').append('<option class="oid">' + data[i].name + '</option');
                             }
-
                         }
-                    });
-                });
 
-                $('.item-entry').on("focusout", function () {
-                    $('#unit-price').html(dataList[0].unitSellingPrize)
-                    $('#discount').html(dataList[0].discount + " %")
-
-
-                });
-
-                $('#quantity').keyup(function () {
-//                    console.log("out");
-                    var q = $(this).val();
-                    $('#total').html(dataList[0].unitSellingPrize * q)
-
+                    }
                 });
             });
 
-            console.log(dataList);
+            $('input').on("change", function () {
+                $('#unit-price').html(dataList[0].unitSellingPrize)
+                $('#discount').html(dataList[0].discount + " %")
+
+
+            });
+
+            $('#quantity').keyup(function () {
+//                    console.log("out");
+                var q = $(this).val();
+                $('#total').html(dataList[0].unitSellingPrize * q)
+
+            });
+//            });
+//
+//            console.log(dataList);
 
         </script>
 
