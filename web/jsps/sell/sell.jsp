@@ -119,25 +119,7 @@
 //                            + '<td><a class="btn btn-danger" c>Remove</a></td>'
 //                            + '</tr>)')
 //                });
-                var dataList;
-                $('.item-entry').keyup(function () {
-                    $('#name-m').empty();
-                    var text = $(this).val();
-                    $.ajax({
-                        url: domainName + "/webapi/products/search?key=" + text,
-                        type: 'GET',
-                        success: function (data) {
-                            dataList = data;
-                            for (var i = 0; i < data.length; i++) {
-                                $('#name-m').empty();
-                                if (text !== "") {
-                                    $('#name-m').append('<option class="oid">' + data[i].name + '</option');
-                                }
-                            }
-
-                        }
-                    });
-                });
+                
                 $('input').on("change", function () {
                     $('#unit-price').html(dataList[0].unitSellingPrize)
                     $('#discount').html(dataList[0].discount + " %")
