@@ -14,28 +14,34 @@ $(function () {
     // Creating html elements by clicking add more button
     $('#add-more').click(function () {
         itemCounter++;
-        var row = $("<tr></tr>").attr("id", "item-row"+itemCounter);
+        var row = $("<tr></tr>").attr("id", "item-row" + itemCounter);
         var tdName = $("<td></td>");
         var inName = $('<input list="name-m" class="item-entry" \n\
-id="item'+itemCounter+'" style="width: 380px" type="text" name="" /></td>').keyup(function () {
-            $('#name-m').empty();
-            var query = $(this).val();
-            $.ajax({
-                url: domainName + "/webapi/products/search?key=" + query,
-                type: 'GET',
-                success: function (data) {
+id="item' + itemCounter + '" style="width: 380px" type="text" name="" /></td>')
+                .keyup(function () {
                     $('#name-m').empty();
-                    data.forEach(function (item) {
-                        console.log(item);
-                        $('#name-m').append('<option class="oid">' + item.name + '</option');
-                        $(this).val = data[0].name
+                    var query = $(this).val();
+                    $.ajax({
+                        url: domainName + "/webapi/products/search?key=" + query,
+                        type: 'GET',
+                        success: function (data) {
+                            $('#name-m').empty();
+                            data.forEach(function (item) {
+                                console.log(item);
+                                $('#name-m').append('<option class="'+item.id+'" value="'+item.name+'">' + item.group + '</option')
+                                        ;
+
+                            });
+
+                        }
                     });
 
-                }
-            });
+                    $('#name-m').empty();
+                })
+                .change(function (event) {
+                    console.log(event);
 
-            $('#name-m').empty();
-        });
+                });
 
         var tdUnitPrice = $("<td></td>");
         var tdQunatity = $("<td></td>");
@@ -45,10 +51,10 @@ id="item'+itemCounter+'" style="width: 380px" type="text" name="" /></td>').keyu
         var tdDel = $("<td></td>");
         var btnDel = $('<a class="btn btn-danger">Remove</a>')
                 .attr("id", itemCounter).click(function () {
-                    var delId = $(this).attr("id");
-            $('#item-row'+delId).remove();
-            
-            
+            var delId = $(this).attr("id");
+            $('#item-row' + delId).remove();
+
+
         });
 
         tdName.append(inName);
