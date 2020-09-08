@@ -88,6 +88,7 @@
         <script src="${pageContext.request.contextPath}/res/libs/jquery-3.3.1.js"></script>
         <script src="${pageContext.request.contextPath}/res/libs/bootstrap.bundle.js"></script>
         <script src="${pageContext.request.contextPath}/res/libs/bootstrap.js"></script>
+        <script src="${pageContext.request.contextPath}/res/js/sell-handaler.js"></script>
         <script>
             $(document).ready(function () {
                 $('#name-m').empty();
@@ -108,16 +109,16 @@
 //                });
 
 
-                $('#add-more').click(function () {
-                    $('#items').append('<tr>'
-                            + '<td ><input list="name-m" class="item-entry" id="" style="width: 380px" type="text" name="" /></td>'
-                            + '<td></td>'
-                            + '<td><input type="number" name="" /></td>'
-                            + '<td></td>'
-                            + '<td></td>'
-                            + '<td><a class="btn btn-danger" c>Remove</a></td>'
-                            + '</tr>)')
-                });
+//                $('#add-more').click(function () {
+//                    $('#items').append('<tr>'
+//                            + '<td ><input list="name-m" class="item-entry" id="" style="width: 380px" type="text" name="" /></td>'
+//                            + '<td></td>'
+//                            + '<td><input type="number" name="" /></td>'
+//                            + '<td></td>'
+//                            + '<td></td>'
+//                            + '<td><a class="btn btn-danger" c>Remove</a></td>'
+//                            + '</tr>)')
+//                });
                 var dataList;
                 $('.item-entry').keyup(function () {
                     $('#name-m').empty();
