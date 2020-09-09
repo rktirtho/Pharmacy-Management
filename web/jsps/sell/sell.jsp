@@ -63,21 +63,9 @@
                     <th>Total</th>
                     <th colspan="2"></th>
                 </tr>
-                <!--                <tr>
-                                    <td><input list="name-m" class="item-entry" 
-                                               style="width: 380px" type="text" name=""/>
-                                    </td>
-                                    <td><span id="unit-price"></span></td>
-                                    <td><input id="quantity" type="number" name="" /></td>
-                                    <td><span id="discount">0.0%</span></td>
-                                    <td id="total">00.00</td>
-                                    <td><a class="btn btn-danger">Remove</a></td>
-                                </tr>-->
+                
             </table>
 
-            <div class="my-3 border py-3">
-
-            </div>
 
         </div>
 
@@ -93,25 +81,6 @@
                 $('#name-m').empty();
                 var domainName = "/Pharmacy_Management"
 
-
-//
-//                $('input').on("change", function () {
-//                    $('#unit-price').html(dataList[0].unitSellingPrize)
-//                    $('#discount').html(dataList[0].discount + " %")
-//
-//
-//                });
-//                $('tr input').on("focusout", function () {
-//                    $('#unit-price').html(dataList[0].unitSellingPrize)
-//                    $('#discount').html(dataList[0].discount + " %")
-//
-//
-//                });
-//                $('#quantity').keyup(function () {
-//                    var q = $(this).val();
-//                    $('#total').html(dataList[0].unitSellingPrize * q)
-//
-//                });
             })
                     ;
 
