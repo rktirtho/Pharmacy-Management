@@ -123,8 +123,10 @@ id="item' + itemCounter + '" style="width: 380px" type="text" name="" /></td>')
             .attr("id", itemCounter).click(function () {
         var delId = $(this).attr("id");
         $('#item-row' + delId).remove();
-
-
+    });
+    var btnAccept = $('<a class="btn btn-success mx-3">Add</a>')
+            .attr("ida", itemCounter).click(function () {
+       moreFeild()
     });
 
     tdName.append(inName);
@@ -132,7 +134,7 @@ id="item' + itemCounter + '" style="width: 380px" type="text" name="" /></td>')
     tdQunatity.append(inQuantity);
     tdDiscount.append(discountSpan);
     tdTotal.append(totalSpan);
-    tdDel.append(btnDel);
+    tdDel.append(btnAccept ,btnDel);
 
     row.append(tdName, tdUnitPrice, tdQunatity, tdDiscount, tdTotal, tdDel);
     $('#items').append(row);

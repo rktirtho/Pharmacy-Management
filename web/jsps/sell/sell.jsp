@@ -40,14 +40,15 @@
 
             <div class="" style="position: absolute; right: 50px; top: 10px">
                 <b>Sells man:</b><br>
+                
                 <strong><%= admin.getName()%></strong>
             </div> 
         </div>
         <div class="sticky-top bg-white display-block p-4 mb-2 border" >
             <h5 class="text-right mx-5 "><span>Total: </span><span style="color: red" id="total-bill"> 00.0</span> BDT</h5>
-            <a class="btn btn-primary px-5 mx-3 float-right">Order</a>
-            <a class="btn btn-warning px-5 mx-3 float-right" id="cancle-bill">Cancle Bill</a>
-            <a class="btn btn-outline-primary mx-3 float-right" id="add-more">Add Item</a>
+            <a class="btn btn-primary text-white px-5 mx-3 float-right">Order </a>
+            <a class="btn btn-warning  px-5 mx-3 float-right" id="cancle-bill">Cancle Bill</a>
+            <a class="btn btn-success text-white mx-3 float-right" id="add-more">Add Item</a>
         </div>
 
 
