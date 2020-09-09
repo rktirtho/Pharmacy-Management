@@ -44,7 +44,7 @@
             </div> 
         </div>
         <div class="sticky-top bg-white display-block p-4 mb-2 border" >
-            <h5 class="text-right mx-5 ">Total :5,000 BDT</h5>
+            <h5 class="text-right mx-5 "><span>Total: </span><span style="color: red" id="total-bill"> 00.0</span> BDT</h5>
             <a class="btn btn-primary px-5 mx-3 float-right">Order</a>
             <a class="btn btn-warning px-5 mx-3 float-right">Cancle</a>
             <a class="btn btn-danger px-5 mx-3 float-right">Suspend</a>
@@ -95,48 +95,24 @@
                 var domainName = "/Pharmacy_Management"
 
 
-//                $('#add-more').click(function () {
-//                    $.ajax({
-//                        url: domainName + "/jsps/sell/model.jsp",
-//                        type: 'GET',
-//                        success: function (data) {
-////                        document.getElementById('items').innerHTML = '<option>' + data + '</option>'
-//                            $('#items').append(data)
-//                        }
-//                    });
+//
+//                $('input').on("change", function () {
+//                    $('#unit-price').html(dataList[0].unitSellingPrize)
+//                    $('#discount').html(dataList[0].discount + " %")
 //
 //
 //                });
-
-
-//                $('#add-more').click(function () {
-//                    $('#items').append('<tr>'
-//                            + '<td ><input list="name-m" class="item-entry" id="" style="width: 380px" type="text" name="" /></td>'
-//                            + '<td></td>'
-//                            + '<td><input type="number" name="" /></td>'
-//                            + '<td></td>'
-//                            + '<td></td>'
-//                            + '<td><a class="btn btn-danger" c>Remove</a></td>'
-//                            + '</tr>)')
+//                $('tr input').on("focusout", function () {
+//                    $('#unit-price').html(dataList[0].unitSellingPrize)
+//                    $('#discount').html(dataList[0].discount + " %")
+//
+//
 //                });
-                
-                $('input').on("change", function () {
-                    $('#unit-price').html(dataList[0].unitSellingPrize)
-                    $('#discount').html(dataList[0].discount + " %")
-
-
-                });
-                $('tr input').on("focusout", function () {
-                    $('#unit-price').html(dataList[0].unitSellingPrize)
-                    $('#discount').html(dataList[0].discount + " %")
-
-
-                });
-                $('#quantity').keyup(function () {
-                    var q = $(this).val();
-                    $('#total').html(dataList[0].unitSellingPrize * q)
-
-                });
+//                $('#quantity').keyup(function () {
+//                    var q = $(this).val();
+//                    $('#total').html(dataList[0].unitSellingPrize * q)
+//
+//                });
             })
                     ;
 

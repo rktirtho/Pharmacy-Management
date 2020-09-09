@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+var total = 00;
 
 $(function () {
+
+    $('#total-bill').html(total);
 
     var dataList;
     var domainName = "/Pharmacy_Management"
@@ -29,7 +31,7 @@ id="item' + itemCounter + '" style="width: 380px" type="text" name="" /></td>')
                             $('#name-m').empty();
                             data.forEach(function (item) {
 //                                console.log(item);
-                                $('#name-m').append('<option class="'+item.id+'" value="'+item.name+'">' + item.group + '</option')
+                                $('#name-m').append('<option class="' + item.id + '" value="' + item.name + '">' + item.group + '</option')
                                         ;
 
                             });
@@ -40,29 +42,37 @@ id="item' + itemCounter + '" style="width: 380px" type="text" name="" /></td>')
                     $('#name-m').empty();
                 })
                 .change(function (event) {
-                    var fldNumber= parseInt($(this).attr("id").replace("item",""));
-                    
-                    $('#price'+fldNumber).html(dataList[0].unitSellingPrize)
-                    $('#discount'+fldNumber).html(dataList[0].discount)
-                    $('#total'+fldNumber).html("0.00");
-            console.log(dataList[0])
+                    var fldNumber = parseInt($(this).attr("id").replace("item", ""));
+
+                    $('#price' + fldNumber).html(dataList[0].unitSellingPrize)
+                    $('#discount' + fldNumber).html(dataList[0].discount)
+                    $('#total' + fldNumber).html("0.00");
+                    console.log(dataList[0])
 
                 });
 
         var tdUnitPrice = $("<td></td>");
-        var priceSpan = $("<span  id='price"+itemCounter+"'></span>");
+        var priceSpan = $("<span  id='price" + itemCounter + "'></span>");
         var tdQunatity = $("<td></td>");
-        var inQuantity = $('<input id="+price'+itemCounter+'" type="number" name="" />')
+        var inQuantity = $('<input id="price' + itemCounter + '" type="number" name="" />')
                 .keyup(function () {
-                    var fldNumber= parseInt($(this).attr("id").replace("item",""));
-                    
+                    var fldNumber = parseInt($(this).attr("id").replace("price", ""));
                     var q = $(this).val();
-                    $('#total'+fldNumber).html(dataList[0].unitSellingPrize * q)
+
+                    $('#total' + fldNumber).html(dataList[0].unitSellingPrize * q)
+
+
+                })
+                .on('focusout', function () {
+                    var q = $(this).val();
+                    total = total+ (dataList[0].unitSellingPrize * q)
+                      $('#total-bill').html(total)
+
                 });
-        var tdDiscount = $("<td id='discount"+itemCounter+"'></td>");
-        var discountSpan = $("<span  id='discount"+itemCounter+"'></span>");
-        var tdTotal = $("<td id='total"+itemCounter+"'></td>");
-        var totalSpan = $("<span  id='total"+itemCounter+"'></span>");
+        var tdDiscount = $("<td id='discount" + itemCounter + "'></td>");
+        var discountSpan = $("<span  id='discount" + itemCounter + "'></span>");
+        var tdTotal = $("<td></td>");
+        var totalSpan = $("<span  id='total" + itemCounter + "'></span>");
         var tdDel = $("<td></td>");
         var btnDel = $('<a class="btn btn-danger">Remove</a>')
                 .attr("id", itemCounter).click(function () {
@@ -107,16 +117,10 @@ id="item' + itemCounter + '" style="width: 380px" type="text" name="" /></td>')
     }
     ;
 
-    '<tr>'
-            + '<td ><input list="name-m" class="item-entry" id="" style="width: 380px" type="text" name="" /></td>'
-            + '<td></td>'
-            + '<td><input type="number" name="" /></td>'
-            + '<td></td>'
-            + '<td></td>'
-            + '<td><a class="btn btn-danger" c>Remove</a></td>'
-            + '</tr>)'
 
 
 });
+
+
 
 
