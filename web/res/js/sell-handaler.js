@@ -117,6 +117,9 @@ id="item' + itemCounter + '" style="width: 380px" type="text" name="" /></td>')
     }
     ;
 
+$('#cancle-bill').click(function () {
+        location.reload();
+    });
 
 
 });

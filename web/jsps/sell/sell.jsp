@@ -46,9 +46,8 @@
         <div class="sticky-top bg-white display-block p-4 mb-2 border" >
             <h5 class="text-right mx-5 "><span>Total: </span><span style="color: red" id="total-bill"> 00.0</span> BDT</h5>
             <a class="btn btn-primary px-5 mx-3 float-right">Order</a>
-            <a class="btn btn-warning px-5 mx-3 float-right">Cancle</a>
-            <a class="btn btn-danger px-5 mx-3 float-right">Suspend</a>
-            <a class="btn btn-outline-primary mx-3 float-right" id="add-more">Add More</a>
+            <a class="btn btn-warning px-5 mx-3 float-right" id="cancle-bill">Cancle Bill</a>
+            <a class="btn btn-outline-primary mx-3 float-right" id="add-more">Add Item</a>
         </div>
 
 
