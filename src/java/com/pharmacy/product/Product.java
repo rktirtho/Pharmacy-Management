@@ -16,7 +16,7 @@ public class Product {
     
     private int id; // not in form
     private String name;
-    private String descprition;// not in form
+    private String codeNumber;// not in form
     private String group; 
     private String type;  // tablet, Capsule, Injection etc
     private String author;
@@ -49,12 +49,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getDescprition() {
-        return descprition;
+    public String getCodeNumber() {
+        return codeNumber;
     }
 
-    public void setDescprition(String descprition) {
-        this.descprition = descprition;
+    public void setCodeNumber(String descprition) {
+        this.codeNumber = descprition;
     }
 
     public String getGroup() {
@@ -179,7 +179,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", descprition=" + descprition + ", group=" + group + ", type=" + type + ", author=" + author + ", unitSize=" + unitSize + ", unitSellingPrize=" + unitSellingPrize + ", unitBuyingPrize=" + unitBuyingPrize + ", profitPerUnit=" + profitPerUnit + ", expireDate=" + expireDate + ", batchNo=" + batchNo + ", discount=" + discount + ", inventor=" + inventor + ", isAvailable=" + isAvailable + ", isUpdated=" + isUpdated + ", quantity=" + quantity + ", laspdate=" + laspdate + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", descprition=" + codeNumber + ", group=" + group + ", type=" + type + ", author=" + author + ", unitSize=" + unitSize + ", unitSellingPrize=" + unitSellingPrize + ", unitBuyingPrize=" + unitBuyingPrize + ", profitPerUnit=" + profitPerUnit + ", expireDate=" + expireDate + ", batchNo=" + batchNo + ", discount=" + discount + ", inventor=" + inventor + ", isAvailable=" + isAvailable + ", isUpdated=" + isUpdated + ", quantity=" + quantity + ", laspdate=" + laspdate + '}';
     }
     
     

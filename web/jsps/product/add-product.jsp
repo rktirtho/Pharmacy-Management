@@ -144,10 +144,10 @@
 
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="inventor">Inventor</label> 
+                                        <label for="inventor">Product Code</label> 
                                         <input
                                             type="text" class="form-control" id="" 
-                                            name="" aria-describedby="inventor" 
+                                            name="descprition" aria-describedby="inventor" 
                                             value="rktirtho" >
                                         <input
                                             type="hidden" class="form-control" id="" 

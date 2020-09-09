@@ -27,7 +27,7 @@ public class MedicineDBHelper {
     private final String TABLE = "product";
     private final String ID = "ID";
     private final String NAME = "_name";
-    private final String DESCPRITION = "_description";
+    private final String CODE_NUMBER = "_description";
     private final String GROUP = "_group"; // Peracitamole
     private final String TYPE = "_type";  // tablet, Capsule, Injection etc
     private final String UNIT_SIZE = "unit_size";
@@ -83,7 +83,7 @@ public class MedicineDBHelper {
 
         try {
             statement = connection.prepareCall("insert into " + TABLE + " ("
-                    + NAME + " ," + DESCPRITION + " ,"
+                    + NAME + " ," + CODE_NUMBER + " ,"
                     + GROUP + " ," + TYPE + " ," + AUTHOR_ID + " ,"
                     + UNIT_SIZE + " ," + QUANTITY + " ,"
                     + UNIT_BUYING_PRIZE + " ," + UNIT_SELLING_PRIZE + " ,"
@@ -96,7 +96,7 @@ public class MedicineDBHelper {
                 product = selectExist(medicine);
                 System.out.println(product);
                 statement.setString(1, medicine.getName());
-                statement.setString(2, medicine.getDescprition());
+                statement.setString(2, medicine.getCodeNumber());
                 statement.setString(3, medicine.getGroup());
                 statement.setString(4, medicine.getType());
                 statement.setObject(5, medicine.getAuthor());
@@ -119,7 +119,7 @@ public class MedicineDBHelper {
                 System.out.println(updateQuantity(product));
             } else {
                 statement.setString(1, medicine.getName());
-                statement.setString(2, medicine.getDescprition());
+                statement.setString(2, medicine.getCodeNumber());
                 statement.setString(3, medicine.getGroup());
                 statement.setString(4, medicine.getType());
                 statement.setObject(5, medicine.getAuthor());
@@ -466,7 +466,7 @@ public class MedicineDBHelper {
         product.setId(rs.getInt(ID));
         product.setName(rs.getString(NAME));
         product.setInventor(rs.getString(INVENTOR));
-        product.setDescprition(rs.getString(DESCPRITION));
+        product.setCodeNumber(rs.getString(CODE_NUMBER));
         product.setGroup(rs.getString(GROUP));
         product.setType(rs.getString(TYPE));
         product.setAuthor(rs.getString(AUTHOR_ID));
