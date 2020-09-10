@@ -134,8 +134,6 @@ id="item' + itemCounter + '" style="width: 180px" type="text" name="" /></td>')
             .click(function () {
        moreFeild();
        var fldNumber = $(this).attr("id").replace("acc", "");
-                
-       
        var prod = [dataList[0].codeNumber, parseInt(quantity)];
        
        productsId.push(prod);
