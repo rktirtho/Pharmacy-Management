@@ -16,6 +16,7 @@ public class SellView {
    private int productId;
    private int sellerId;
    private String productName;
+   private String invoiceNo;
    private String sellerName;
    private float quantity;
    private double price;
@@ -52,6 +53,16 @@ public class SellView {
     public void setProductName(String productName) {
         this.productName = productName;
     }
+
+    public String getInvoiceNo() {
+        return invoiceNo;
+    }
+
+    public void setInvoiceNo(String invoiceNo) {
+        this.invoiceNo = invoiceNo;
+    }
+    
+    
 
     public String getSellerName() {
         return sellerName;
