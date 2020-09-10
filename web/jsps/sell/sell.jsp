@@ -24,6 +24,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" rel="stylesheet" 
               href="${pageContext.request.contextPath}/res/libs/bootstrap.css"/>
+        <link type="text/css" rel="stylesheet" 
+              href="${pageContext.request.contextPath}/res/libs/fontawesome-all.min.css"/>
         <title>Selling</title>
     </head>
     <body>
@@ -57,8 +59,9 @@
             <table id="items" class="table 
                    table-striped table-bordered text-center">
                 <tr>
-                    <th width="400px">Name</th>
-                    <th>Unit Price(<small>With Discount</small>)</th>
+                    <th width="200px">Product Code</th>
+                    <th width="350px">Name</th>
+                    <th>Unit Price</th>
                     <th>Quantity</th>
                     <th>Discount</th>
                     <th>Total</th>

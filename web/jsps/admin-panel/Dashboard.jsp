@@ -75,7 +75,7 @@
                     <div class="sidebar-menu">
                         <ul>
                             <li class="sidebar-dropdown">
-                                <a href="sell">
+                                <a target="_blank" href="sell">
                                     <i class="fa fa-chart-line"></i>
                                     <span>Create Bill</span>
                                 </a>

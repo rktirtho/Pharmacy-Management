@@ -41,6 +41,9 @@ public class ProductService {
     public static List<Product> search(String key){
         return dbHelper.searchByKeyword(key);
     }
+    public static List<Product> getByCode(String key){
+        return dbHelper.searchProductCode(key);
+    }
     
     
 }

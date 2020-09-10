@@ -193,6 +193,33 @@ public class MedicineDBHelper {
         
         return products;
     }
+    
+    public List<Product> searchProductCode(String key){
+        List<Product> products = new ArrayList<>();
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        ResultSet rs = null;
+        PreparedStatement statement = null;
+        
+        try {
+            statement = connection.prepareCall("SELECT * FROM "+TABLE
+                    +" WHERE "+CODE_NUMBER+" =? and "+ IS_UPDATED+"=?");
+            statement.setString(1, key);
+            statement.setBoolean(2, true);
+            
+            
+            rs = statement.executeQuery();
+            while (rs.next()) {                
+                Product product = new Product();
+                inputter(rs, product);
+                products.add(product);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return products;
+    }
 
     public List<Product> getStockOut() {
         List<Product> medicines = new ArrayList<>();

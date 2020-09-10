@@ -7,7 +7,8 @@ var total = 00;
 var dataList;
 var domainName = "/Pharmacy_Management"
 var itemCounter = 0;
-
+var productsId=new Array();
+var quanteties = [];
 $(function () {
 
     $('#total-bill').html(total);
@@ -44,7 +45,7 @@ $(function () {
     ;
 
     $(document).keydown(function (e) {
-        console.log(e.which);
+        
         if (e.altKey && e.which === 78) {
             moreFeild();
         }
@@ -61,10 +62,13 @@ $(function () {
 
 function moreFeild() {
     itemCounter++;
+    var quantity=0;
     var row = $("<tr></tr>").attr("id", "item-row" + itemCounter);
     var tdName = $("<td></td>");
-    var inName = $('<input list="name-m" class="item-entry" \n\
-id="item' + itemCounter + '" style="width: 380px" type="text" name="" /></td>')
+    var nameSpan = $("<span  id='name" + itemCounter + "'></span>");
+    var tdbarcode = $("<td></td>");
+    var inbarcode = $('<input list="name-m" autofocus class="item-entry" \n\
+id="item' + itemCounter + '" style="width: 180px" type="text" name="" /></td>')
             .keyup(function () {
                 $('#name-m').empty();
                 var query = $(this).val();
@@ -76,8 +80,8 @@ id="item' + itemCounter + '" style="width: 380px" type="text" name="" /></td>')
                         $('#name-m').empty();
                         data.forEach(function (item) {
 //                                console.log(item);
-                            $('#name-m').append('<option class="' + item.id + '" value="' + item.name + '">' + item.group + '</option')
-                                    ;
+//                            $('#name-m').append('<option class="' + item.id + '" value="' + item.name + '">' + item.group + '</option')
+                              $('#name'+itemCounter).html(data[0].name)      ;
 
                         });
 
@@ -92,26 +96,28 @@ id="item' + itemCounter + '" style="width: 380px" type="text" name="" /></td>')
                 $('#price' + fldNumber).html(dataList[0].unitSellingPrize)
                 $('#discount' + fldNumber).html(dataList[0].discount)
                 $('#total' + fldNumber).html("0.00");
-                console.log(dataList[0])
+//                console.log(dataList[0])
 
             });
 
     var tdUnitPrice = $("<td></td>");
     var priceSpan = $("<span  id='price" + itemCounter + "'></span>");
     var tdQunatity = $("<td></td>");
-    var inQuantity = $('<input id="price' + itemCounter + '" type="number" name="" />')
+    var inQuantity = $('<input type="number"/>')
+            .attr("id","price" + itemCounter)
             .keyup(function () {
                 var fldNumber = parseInt($(this).attr("id").replace("price", ""));
                 var q = $(this).val();
 
-                $('#total' + fldNumber).html(dataList[0].unitSellingPrize * q)
+                $('#total' + fldNumber).html((dataList[0].unitSellingPrize * q).toFixed(2))
 
 
             })
             .on('focusout', function () {
                 var q = $(this).val();
                 total = total + (dataList[0].unitSellingPrize * q)
-                $('#total-bill').html(total)
+                $('#total-bill').html(total);
+                quantity =q;
 
             });
     var tdDiscount = $("<td id='discount" + itemCounter + "'></td>");
@@ -119,24 +125,30 @@ id="item' + itemCounter + '" style="width: 380px" type="text" name="" /></td>')
     var tdTotal = $("<td></td>");
     var totalSpan = $("<span  id='total" + itemCounter + "'></span>");
     var tdDel = $("<td></td>");
-    var btnDel = $('<a class="btn btn-danger">Remove</a>')
+    var btnDel = $('<a class="btn btn-danger">&times;</a>')
             .attr("id", itemCounter).click(function () {
         var delId = $(this).attr("id");
         $('#item-row' + delId).remove();
     });
-    var btnAccept = $('<a class="btn btn-success mx-3">Add</a>')
-            .attr("ida", itemCounter).click(function () {
-       moreFeild()
+    var btnAccept = $('<a id="acc'+itemCounter+'" class="btn btn-success mx-3">jdfj</i></a>')
+            .click(function () {
+       moreFeild();
+       var fldNumber = $(this).attr("id").replace("acc", "");
+                
+       
+       var prod = [dataList[0].codeNumber, parseInt(quantity)];
+       
+       productsId.push(prod);
     });
-
-    tdName.append(inName);
+tdbarcode.append(inbarcode);
+    tdName.append(nameSpan);
     tdUnitPrice.append(priceSpan)
     tdQunatity.append(inQuantity);
     tdDiscount.append(discountSpan);
     tdTotal.append(totalSpan);
     tdDel.append(btnAccept ,btnDel);
 
-    row.append(tdName, tdUnitPrice, tdQunatity, tdDiscount, tdTotal, tdDel);
+    row.append(tdbarcode,tdName, tdUnitPrice, tdQunatity, tdDiscount, tdTotal, tdDel);
     $('#items').append(row);
 }
 
