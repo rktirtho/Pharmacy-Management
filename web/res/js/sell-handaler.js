@@ -54,6 +54,19 @@ $(function () {
     $('#cancle-bill').click(function () {
         location.reload();
     });
+    $('#go-to-order').click(function () {
+        
+        $.ajax({
+            type: 'POST',
+            url: domainName+"",
+            data: JSON.stringify({productsId : productsId}),
+            success: function (data) {
+                
+            }
+            
+        });
+        
+    });
 
 
 });
