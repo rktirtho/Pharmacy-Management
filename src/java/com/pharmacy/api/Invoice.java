@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pharmacy.admin;
+package com.pharmacy.api;
 
 import com.pharmacy.sells.SellModel;
 import com.pharmacy.service.SellsService;
@@ -28,23 +28,27 @@ public class Invoice {
 
     @POST
     @Path("create-bill")
-    public List<SellModel> makeBill(@QueryParam("data")String data) {
+    public String makeBill(@QueryParam("data")String data) {
+        int [] status=null;
         List<SellModel> sms= new ArrayList<>();
         String invoice = ""+Calendar.getInstance().getTimeInMillis();
         String[] ids = data.split(",");
-        for (int i = 0; i < ids.length-1; i+=2) {
+        System.out.println(ids);
+        for (int i = 0; i < ids.length-1; i+=3) {
+            System.out.println("Called me = "+i);
             SellModel sm = new SellModel();
             sm.setProductId(ids[i]);
             sm.setQuantity(Integer.parseInt(ids[i+1]));
             sm.setSellerId(1);
             sm.setInvoiceNo(invoice);
-            sm.setPrice(new Random().nextDouble()%300);
+            sm.setPrice(Double.parseDouble(ids[i+2]));
             sms.add(sm);
-            int [] status = SellsService.makeBill(sms);
+            
             
 //            System.out.println("Productids id " +ids[i]+"\tQuantity "+ids[i+1]);
         }
+        status = SellsService.makeBill(sms);
         
-        return sms;
+        return invoice;
     }
 }

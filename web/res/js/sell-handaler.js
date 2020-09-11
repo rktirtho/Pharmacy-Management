@@ -7,7 +7,7 @@ var total = 00;
 var dataList;
 var domainName = "/Pharmacy_Management"
 var itemCounter = 0;
-var productsId=new Array();
+var productsId = new Array();
 var quanteties = [];
 $(function () {
 
@@ -18,6 +18,7 @@ $(function () {
     // Creating html elements by clicking add more button
     $('#add-more').click(function () {
         moreFeild();
+        $(this).hide();
 
     });
 
@@ -44,27 +45,28 @@ $(function () {
     }
     ;
 
-    $(document).keydown(function (e) {
-        
-        if (e.altKey && e.which === 78) {
-            moreFeild();
-        }
-    });
+//    $(document).keydown(function (e) {
+//        
+//        if (e.altKey && e.which === 78) {
+//            moreFeild();
+//        }
+//    });
 
     $('#cancle-bill').click(function () {
         location.reload();
     });
     $('#go-to-order').click(function () {
-        
+
         $.ajax({
             type: 'POST',
-            url: domainName+"/webapi/invoice/create-bill?data="+ productsId,
+            url: domainName + "/webapi/invoice/create-bill?data=" + productsId,
             success: function (data) {
-                
+                window.location = domainName+"/bill?invocation="+data;
+
             }
-            
+
         });
-        
+
     });
 
 
@@ -74,7 +76,7 @@ $(function () {
 
 function moreFeild() {
     itemCounter++;
-    var quantity=0;
+    var quantity = 0;
     var row = $("<tr></tr>").attr("id", "item-row" + itemCounter);
     var tdName = $("<td></td>");
     var nameSpan = $("<span  id='name" + itemCounter + "'></span>");
@@ -93,7 +95,7 @@ id="item' + itemCounter + '" style="width: 180px" type="text" name="" /></td>')
                         data.forEach(function (item) {
 //                                console.log(item);
 //                            $('#name-m').append('<option class="' + item.id + '" value="' + item.name + '">' + item.group + '</option')
-                              $('#name'+itemCounter).html(data[0].name)      ;
+                            $('#name' + itemCounter).html(data[0].name);
 
                         });
 
@@ -116,7 +118,7 @@ id="item' + itemCounter + '" style="width: 180px" type="text" name="" /></td>')
     var priceSpan = $("<span  id='price" + itemCounter + "'></span>");
     var tdQunatity = $("<td></td>");
     var inQuantity = $('<input type="number"/>')
-            .attr("id","price" + itemCounter)
+            .attr("id", "price" + itemCounter)
             .keyup(function () {
                 var fldNumber = parseInt($(this).attr("id").replace("price", ""));
                 var q = $(this).val();
@@ -129,7 +131,7 @@ id="item' + itemCounter + '" style="width: 180px" type="text" name="" /></td>')
                 var q = $(this).val();
                 total = total + (dataList[0].unitSellingPrize * q)
                 $('#total-bill').html(total);
-                quantity =q;
+                quantity = q;
 
             });
     var tdDiscount = $("<td id='discount" + itemCounter + "'></td>");
@@ -140,26 +142,34 @@ id="item' + itemCounter + '" style="width: 180px" type="text" name="" /></td>')
     var btnDel = $('<a class="btn btn-danger">&times;</a>')
             .attr("id", itemCounter).click(function () {
         var delId = $(this).attr("id");
+        var currentPosition = parseInt(delId);
+        console.log(currentPosition);
+        console.log("Deleted");
+        productsId.pop(currentPosition - 1);
         $('#item-row' + delId).remove();
     });
-    var btnAccept = $('<a id="acc'+itemCounter+'" class="btn btn-success mx-3">Add</i></a>')
+    var btnAccept = $('<a id="acc' + itemCounter + '" class="btn btn-success mx-3">Add</i></a>')
             .click(function () {
-       moreFeild();
-       var fldNumber = $(this).attr("id").replace("acc", "");
-       
-       var prod = [dataList[0].codeNumber, parseInt(quantity)];
-       
-       productsId.push(prod);
-    });
-tdbarcode.append(inbarcode);
+                var fldNumber = $(this).attr("id").replace("acc", "");
+                if (quantity <= 0) {
+                    alert("Enter Quantity");
+                } else {
+                    var prod = [dataList[0].codeNumber
+                        , parseInt(quantity),
+                        (dataList[0].unitSellingPrize * quantity)];
+                    productsId.push(prod);
+                     moreFeild();
+                }
+            });
+    tdbarcode.append(inbarcode);
     tdName.append(nameSpan);
     tdUnitPrice.append(priceSpan)
     tdQunatity.append(inQuantity);
     tdDiscount.append(discountSpan);
     tdTotal.append(totalSpan);
-    tdDel.append(btnAccept ,btnDel);
+    tdDel.append(btnAccept, btnDel);
 
-    row.append(tdbarcode,tdName, tdUnitPrice, tdQunatity, tdDiscount, tdTotal, tdDel);
+    row.append(tdbarcode, tdName, tdUnitPrice, tdQunatity, tdDiscount, tdTotal, tdDel);
     $('#items').append(row);
 }
 

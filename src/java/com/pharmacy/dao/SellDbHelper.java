@@ -91,11 +91,11 @@ public class SellDbHelper {
         PreparedStatement statement = null;
         ResultSet rs = null;
         try {
-            statement = connection.prepareCall("select sell.id, sell.product_id,"
+            statement = connection.prepareCall("select sell.id, sell.invoice_no, sell.product_id,"
                     + " sell.seller_id, product._name as product_name, admin_table.name"
                     + " as seller_name, sell.quantity, sell.price, sell.sell_time "
                     + "from sell inner join product inner join admin_table where  "
-                    + "sell.product_id = product.id and sell.seller_id = admin_table.id");
+                    + "sell.product_id =  product._description and sell.seller_id = admin_table.id");
             rs = statement.executeQuery();
             while (rs.next()) {
                 SellView sv = new SellView();
