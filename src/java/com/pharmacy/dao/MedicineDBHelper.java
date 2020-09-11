@@ -92,32 +92,32 @@ public class MedicineDBHelper {
                     + INVENTOR + ", " + IS_UPDATED
                     + ") values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-            if (isExist(medicine)) {
-                product = selectExist(medicine);
-                System.out.println(product);
-                statement.setString(1, medicine.getName());
-                statement.setString(2, medicine.getCodeNumber());
-                statement.setString(3, medicine.getGroup());
-                statement.setString(4, medicine.getType());
-                statement.setObject(5, medicine.getAuthor());
-                statement.setDouble(6, medicine.getUnitSize());
-                statement.setDouble(7, medicine.getQuantity() + product.getQuantity());
-                System.out.println(medicine.getQuantity() + product.getQuantity());
-                statement.setDouble(8,
-                        ((medicine.getUnitBuyingPrize() * medicine.getQuantity())
-                        + (product.getUnitBuyingPrize() * product.getQuantity()))
-                        / (medicine.getQuantity() + product.getQuantity())
-                );
-                statement.setDouble(9,medicine.getUnitSellingPrize());
-                statement.setDouble(10, medicine.getProfitPerUnit());
-                statement.setDouble(11, medicine.getDiscount());
-                statement.setBoolean(12, medicine.isIsAvailable());
-                statement.setString(13, medicine.getExpireDate());
-                statement.setString(14, medicine.getBatchNo());
-                statement.setString(15, medicine.getInventor());
-                statement.setBoolean(16, true);
-                System.out.println(updateQuantity(product));
-            } else {
+//            if (isExist(medicine)) {
+//                product = selectExist(medicine);
+//                System.out.println(product);
+//                statement.setString(1, medicine.getName());
+//                statement.setString(2, medicine.getCodeNumber());
+//                statement.setString(3, medicine.getGroup());
+//                statement.setString(4, medicine.getType());
+//                statement.setObject(5, medicine.getAuthor());
+//                statement.setDouble(6, medicine.getUnitSize());
+//                statement.setDouble(7, medicine.getQuantity() + product.getQuantity());
+//                System.out.println(medicine.getQuantity() + product.getQuantity());
+//                statement.setDouble(8,
+//                        ((medicine.getUnitBuyingPrize() * medicine.getQuantity())
+//                        + (product.getUnitBuyingPrize() * product.getQuantity()))
+//                        / (medicine.getQuantity() + product.getQuantity())
+//                );
+//                statement.setDouble(9,medicine.getUnitSellingPrize());
+//                statement.setDouble(10, medicine.getProfitPerUnit());
+//                statement.setDouble(11, medicine.getDiscount());
+//                statement.setBoolean(12, medicine.isIsAvailable());
+//                statement.setString(13, medicine.getExpireDate());
+//                statement.setString(14, medicine.getBatchNo());
+//                statement.setString(15, medicine.getInventor());
+//                statement.setBoolean(16, true);
+//                System.out.println(updateQuantity(product));
+//            } else {
                 statement.setString(1, medicine.getName());
                 statement.setString(2, medicine.getCodeNumber());
                 statement.setString(3, medicine.getGroup());
@@ -134,7 +134,7 @@ public class MedicineDBHelper {
                 statement.setString(14, medicine.getBatchNo());
                 statement.setString(15, medicine.getInventor());
                 statement.setBoolean(16, true);
-            }
+//            }
             status = statement.executeUpdate() == 1;
         } catch (SQLException ex) {
             Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
