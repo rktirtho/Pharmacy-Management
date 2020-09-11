@@ -117,6 +117,15 @@
         <url-pattern>/bill</url-pattern>
     </servlet-mapping>
      
+    <servlet>
+        <servlet-name>view-sell</servlet-name>
+        <jsp-file>/jsps/sell/view-sell.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>view-sell</servlet-name>
+        <url-pattern>/view-sell</url-pattern>
+    </servlet-mapping>
+     
      
      
      

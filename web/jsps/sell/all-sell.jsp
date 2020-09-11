@@ -25,18 +25,16 @@
 
         <table class="table table-striped table-bordered">
             <tr>
-                <th>Product Name</th>
+                <th>Invoice No</th>
                 <th>Seller Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
+                <th>Total</th>
                 <th>Time</th>
             </tr>
             <c:forEach items="${sells}" var="p">
 
                 <tr>
-                    <td><a href="">${p.getProductName()}</a></td>
+                    <td><a target="_blank" href="bill?invocation=${p.getInvoiceNo()}">${p.getInvoiceNo()}</a></td>
                     <td>${p.getSellerName()}</td>
-                    <td>${p.getQuantity()}</td>
                     <td>${p.getPrice()}</td>
                     <td>${p.getTime()}</td>
                     

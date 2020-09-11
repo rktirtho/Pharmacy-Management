@@ -45,13 +45,12 @@ public class SellDbHelper {
 //        sm.setQuantity(10);
 //        sm.setPrice(10);
 //        System.out.println(helper.makeSell(sm));
-        List<SellView> svs = helper.getByInvocation("1599824231771");
+        List<SellView> svs = helper.getAll();
         for (SellView sv : svs) {
             System.out.println(sv);
         }
-        
-//        System.out.println(Calendar.getInstance().getTimeInMillis());
 
+//        System.out.println(Calendar.getInstance().getTimeInMillis());
     }
 
     public int[] makeSell(List<SellModel> items) {
@@ -59,7 +58,7 @@ public class SellDbHelper {
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
-        int count=0;
+        int count = 0;
         for (SellModel sm : items) {
             try {
                 statement = connection.prepareCall("INSERT INTO " + TABLE
@@ -75,7 +74,7 @@ public class SellDbHelper {
                 statement.setFloat(3, sm.getQuantity());
                 statement.setString(4, sm.getInvoiceNo());
                 statement.setDouble(5, sm.getPrice());
-                status[count] =  statement.executeUpdate();
+                status[count] = statement.executeUpdate();
                 count++;
             } catch (SQLException ex) {
                 Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
@@ -92,15 +91,17 @@ public class SellDbHelper {
         PreparedStatement statement = null;
         ResultSet rs = null;
         try {
-            statement = connection.prepareCall("select sell.id, sell.invoice_no, sell.product_id,"
-                    + " sell.seller_id, product._name as product_name, admin_table.name"
-                    + " as seller_name, sell.quantity, sell.price, sell.sell_time "
-                    + "from sell inner join product inner join admin_table where  "
-                    + "sell.product_id =  product._description and sell.seller_id = admin_table.id");
+            statement = connection.prepareCall("select sell.invoice_no, sell.seller_id,  sum(sell.price) as price, admin_table.name "
+                    + " as seller_name, sell_time from sell inner join admin_table where "
+                    + " sell.seller_id = admin_table.id group by sell.invoice_no");
             rs = statement.executeQuery();
             while (rs.next()) {
                 SellView sv = new SellView();
-                inputter(rs, sv);
+                sv.setInvoiceNo(rs.getString(INVOICE_NO));
+                sv.setSellerName(rs.getString(SELLER_NAME));
+                sv.setSellerId(rs.getInt(SELLER_ID));
+                sv.setPrice(rs.getDouble(PRICE));
+                sv.setTime(rs.getTimestamp(TIMESTAMP));
                 sells.add(sv);
             }
 
