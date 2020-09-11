@@ -33,6 +33,7 @@ public class SellDbHelper {
     public String SELLER_NAME = "seller_name";
     public String QUANTITY = "quantity";
     public String INVOICE_NO = "invoice_no";
+    public String UNIT_PRICE = "unit_selling_prize";
     public String PRICE = "price";
     public String TIMESTAMP = "sell_time";
 
@@ -178,7 +179,7 @@ public class SellDbHelper {
         ResultSet rs = null;
         try {
             statement = connection.prepareCall("select sell.id, sell.invoice_no, sell.product_id,"
-                    + " sell.seller_id, product._name as product_name, admin_table.name"
+                    + " sell.seller_id, product._name as product_name, product.unit_selling_prize, admin_table.name"
                     + " as seller_name, sell.quantity, sell.price, sell.sell_time "
                     + "from sell inner join product inner join admin_table where  "
                     + "sell.product_id =  product._description and sell.seller_id = admin_table.id"
@@ -206,6 +207,7 @@ public class SellDbHelper {
         sm.setSellerName(rs.getString(SELLER_NAME));
         sm.setQuantity(rs.getFloat(QUANTITY));
         sm.setPrice(rs.getDouble(PRICE));
+        sm.setUnitPrice(rs.getDouble(UNIT_PRICE));
         sm.setTime(rs.getTimestamp(TIMESTAMP));
     }
 }

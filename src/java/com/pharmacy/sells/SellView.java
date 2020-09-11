@@ -19,6 +19,7 @@ public class SellView {
    private String invoiceNo;
    private String sellerName;
    private float quantity;
+   private double unitPrice;
    private double price;
    private Timestamp time;
 
@@ -95,6 +96,16 @@ public class SellView {
     public void setTime(Timestamp time) {
         this.time = time;
     }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+    
+    
 
     @Override
     public String toString() {

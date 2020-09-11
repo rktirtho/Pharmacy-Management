@@ -25,5 +25,8 @@ public class SellsService {
     public static int[] makeBill(List<SellModel> list){
         return dbHelper.makeSell(list);
     }
+    public static List<SellView> getByInvocationId(String invocatonId){
+        return dbHelper.getByInvocation(invocatonId);
+    }
     
 }
