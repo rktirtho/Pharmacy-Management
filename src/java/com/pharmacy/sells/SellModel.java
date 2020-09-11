@@ -13,8 +13,9 @@ import java.sql.Timestamp;
  */
 public class SellModel {
     private int id;
-    private int productId;
+    private String productId;
     private int sellerId;
+    private String invoiceNo;
     private float quantity;
     private double price;
     private Timestamp timestamp;
@@ -27,11 +28,11 @@ public class SellModel {
         this.id = id;
     }
 
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -66,6 +67,16 @@ public class SellModel {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
+
+    public String getInvoiceNo() {
+        return invoiceNo;
+    }
+
+    public void setInvoiceNo(String invoiceNo) {
+        this.invoiceNo = invoiceNo;
+    }
+    
+    
     
     
     

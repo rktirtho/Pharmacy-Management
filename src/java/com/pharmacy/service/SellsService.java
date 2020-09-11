@@ -6,6 +6,7 @@
 package com.pharmacy.service;
 
 import com.pharmacy.dao.SellDbHelper;
+import com.pharmacy.sells.SellModel;
 import com.pharmacy.sells.SellView;
 import java.util.List;
 
@@ -19,6 +20,10 @@ public class SellsService {
     
     public static List<SellView> allSells(){
         return dbHelper.getAll();
+    }
+    
+    public static int[] makeBill(List<SellModel> list){
+        return dbHelper.makeSell(list);
     }
     
 }

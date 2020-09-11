@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +32,7 @@ public class SellDbHelper {
     public String SELLER_ID = "seller_id";
     public String SELLER_NAME = "seller_name";
     public String QUANTITY = "quantity";
+    public String INVOICE_NO = "invoice_no";
     public String PRICE = "price";
     public String TIMESTAMP = "sell_time";
 
@@ -46,31 +48,39 @@ public class SellDbHelper {
         for (SellView sv : svs) {
             System.out.println(sv);
         }
+        
+//        System.out.println(Calendar.getInstance().getTimeInMillis());
 
     }
 
-    public int makeSell(SellModel sm) {
-        int status = 0;
+    public int[] makeSell(List<SellModel> items) {
+        int[] status = new int[items.size()];
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
-
-        try {
-            statement = connection.prepareCall("INSERT INTO " + TABLE
-                    + "("
-                    + PRODUCT_ID + ", "
-                    + SELLER_ID + ", "
-                    + QUANTITY + ", "
-                    + PRICE + ") values (?,?,?,?)"
-            );
-            statement.setInt(1, sm.getProductId());
-            statement.setInt(2, sm.getSellerId());
-            statement.setFloat(3, sm.getQuantity());
-            statement.setDouble(4, sm.getPrice());
-            status = statement.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        int count=0;
+        for (SellModel sm : items) {
+            try {
+                statement = connection.prepareCall("INSERT INTO " + TABLE
+                        + "("
+                        + PRODUCT_ID + ", "
+                        + SELLER_ID + ", "
+                        + QUANTITY + ", "
+                        + INVOICE_NO + ", "
+                        + PRICE + ") values (?,?,?,?,?)"
+                );
+                statement.setString(1, sm.getProductId());
+                statement.setInt(2, sm.getSellerId());
+                statement.setFloat(3, sm.getQuantity());
+                statement.setString(4, sm.getInvoiceNo());
+                statement.setDouble(5, sm.getPrice());
+                status[count] =  statement.executeUpdate();
+                count++;
+            } catch (SQLException ex) {
+                Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
         return status;
     }
 
