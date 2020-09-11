@@ -142,10 +142,11 @@ id="item' + itemCounter + '" style="width: 180px" type="text" name="" /></td>')
         var delId = $(this).attr("id");
         $('#item-row' + delId).remove();
     });
-    var btnAccept = $('<a id="acc'+itemCounter+'" class="btn btn-success mx-3">jdfj</i></a>')
+    var btnAccept = $('<a id="acc'+itemCounter+'" class="btn btn-success mx-3">Add</i></a>')
             .click(function () {
        moreFeild();
        var fldNumber = $(this).attr("id").replace("acc", "");
+       
        var prod = [dataList[0].codeNumber, parseInt(quantity)];
        
        productsId.push(prod);
