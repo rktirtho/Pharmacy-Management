@@ -12,6 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%
+            String invocationNO= request.getParameter("invocation");
+            
+        %>
+        <h1><%=invocationNO%></h1>
     </body>
 </html>

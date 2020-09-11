@@ -44,7 +44,7 @@ public class SellDbHelper {
 //        sm.setQuantity(10);
 //        sm.setPrice(10);
 //        System.out.println(helper.makeSell(sm));
-        List<SellView> svs = helper.getBySeller(2);
+        List<SellView> svs = helper.getByInvocation("1599824231771");
         for (SellView sv : svs) {
             System.out.println(sv);
         }
@@ -170,8 +170,30 @@ public class SellDbHelper {
         return sells;
     }
 
-    public List<SellView> getById() {
+    public List<SellView> getByInvocation(String invocationID) {
         List<SellView> sells = new ArrayList<>();
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = connection.prepareCall("select sell.id, sell.invoice_no, sell.product_id,"
+                    + " sell.seller_id, product._name as product_name, admin_table.name"
+                    + " as seller_name, sell.quantity, sell.price, sell.sell_time "
+                    + "from sell inner join product inner join admin_table where  "
+                    + "sell.product_id =  product._description and sell.seller_id = admin_table.id"
+                    + " and sell.invoice_no =?");
+            statement.setString(1, invocationID);
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                SellView sv = new SellView();
+                inputter(rs, sv);
+                sells.add(sv);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return sells;
     }
