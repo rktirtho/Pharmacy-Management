@@ -455,6 +455,29 @@ public class MedicineDBHelper {
         return status;
 
     }
+    
+    private int updateQuantity(String productCode, int quantity) {
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        int status =0;
+        try {
+            statement = connection.prepareCall("UPDATE "
+                    + TABLE + " SET "+QUANTITY+"="+QUANTITY+"-? WHERE "
+                    + CODE_NUMBER + "=?"
+            );
+            
+            statement.setInt(1, quantity);
+            statement.setString(2, productCode);
+       
+            
+            status = statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
+
+    }
 
     private boolean isExist(Product product) {
         boolean exist = false;
