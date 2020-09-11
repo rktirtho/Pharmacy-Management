@@ -144,15 +144,14 @@
 
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="inventor">Product Code</label> 
+                                        <label for="inventor">Bar Code</label> 
                                         <input
                                             type="text" class="form-control" id="" 
-                                            name="descprition" aria-describedby="inventor" 
-                                            value="rktirtho" >
+                                            name="codeNumber" aria-describedby="inventor"/>
                                         <input
                                             type="hidden" class="form-control" id="" 
                                             name="inventor" aria-describedby="inventor" 
-                                            value="<%=admin.getUserName()%>" >
+                                            value="<%=admin.getUserName()%>" />
                                     </div>
                                 </div>
 

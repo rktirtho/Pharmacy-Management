@@ -58,8 +58,7 @@ $(function () {
         
         $.ajax({
             type: 'POST',
-            url: domainName+"",
-            data: JSON.stringify({productsId : productsId}),
+            url: domainName+"/webapi/invoice/create-bill?data="+ productsId,
             success: function (data) {
                 
             }

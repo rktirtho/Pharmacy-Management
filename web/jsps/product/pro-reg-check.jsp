@@ -19,6 +19,7 @@
         <%
             product.setIsAvailable(true);
             boolean inserted = ProductService.insertProduct(product);
+//            out.print(product.getCodeNumber());
 
             response.sendRedirect("add-product?status=1");
 
