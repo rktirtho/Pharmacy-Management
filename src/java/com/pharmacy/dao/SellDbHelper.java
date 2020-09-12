@@ -47,12 +47,12 @@ public class SellDbHelper {
 //        sm.setQuantity(10);
 //        sm.setPrice(10);
 //        System.out.println(helper.makeSell(sm));
-        List<SellView> svs = helper.getPerDay("2020-09-11");
-        for (SellView sv : svs) {
-            System.out.println(sv);
-        }
+//        List<SellView> svs = helper.getPerDay("2020-09-11");
+//        for (SellView sv : svs) {
+//            System.out.println(sv);
+//        }
 
-//        System.out.println(Calendar.getInstance().getTimeInMillis());
+        System.out.println(helper.totalAmmountPerDay("2020-09-11"));
     }
 
     public int[] makeSell(List<SellModel> items) {
@@ -205,6 +205,28 @@ public class SellDbHelper {
         }
 
         return sells;
+    }
+    
+    public double totalAmmountPerDay(String date){
+        double total=0;
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        
+        try {
+            statement = connection.prepareCall("select sum(price) as total from sell where sell_time like ?");
+            statement.setString(1, date+"%");
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                total = rs.getDouble("total");
+            }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return total;
     }
 
     public List<SellView> getPerDayBySeller() {

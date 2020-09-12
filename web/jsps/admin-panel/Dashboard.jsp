@@ -1,4 +1,7 @@
 
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="com.pharmacy.service.SellsService"%>
 <%@page import="com.pharmacy.dao.AdminDbHelper"%>
 <%@page import="com.pharmacy.admin.Admin"%>
 <!------ Include the above in your HEAD tag ---------->
@@ -13,6 +16,15 @@
             response.sendRedirect(request.getContextPath());
         }
         Admin admin = AdminDbHelper.getBySession(session.getId());
+        
+        
+LocalDateTime today = LocalDateTime.now();
+LocalDateTime yesterday = LocalDateTime.now().minusDays(1);
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        
+double todaySell = SellsService.totalAmmountPerDay(dtf.format(today));
+        double yesterdaySell = SellsService.totalAmmountPerDay(dtf.format(yesterday));
+
     %>
 
     <head>
@@ -20,7 +32,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
-        <title>Dashboard</title>
+        <title> Dashboard</title>
         <link type="text/css" rel="stylesheet" 
               href="${pageContext.request.contextPath}/res/libs/bootstrap.css"/>
         <link type="text/css" rel="stylesheet"
@@ -299,12 +311,16 @@
 
 
                     <div class="my-2 card p-2" id="content">
+                        
+                        
                         <div class="d-flex  bd-highlight">
                             <div class="flex-fill">
-                                <h6 class="text-center">Toady</h6> 
+                                <h6 class="text-center">Toady</h6>
+                                <b>Sell: <%= todaySell %> BDT</b>
                             </div>
                             <div class="flex-fill">
                                 <h6 class="text-center">Yesterday</h6> 
+                                <b>Sell: <%= yesterdaySell %> BDT</b>
                             </div>
                             <div class="flex-fill">
                                 <h6 class="text-center">Total</h6> 

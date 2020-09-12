@@ -38,4 +38,8 @@ public class SellsService {
         return dbHelper.getPerDay(date);
     }
     
+     public static double totalAmmountPerDay(String date){
+        return dbHelper.totalAmmountPerDay(date);
+    }
+    
 }
