@@ -6,6 +6,7 @@
 package com.pharmacy.dao;
 
 import com.pharmacy.product.Product;
+import com.pharmacy.sells.DailySell;
 import com.pharmacy.sells.SellModel;
 import com.pharmacy.sells.SellView;
 import java.sql.Connection;
@@ -45,10 +46,10 @@ public class SellDbHelper {
 //        sm.setQuantity(10);
 //        sm.setPrice(10);
 //        System.out.println(helper.makeSell(sm));
-        List<SellView> svs = helper.getAll();
-        for (SellView sv : svs) {
-            System.out.println(sv);
-        }
+//        List<DailySell> svs = helper.getDailySellInfo();
+//        for (DailySell sv : svs) {
+//            System.out.println(sv);
+//        }
 
 //        System.out.println(Calendar.getInstance().getTimeInMillis());
     }
@@ -140,8 +141,8 @@ public class SellDbHelper {
     }
     
     
-    public List<SellView> getDate(){
-         List<SellView> sells = new ArrayList<>();
+    public List<DailySell> getDailySellInfo(){
+         List<DailySell> sells = new ArrayList<>();
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
@@ -155,7 +156,15 @@ public class SellDbHelper {
             
             
             rs = statement.executeQuery();
-            
+            while (rs.next()) {
+                DailySell dailySell = new DailySell();
+                dailySell.setTotalSell(rs.getInt("productSell"));
+                dailySell.setNumberOfInvoice(rs.getInt("number_of_invoice"));
+                dailySell.setTimestamp(rs.getTimestamp("sell_time"));
+                sells.add(dailySell);
+                
+                
+            }
         } catch (SQLException ex) {
             Logger.getLogger(SellDbHelper.class.getName())
                     .log(Level.SEVERE, null, ex);

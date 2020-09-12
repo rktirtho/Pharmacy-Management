@@ -15,6 +15,30 @@ public class DailySell {
     private int numberOfInvoice;
     private Timestamp timestamp;
     private int totalSell;
+
+    public int getNumberOfInvoice() {
+        return numberOfInvoice;
+    }
+
+    public void setNumberOfInvoice(int numberOfInvoice) {
+        this.numberOfInvoice = numberOfInvoice;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public int getTotalSell() {
+        return totalSell;
+    }
+
+    public void setTotalSell(int totalSell) {
+        this.totalSell = totalSell;
+    }
     
     
     
