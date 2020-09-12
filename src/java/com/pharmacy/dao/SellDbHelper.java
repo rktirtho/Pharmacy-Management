@@ -138,6 +138,32 @@ public class SellDbHelper {
 
         return sells;
     }
+    
+    
+    public List<SellView> getDate(){
+         List<SellView> sells = new ArrayList<>();
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        
+        try {
+            statement = connection.prepareCall("select  count(distinct invoice_no)"
+                    + " as number_of_invoice,  sell_time, date(from_unixtime(sell_time))"
+                    + " as _date, count(invoice_no ) as productSell  from sell "
+                    + "group by date(sell_time) order by _date;");
+            
+            
+            rs = statement.executeQuery();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(SellDbHelper.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return sells;
+    }
 
     public List<SellView> getPerDay(Timestamp date) {
         List<SellView> sells = new ArrayList<>();
