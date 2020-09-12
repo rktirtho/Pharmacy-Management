@@ -228,6 +228,28 @@ public class SellDbHelper {
         
         return total;
     }
+    
+    public double totalAmmount(){
+        double total=0;
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        
+        try {
+            statement = connection.prepareCall("select sum(price) as total from sell");
+            
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                total = rs.getDouble("total");
+            }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return total;
+    }
 
     public List<SellView> getPerDayBySeller() {
         List<SellView> sells = new ArrayList<>();

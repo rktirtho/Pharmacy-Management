@@ -16,14 +16,14 @@
             response.sendRedirect(request.getContextPath());
         }
         Admin admin = AdminDbHelper.getBySession(session.getId());
-        
-        
-LocalDateTime today = LocalDateTime.now();
-LocalDateTime yesterday = LocalDateTime.now().minusDays(1);
-DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        
-double todaySell = SellsService.totalAmmountPerDay(dtf.format(today));
+
+        LocalDateTime today = LocalDateTime.now();
+        LocalDateTime yesterday = LocalDateTime.now().minusDays(1);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        double todaySell = SellsService.totalAmmountPerDay(dtf.format(today));
         double yesterdaySell = SellsService.totalAmmountPerDay(dtf.format(yesterday));
+        double total = SellsService.totalAmmount();
 
     %>
 
@@ -120,9 +120,8 @@ double todaySell = SellsService.totalAmmountPerDay(dtf.format(today));
                                 <div class="sidebar-submenu">
                                     <ul>
                                         <% if (admin.getAccType().equals("admin")) {
-                                    
-                                
-                            %>
+
+                                        %>
                                         <li>
                                             <a id="all-sell">
                                                 <span>All Sells</span>
@@ -190,10 +189,9 @@ double todaySell = SellsService.totalAmmountPerDay(dtf.format(today));
                                     </ul>
                                 </div>
                             </li>
-                            
+
                             <% if (admin.getAccType().equals("admin")) {
-                                    
-                                
+
                             %>
                             <li class="sidebar-dropdown">
                                 <a href="#">
@@ -311,19 +309,26 @@ double todaySell = SellsService.totalAmmountPerDay(dtf.format(today));
 
 
                     <div class="my-2 card p-2" id="content">
-                        
-                        
+
+
                         <div class="d-flex  bd-highlight">
-                            <div class="flex-fill">
+                            <div class="flex-fill py-3">
                                 <h6 class="text-center">Toady</h6>
-                                <b>Sell: <%= todaySell %> BDT</b>
+                                <center>
+                                    <b>Sell: <%= todaySell%> BDT</b>
+                                </center>
                             </div>
-                            <div class="flex-fill">
+                            <div class="flex-fill border-left border-right py-3">
                                 <h6 class="text-center">Yesterday</h6> 
-                                <b>Sell: <%= yesterdaySell %> BDT</b>
+                                <center>
+                                    <b>Sell: <%= yesterdaySell%> BDT</b>
+                                </center>
                             </div>
-                            <div class="flex-fill">
-                                <h6 class="text-center">Total</h6> 
+                            <div class="flex-fill py-3">
+                                <h6 class="text-center">Total</h6>
+                                <center>
+                                    <b>Sell: <%= total%> BDT</b>
+                                </center>
                             </div>
 
                         </div>
