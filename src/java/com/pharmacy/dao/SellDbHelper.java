@@ -46,10 +46,10 @@ public class SellDbHelper {
 //        sm.setQuantity(10);
 //        sm.setPrice(10);
 //        System.out.println(helper.makeSell(sm));
-        List<DailySell> svs = helper.getDailySellInfo();
-//        for (DailySell sv : svs) {
-//            System.out.println(sv);
-//        }
+        List<SellView> svs = helper.getPerDay("2020-09-11");
+        for (SellView sv : svs) {
+            System.out.println(sv);
+        }
 
 //        System.out.println(Calendar.getInstance().getTimeInMillis());
     }
@@ -94,7 +94,7 @@ public class SellDbHelper {
         try {
             statement = connection.prepareCall("select sell.invoice_no, sell.seller_id,  sum(sell.price) as price, admin_table.name "
                     + " as seller_name, sell_time from sell inner join admin_table where "
-                    + " sell.seller_id = admin_table.id group by sell.invoice_no");
+                    + " sell.seller_id = admin_table.id group by sell.invoice_no order by sell.sell_time desc");
             rs = statement.executeQuery();
             while (rs.next()) {
                 SellView sv = new SellView();
@@ -174,23 +174,25 @@ public class SellDbHelper {
         return sells;
     }
 
-    public List<SellView> getPerDay(Timestamp date) {
+    public List<SellView> getPerDay(String date) {
         List<SellView> sells = new ArrayList<>();
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
         ResultSet rs = null;
         try {
-            statement = connection.prepareCall("select sell.id, sell.product_id,"
-                    + " sell.seller_id, product._name as product_name, admin_table.name"
-                    + " as seller_name, sell.quantity, sell.price, sell.sell_time "
-                    + "from sell inner join product inner join admin_table where  "
-                    + "sell.product_id = product.id and sell.seller_id = admin_table.id and sell.sell.sell_time=?");
-            statement.setTimestamp(1, date);
+            statement = connection.prepareCall("select sell.invoice_no, sell.seller_id,  sum(sell.price) as price, admin_table.name " +
+"                     as seller_name, sell_time from sell inner join admin_table where " +
+"                     sell.seller_id = admin_table.id and sell.sell_time like ? group by sell.invoice_no order by sell.sell_time desc");
+            statement.setString(1, date+"%");
             rs = statement.executeQuery();
             while (rs.next()) {
                 SellView sv = new SellView();
-                inputter(rs, sv);
+                sv.setInvoiceNo(rs.getString(INVOICE_NO));
+                sv.setSellerName(rs.getString(SELLER_NAME));
+                sv.setSellerId(rs.getInt(SELLER_ID));
+                sv.setPrice(rs.getDouble(PRICE));
+                sv.setTime(rs.getTimestamp(TIMESTAMP));
                 sells.add(sv);
             }
 
