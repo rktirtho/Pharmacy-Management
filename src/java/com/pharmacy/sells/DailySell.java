@@ -5,10 +5,19 @@
  */
 package com.pharmacy.sells;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author rktirtho
  */
 public class DailySell {
+    private int numberOfInvoice;
+    private Timestamp timestamp;
+    private int totalSell;
+    
+    
+    
+    
     
 }
