@@ -204,7 +204,7 @@ public class MedicineDBHelper {
         
         try {
             statement = connection.prepareCall("SELECT * FROM "+TABLE
-                    +" WHERE "+CODE_NUMBER+" =? and "+ IS_UPDATED+"=?");
+                    +" WHERE "+CODE_NUMBER+" =? and "+ IS_UPDATED+"=? and _quantity >0");
             statement.setString(1, key);
             statement.setBoolean(2, true);
             

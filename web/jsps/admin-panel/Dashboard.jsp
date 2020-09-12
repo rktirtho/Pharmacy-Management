@@ -37,7 +37,7 @@
             <nav id="sidebar" class="sidebar-wrapper">
                 <div class="sidebar-content">
                     <div class="sidebar-brand">
-                        <a href="#">pro sidebar</a>
+                        <a href="#">Company Name</a>
                         <div id="close-sidebar">
                             <i class="fas fa-times"></i>
                         </div>
@@ -107,6 +107,10 @@
                                 </a>
                                 <div class="sidebar-submenu">
                                     <ul>
+                                        <% if (admin.getAccType().equals("admin")) {
+                                    
+                                
+                            %>
                                         <li>
                                             <a id="all-sell">
                                                 <span>All Sells</span>
@@ -120,6 +124,7 @@
                                         <li>
                                             <a href="#">Sell Statistics</a>
                                         </li>
+                                        <%}%>
                                         <!--sells man portal-->
                                         <li>
                                             <a href="#">My Sells</a>
@@ -173,6 +178,11 @@
                                     </ul>
                                 </div>
                             </li>
+                            
+                            <% if (admin.getAccType().equals("admin")) {
+                                    
+                                
+                            %>
                             <li class="sidebar-dropdown">
                                 <a href="#">
                                     <i class="far fa-gem"></i>
@@ -195,6 +205,8 @@
                                     </ul>
                                 </div>
                             </li>
+                            <%}
+                            %>
                             <li class="sidebar-dropdown">
                                 <a href="#">
                                     <i class="fa fa-chart-line"></i>
@@ -220,7 +232,7 @@
                             <li class="sidebar-dropdown">
                                 <a href="#">
                                     <i class="fa fa-globe"></i>
-                                    <span>My Profile</span>
+                                    <span>Settings</span>
                                 </a>
                                 <div class="sidebar-submenu">
                                     <ul>
@@ -229,6 +241,9 @@
                                         </li>
                                         <li>
                                             <a href="#" id="change-password">Change Password</a>
+                                        </li>
+                                        <li>
+                                            <a href="logout" id="change-password">Logout</a>
                                         </li>
                                     </ul>
                                 </div>

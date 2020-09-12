@@ -72,6 +72,16 @@
     </servlet-mapping>
 
     
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <jsp-file>/jsps/admin-panel/logout.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    
 <!--    <servlet>
         <servlet-name>all-admin</servlet-name>
         <jsp-file>/jsps/admin-panel/employee.jsp</jsp-file>

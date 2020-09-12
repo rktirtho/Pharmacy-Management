@@ -108,7 +108,7 @@ id="item' + itemCounter + '" style="width: 180px" type="text" name="" /></td>')
                 var fldNumber = parseInt($(this).attr("id").replace("item", ""));
 
                 $('#price' + fldNumber).html(dataList[0].unitSellingPrize)
-                $('#discount' + fldNumber).html(dataList[0].discount)
+                $('#discount' + fldNumber).html(dataList[0].quantity)
                 $('#total' + fldNumber).html("0.00");
 //                console.log(dataList[0])
 

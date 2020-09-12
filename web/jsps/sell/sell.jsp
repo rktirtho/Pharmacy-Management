@@ -63,7 +63,7 @@
                     <th width="350px">Name</th>
                     <th>Unit Price</th>
                     <th>Quantity</th>
-                    <th>Discount</th>
+                    <th>Available</th>
                     <th>Total</th>
                     <th colspan="2"></th>
                 </tr>

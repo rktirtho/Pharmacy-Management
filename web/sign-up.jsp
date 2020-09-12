@@ -40,8 +40,8 @@
                                     <label for="inputPassword">Re type Password</label>
                                     <input type="password" name="re-password" id="inputPassword" class="form-control" placeholder="Password" required>
                                 </div>
-                                <div class="form-label-group">
-                                    <label for="inputPassword">Re type Password</label>
+                                <div class="form-label-group my-2">
+                                    <label for="inputPassword">Role</label>
                                     <select name="accType">
                                         <option value="admin">Admin</option>
                                         <option value="sellsman">Sells Man</option>
