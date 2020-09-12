@@ -284,7 +284,18 @@
 
 
                     <div class="my-2 card p-2" id="content">
+                        <div class="d-flex  bd-highlight">
+                            <div class="flex-fill">
+                                <h6 class="text-center">Toady</h6> 
+                            </div>
+                            <div class="flex-fill">
+                                <h6 class="text-center">Yesterday</h6> 
+                            </div>
+                            <div class="flex-fill">
+                                <h6 class="text-center">Total</h6> 
+                            </div>
 
+                        </div>
                     </div>
 
 
@@ -304,19 +315,19 @@
 
         <script>
             var domainName = "/Pharmacy_Management"
-            
-            $(document).ready(function() {
 
-                $.ajax({
-                    url: domainName + "/jsps/sell/short-status.jsp",
-                    type: 'GET',
-                    success: function (data) {
-                        document.getElementById("content").innerHTML = data;
-                    }
+            $(document).ready(function () {
 
+//                $.ajax({
+//                    url: domainName + "/jsps/sell/short-status.jsp",
+//                    type: 'GET',
+//                    success: function (data) {
+//                        document.getElementById("content").innerHTML = data;
+//                    }
+//
+//            })
             })
-})
-            
+
             $('.close-btn').click(function () {
                 $.ajax({
                     type: "GET",

@@ -9,6 +9,7 @@ import com.pharmacy.product.Product;
 import com.pharmacy.sells.DailySell;
 import com.pharmacy.sells.SellModel;
 import com.pharmacy.sells.SellView;
+import com.pharmacy.service.ProductService;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -76,6 +77,9 @@ public class SellDbHelper {
                 statement.setString(4, sm.getInvoiceNo());
                 statement.setDouble(5, sm.getPrice());
                 status[count] = statement.executeUpdate();
+                if (status[count] ==1) {
+                    ProductService.updateQuantity(sm.getProductId(), (int)sm.getQuantity());
+                }
                 count++;
             } catch (SQLException ex) {
                 Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);

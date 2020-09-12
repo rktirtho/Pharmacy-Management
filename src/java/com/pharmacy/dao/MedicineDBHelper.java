@@ -66,12 +66,13 @@ public class MedicineDBHelper {
 
 //        System.out.println(bHelper.insert(medicine));
 //System.out.println(bHelper.updateQuantity(medicine));
-        List<Product> list = bHelper.searchByKeyword("nap");
-        System.out.println(list.size());
-        for (Product product : list) {
-            System.err.println(product.getName());
-        }
+//        List<Product> list = bHelper.searchByKeyword("nap");
+//        System.out.println(list.size());
+//        for (Product product : list) {
+//            System.err.println(product.getName());
+//        }
 
+        System.out.println(bHelper.updateQuantity("413212", 2));
     }
 
     public boolean insert(Product medicine) {
@@ -456,7 +457,7 @@ public class MedicineDBHelper {
 
     }
     
-    private int updateQuantity(String productCode, int quantity) {
+    public int updateQuantity(String productCode, int quantity) {
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;

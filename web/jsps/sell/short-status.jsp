@@ -13,10 +13,11 @@
     </head>
     <body>
         <div class="container-fluid">
-            <div class="d-flex justify-content-start">
-                <div class="d-flex justify-end">Yesterday </div>
-                <div class="d-flex justify-content-center">Yesterday </div>
-                <div class="d-flex justify-content-center">Yesterday </div>
+            <div class="d-flex  bd-highlight">
+                <div class="flex-fil">Yesterday </div>
+                <div class="flex-fil">Yesterday </div>
+                <div class="flex-fil">Yesterday </div>
+                
             </div>
             
         </div>

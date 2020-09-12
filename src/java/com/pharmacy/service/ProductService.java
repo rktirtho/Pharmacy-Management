@@ -44,6 +44,9 @@ public class ProductService {
     public static List<Product> getByCode(String key){
         return dbHelper.searchProductCode(key);
     }
+    public static int updateQuantity(String productCode, int quantity){
+        return dbHelper.updateQuantity(productCode,quantity);
+    }
     
     
 }
