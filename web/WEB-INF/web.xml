@@ -127,14 +127,14 @@
     </servlet-mapping>
      
      
-<!--     <servlet>
-        <servlet-name>daily-sell</servlet-name>
-        <jsp-file>/jsps/sell/daily-sell.jsp</jsp-file>
+     <servlet>
+        <servlet-name>daily-sell-view</servlet-name>
+        <jsp-file>/jsps/sell/daily-sell-view.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>daily-sell</servlet-name>
-        <url-pattern>/daily-sell</url-pattern>
-    </servlet-mapping>-->
+        <servlet-name>daily-sell-view</servlet-name>
+        <url-pattern>/sell-view/*</url-pattern>
+    </servlet-mapping>
      
      
      

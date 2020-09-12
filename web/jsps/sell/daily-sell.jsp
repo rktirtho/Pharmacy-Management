@@ -41,12 +41,13 @@
                     <!--<td><a target="_blank" href="bill?invocation=</a></td>-->
                     <td>
                         ${p.getTimestamp().getDate()} -
-                        ${p.getTimestamp().getMonth()} -
+                        ${p.getTimestamp().getMonth()+1} -
                         ${1900+p.getTimestamp().getYear()}
                     </td>
                     <td>${p.getNumberOfInvoice()}</td>
                     <td>${p.getTotalSell()}</td>
-                    <td><a class="btn btn-success" href="${p.getTimestamp()}">Details</a></td>
+                    <td><a class="btn btn-success" target="_blank"
+                           href="sell-view/${1900+p.getTimestamp().getYear()}-${p.getTimestamp().getMonth()+1}-${p.getTimestamp().getDate()}">Details</a></td>
                     
                     </tr>
             </c:forEach>
