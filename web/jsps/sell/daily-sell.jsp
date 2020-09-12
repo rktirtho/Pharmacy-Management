@@ -4,7 +4,12 @@
     Author     : rktirtho
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="com.pharmacy.service.SellsService"%>
+<%@page import="java.util.List"%>
+<%@page import="com.pharmacy.sells.DailySell"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +17,39 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%
+            List<DailySell> sells = SellsService.getDailySellInfo();
+            request.setAttribute("sells", sells);
+//            sells.get(0).getTimestamp().getDay();
+           
+
+        %>
+        <h2>Page Loaded</h2>
+        <hr>
+
+        <table class="table table-striped table-bordered">
+            <tr>
+                
+                <th>Date</th>
+                <th>Total Invoice</th>
+                <th>Total Product Sell</th>
+                <th></th>
+            </tr>
+            <c:forEach items="${sells}" var="p">
+
+                <tr>
+                    <!--<td><a target="_blank" href="bill?invocation=</a></td>-->
+                    <td>
+                        ${p.getTimestamp().getDate()} -
+                        ${p.getTimestamp().getMonth()} -
+                        ${1900+p.getTimestamp().getYear()}
+                    </td>
+                    <td>${p.getNumberOfInvoice()}</td>
+                    <td>${p.getTotalSell()}</td>
+                    <td><a class="btn btn-success" href="${p.getTimestamp()}">Details</a></td>
+                    
+                    </tr>
+            </c:forEach>
+        </table>
     </body>
 </html>

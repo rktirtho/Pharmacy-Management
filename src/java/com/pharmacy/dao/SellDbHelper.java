@@ -46,7 +46,7 @@ public class SellDbHelper {
 //        sm.setQuantity(10);
 //        sm.setPrice(10);
 //        System.out.println(helper.makeSell(sm));
-//        List<DailySell> svs = helper.getDailySellInfo();
+        List<DailySell> svs = helper.getDailySellInfo();
 //        for (DailySell sv : svs) {
 //            System.out.println(sv);
 //        }
@@ -152,7 +152,7 @@ public class SellDbHelper {
             statement = connection.prepareCall("select  count(distinct invoice_no)"
                     + " as number_of_invoice,  sell_time, date(from_unixtime(sell_time))"
                     + " as _date, count(invoice_no ) as productSell  from sell "
-                    + "group by date(sell_time) order by _date;");
+                    + "group by date(sell_time) order by sell_time desc;");
             
             
             rs = statement.executeQuery();

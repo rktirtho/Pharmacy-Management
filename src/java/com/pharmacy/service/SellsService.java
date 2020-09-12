@@ -6,6 +6,7 @@
 package com.pharmacy.service;
 
 import com.pharmacy.dao.SellDbHelper;
+import com.pharmacy.sells.DailySell;
 import com.pharmacy.sells.SellModel;
 import com.pharmacy.sells.SellView;
 import java.util.List;
@@ -27,6 +28,10 @@ public class SellsService {
     }
     public static List<SellView> getByInvocationId(String invocatonId){
         return dbHelper.getByInvocation(invocatonId);
+    }
+    
+    public static List<DailySell> getDailySellInfo(){
+        return dbHelper.getDailySellInfo();
     }
     
 }

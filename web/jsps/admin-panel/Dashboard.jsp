@@ -115,7 +115,7 @@
                                         </li>
 
                                         <li>
-                                            <a href="#">Daily Sell</a>
+                                            <a  id="daily-sell">Daily Sell</a>
                                         </li>
                                         <li>
                                             <a href="#">Sell Statistics</a>
@@ -415,6 +415,17 @@
 
                 $.ajax({
                     url: domainName + "/jsps/sell/all-sell.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    }
+
+                })
+            })
+            $('#daily-sell').click(function () {
+
+                $.ajax({
+                    url: domainName + "/jsps/sell/daily-sell.jsp",
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;
