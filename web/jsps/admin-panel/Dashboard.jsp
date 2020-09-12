@@ -304,6 +304,19 @@
 
         <script>
             var domainName = "/Pharmacy_Management"
+            
+            $(document).ready(function() {
+
+                $.ajax({
+                    url: domainName + "/jsps/sell/short-status.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    }
+
+            })
+})
+            
             $('.close-btn').click(function () {
                 $.ajax({
                     type: "GET",
