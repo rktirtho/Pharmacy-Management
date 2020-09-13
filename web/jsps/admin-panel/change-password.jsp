@@ -21,17 +21,17 @@
                         <div class="card-body">
                             <h5 class="card-title bg-success text-center py-3">Change Password</h5>
                             <form autocomplete="off" class="form-signin" 
-                                  action="signin-check?cf=lg" method="post">
+                                  action="change-pass" method="post">
                                 <div class="form-label-group">
                                     <label for="inputEmail">Old Password</label>
-                                    <input type="password" name="userName" 
+                                    <input type="password" name="old-password" 
                                            id="inputEmail" class="form-control" 
                                            placeholder="" required autofocus>
                                 </div>
 
                                 <div class="form-label-group">
                                     <label for="inputPassword">New Password</label>
-                                    <input type="password" name="password" 
+                                    <input type="password" name="new-password" 
                                            id="inputPassword" class="form-control" 
                                            placeholder="" required>
                                 </div>

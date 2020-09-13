@@ -70,6 +70,14 @@
         <servlet-name>approve-admin</servlet-name>
         <url-pattern>/approve-admin</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>change-pass</servlet-name>
+        <jsp-file>/jsps/admin-panel/change-password-check.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>change-pass</servlet-name>
+        <url-pattern>/change-pass</url-pattern>
+    </servlet-mapping>
 
     
     <servlet>
