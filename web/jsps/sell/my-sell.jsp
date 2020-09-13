@@ -49,7 +49,7 @@
                     <td>${p.getNumberOfInvoice()}</td>
                     <td>${p.getTotalSell()}</td>
                     <td><a class="btn btn-success" target="_blank"
-                           href="sell-view/${p.getTimestamp()}">Details</a></td>
+                           href="seller-sell-view/${p.getTimestamp()}">Details</a></td>
 
                 </tr>
             </c:forEach>

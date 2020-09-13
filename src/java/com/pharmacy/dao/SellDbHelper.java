@@ -154,13 +154,14 @@ public class SellDbHelper {
         try {
             statement = connection.prepareCall("select  count(distinct invoice_no)"
                     + " as number_of_invoice,  sell_time, date(from_unixtime(sell_time))"
-                    + " as _date, count(invoice_no ) as productSell  from sell "
+                    + " as _date, sum(price) as total, count(invoice_no ) as productSell  from sell "
                     + "group by date(sell_time) order by sell_time desc;");
             
             rs = statement.executeQuery();
             while (rs.next()) {
                 DailySell dailySell = new DailySell();
                 dailySell.setTotalSell(rs.getInt("productSell"));
+                dailySell.setAmmount(rs.getDouble("total"));
                 dailySell.setNumberOfInvoice(rs.getInt("number_of_invoice"));
                 dailySell.setTimestamp(rs.getTimestamp("sell_time"));
                 sells.add(dailySell);
@@ -287,13 +288,14 @@ public class SellDbHelper {
         try {
             statement = connection.prepareCall("select  count(distinct invoice_no) as number_of_invoice,"
                     + "  sell_time, date(from_unixtime(sell_time)) "
-                    + " as _date, count(invoice_no ) as productSell  from sell  where seller_id=? "
+                    + " as _date,  sum(price) as total, count(invoice_no ) as productSell  from sell  where seller_id=? "
                     + " group by date(sell_time) order by sell_time desc ;");
             statement.setInt(1, id);
             rs = statement.executeQuery();
             while (rs.next()) {
                 DailySell dailySell = new DailySell();
                 dailySell.setTotalSell(rs.getInt("productSell"));
+                dailySell.setAmmount(rs.getDouble("total"));
                 dailySell.setNumberOfInvoice(rs.getInt("number_of_invoice"));
                 dailySell.setTimestamp(rs.getTimestamp("sell_time"));
                 sells.add(dailySell);

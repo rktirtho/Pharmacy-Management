@@ -40,6 +40,9 @@ public class SellsService {
     public static List<SellView> getPerDaySell(String date){
         return dbHelper.getPerDay(date);
     }
+    public static List<SellView> getPerDayBySeller(String date, int id){
+        return dbHelper.getPerDayBySeller(date, id);
+    }
     
      public static double totalAmmountPerDay(String date){
         return dbHelper.totalAmmountPerDay(date);

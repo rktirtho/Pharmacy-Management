@@ -146,6 +146,15 @@
         <url-pattern>/sell-view/*</url-pattern>
     </servlet-mapping>
      
+     <servlet>
+        <servlet-name>seller-day-sell-view</servlet-name>
+        <jsp-file>/jsps/sell/seller-day-sell-view.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>seller-day-sell-view</servlet-name>
+        <url-pattern>/seller-sell-view/*</url-pattern>
+    </servlet-mapping>
+     
      
      
      

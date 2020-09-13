@@ -15,6 +15,7 @@ public class DailySell {
     private int numberOfInvoice;
     private Timestamp timestamp;
     private int totalSell;
+    private double ammount;
 
     public int getNumberOfInvoice() {
         return numberOfInvoice;
@@ -39,6 +40,15 @@ public class DailySell {
     public void setTotalSell(int totalSell) {
         this.totalSell = totalSell;
     }
+
+    public double getAmmount() {
+        return ammount;
+    }
+
+    public void setAmmount(double ammount) {
+        this.ammount = ammount;
+    }
+    
 
     @Override
     public String toString() {
