@@ -1,35 +1,37 @@
 <%-- 
-    Document   : daily-sell
-    Created on : Sep 12, 2020, 3:49:17 PM
+    Document   : my-sell
+    Created on : Sep 13, 2020, 3:05:14 PM
     Author     : rktirtho
 --%>
 
-<%@page import="java.util.Calendar"%>
+<%@page import="com.pharmacy.dao.AdminDbHelper"%>
+<%@page import="com.pharmacy.admin.Admin"%>
 <%@page import="com.pharmacy.service.SellsService"%>
-<%@page import="java.util.List"%>
 <%@page import="com.pharmacy.sells.DailySell"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+
     </head>
     <body>
         <%
-            List<DailySell> sells = SellsService.getDailySellInfo();
+            Admin admin = AdminDbHelper.getBySession(session.getId());
+            List<DailySell> sells = SellsService.getDailySellInfoOfSeller(admin.getId());
             request.setAttribute("sells", sells);
-//            sells.get(0).getTimestamp().getDay();
-           
+            sells.get(0).getNumberOfInvoice();
+
 
         %>
-        <h2>Daily Sell</h2>
+        <h2>My Sell <%= sells.size()%></h2>
         <hr>
 
         <table class="table table-striped table-bordered">
             <tr>
-                
+
                 <th>Date</th>
                 <th>Total Invoice</th>
                 <th>Total Product Sell</th>
@@ -48,8 +50,8 @@
                     <td>${p.getTotalSell()}</td>
                     <td><a class="btn btn-success" target="_blank"
                            href="sell-view/${p.getTimestamp()}">Details</a></td>
-                    
-                    </tr>
+
+                </tr>
             </c:forEach>
         </table>
     </body>

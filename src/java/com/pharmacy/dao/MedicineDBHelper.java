@@ -151,7 +151,7 @@ public class MedicineDBHelper {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareCall("SELECT * FROM " 
-                    + TABLE +" WHERE "+IS_UPDATED+"=?");
+                    + TABLE +" WHERE "+IS_UPDATED+"=? and "+QUANTITY+">0");
             statement.setBoolean(1, true);
             rs = statement.executeQuery();
             while (rs.next()) {

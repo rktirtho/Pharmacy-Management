@@ -31,7 +31,7 @@
                 <th>Buying Prize</th>
                 <th>Selling Prize </th>
                 <th>Discount</th>
-                <th>Profit</th>
+                <!--<th>Profit</th>-->
                 <th>Inventor</th>
                 <th></th>
             </tr>
@@ -44,7 +44,7 @@
                     <td>${p.getUnitBuyingPrize()}</td>
                     <td>${p.getUnitSellingPrize()}</td>
                     <td>${p.getDiscount()}</td>
-                    <td>${p.getProfitPerUnit()}</td>
+                    
                     <td><a href="">${p.getInventor()}</a></td>
                 </tr>
             </c:forEach>

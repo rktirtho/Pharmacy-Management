@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  * @author rktirtho
  */
 public class SellDbHelper {
-
+    
     public String TABLE = "sell";
     public String ID = "id";
     public String PRODUCT_ID = "product_id";
@@ -38,7 +38,7 @@ public class SellDbHelper {
     public String UNIT_PRICE = "unit_selling_prize";
     public String PRICE = "price";
     public String TIMESTAMP = "sell_time";
-
+    
     public static void main(String[] args) {
         SellDbHelper helper = new SellDbHelper();
 //        SellModel sm = new SellModel();
@@ -47,14 +47,14 @@ public class SellDbHelper {
 //        sm.setQuantity(10);
 //        sm.setPrice(10);
 //        System.out.println(helper.makeSell(sm));
-//        List<SellView> svs = helper.getPerDay("2020-09-11");
-//        for (SellView sv : svs) {
-//            System.out.println(sv);
-//        }
+        List<DailySell> svs = helper.getDailySellInfoOfSeller(1);
+        for (DailySell sv : svs) {
+            System.out.println(sv);
+        }
 
-        System.out.println(helper.totalAmmountPerDay("2020-09-11"));
+//        System.out.println(helper.totalAmmountPerDay("2020-09-11"));
     }
-
+    
     public int[] makeSell(List<SellModel> items) {
         int[] status = new int[items.size()];
         DBConnector connector = DBConnector.getInstance();
@@ -77,18 +77,18 @@ public class SellDbHelper {
                 statement.setString(4, sm.getInvoiceNo());
                 statement.setDouble(5, sm.getPrice());
                 status[count] = statement.executeUpdate();
-                if (status[count] ==1) {
-                    ProductService.updateQuantity(sm.getProductId(), (int)sm.getQuantity());
+                if (status[count] == 1) {
+                    ProductService.updateQuantity(sm.getProductId(), (int) sm.getQuantity());
                 }
                 count++;
             } catch (SQLException ex) {
                 Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        
         return status;
     }
-
+    
     public List<SellView> getAll() {
         List<SellView> sells = new ArrayList<>();
         DBConnector connector = DBConnector.getInstance();
@@ -109,14 +109,14 @@ public class SellDbHelper {
                 sv.setTime(rs.getTimestamp(TIMESTAMP));
                 sells.add(sv);
             }
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return sells;
     }
-
+    
     public List<SellView> getBySeller(int id) {
         List<SellView> sells = new ArrayList<>();
         DBConnector connector = DBConnector.getInstance();
@@ -136,17 +136,16 @@ public class SellDbHelper {
                 inputter(rs, sv);
                 sells.add(sv);
             }
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return sells;
     }
     
-    
-    public List<DailySell> getDailySellInfo(){
-         List<DailySell> sells = new ArrayList<>();
+    public List<DailySell> getDailySellInfo() {
+        List<DailySell> sells = new ArrayList<>();
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
@@ -158,7 +157,6 @@ public class SellDbHelper {
                     + " as _date, count(invoice_no ) as productSell  from sell "
                     + "group by date(sell_time) order by sell_time desc;");
             
-            
             rs = statement.executeQuery();
             while (rs.next()) {
                 DailySell dailySell = new DailySell();
@@ -167,17 +165,15 @@ public class SellDbHelper {
                 dailySell.setTimestamp(rs.getTimestamp("sell_time"));
                 sells.add(dailySell);
                 
-                
             }
         } catch (SQLException ex) {
             Logger.getLogger(SellDbHelper.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
         
-        
         return sells;
     }
-
+    
     public List<SellView> getPerDay(String date) {
         List<SellView> sells = new ArrayList<>();
         DBConnector connector = DBConnector.getInstance();
@@ -185,10 +181,10 @@ public class SellDbHelper {
         PreparedStatement statement = null;
         ResultSet rs = null;
         try {
-            statement = connection.prepareCall("select sell.invoice_no, sell.seller_id,  sum(sell.price) as price, admin_table.name " +
-"                     as seller_name, sell_time from sell inner join admin_table where " +
-"                     sell.seller_id = admin_table.id and sell.sell_time like ? group by sell.invoice_no order by sell.sell_time desc");
-            statement.setString(1, date+"%");
+            statement = connection.prepareCall("select sell.invoice_no, sell.seller_id,  sum(sell.price) as price, admin_table.name "
+                    + "                     as seller_name, sell_time from sell inner join admin_table where "
+                    + "                     sell.seller_id = admin_table.id and sell.sell_time like ? group by sell.invoice_no order by sell.sell_time desc");
+            statement.setString(1, date + "%");
             rs = statement.executeQuery();
             while (rs.next()) {
                 SellView sv = new SellView();
@@ -199,16 +195,46 @@ public class SellDbHelper {
                 sv.setTime(rs.getTimestamp(TIMESTAMP));
                 sells.add(sv);
             }
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return sells;
     }
     
-    public double totalAmmountPerDay(String date){
-        double total=0;
+    public List<SellView> getPerDayBySeller(String date, int id) {
+        List<SellView> sells = new ArrayList<>();
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = connection.prepareCall("select sell.invoice_no, sell.seller_id,  sum(sell.price) as price, admin_table.name "
+                    + "                     as seller_name, sell_time from sell inner join admin_table where "
+                    + "                     sell.seller_id = admin_table.id and sell.sell_time like ? and seller_id=? group by sell.invoice_no order by sell.sell_time desc");
+            statement.setString(1, date + "%");
+            statement.setInt(2, id);
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                SellView sv = new SellView();
+                sv.setInvoiceNo(rs.getString(INVOICE_NO));
+                sv.setSellerName(rs.getString(SELLER_NAME));
+                sv.setSellerId(rs.getInt(SELLER_ID));
+                sv.setPrice(rs.getDouble(PRICE));
+                sv.setTime(rs.getTimestamp(TIMESTAMP));
+                sells.add(sv);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return sells;
+    }
+    
+    public double totalAmmountPerDay(String date) {
+        double total = 0;
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
@@ -216,12 +242,12 @@ public class SellDbHelper {
         
         try {
             statement = connection.prepareCall("select sum(price) as total from sell where sell_time like ?");
-            statement.setString(1, date+"%");
+            statement.setString(1, date + "%");
             rs = statement.executeQuery();
             if (rs.next()) {
                 total = rs.getDouble("total");
             }
-        
+            
         } catch (SQLException ex) {
             Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -229,8 +255,8 @@ public class SellDbHelper {
         return total;
     }
     
-    public double totalAmmount(){
-        double total=0;
+    public double totalAmmount() {
+        double total = 0;
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
@@ -243,20 +269,50 @@ public class SellDbHelper {
             if (rs.next()) {
                 total = rs.getDouble("total");
             }
-        
+            
         } catch (SQLException ex) {
             Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return total;
     }
-
-    public List<SellView> getPerDayBySeller() {
-        List<SellView> sells = new ArrayList<>();
-
+    
+    public List<DailySell> getDailySellInfoOfSeller(int id) {
+        List<DailySell> sells = new ArrayList<>();
+        DBConnector connector = DBConnector.getInstance();
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        System.out.println("id "+id);
+        try {
+            statement = connection.prepareCall("select  count(distinct invoice_no) as number_of_invoice,"
+                    + "  sell_time, date(from_unixtime(sell_time)) "
+                    + " as _date, count(invoice_no ) as productSell  from sell  where seller_id=? "
+                    + " group by date(sell_time) order by sell_time desc ;");
+            statement.setInt(1, id);
+            rs = statement.executeQuery();
+            while (rs.next()) {
+                DailySell dailySell = new DailySell();
+                dailySell.setTotalSell(rs.getInt("productSell"));
+                dailySell.setNumberOfInvoice(rs.getInt("number_of_invoice"));
+                dailySell.setTimestamp(rs.getTimestamp("sell_time"));
+                sells.add(dailySell);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SellDbHelper.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
+        
         return sells;
     }
-
+    
+    public List<SellView> getPerDayBySeller() {
+        List<SellView> sells = new ArrayList<>();
+        
+        return sells;
+    }
+    
     public List<SellView> getByInvocation(String invocationID) {
         List<SellView> sells = new ArrayList<>();
         DBConnector connector = DBConnector.getInstance();
@@ -277,14 +333,14 @@ public class SellDbHelper {
                 inputter(rs, sv);
                 sells.add(sv);
             }
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(SellDbHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return sells;
     }
-
+    
     void inputter(ResultSet rs, SellView sm) throws SQLException {
         sm.setId(rs.getInt(ID));
         sm.setProductId(rs.getInt(PRODUCT_ID));

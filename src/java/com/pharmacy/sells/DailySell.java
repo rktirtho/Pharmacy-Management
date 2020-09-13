@@ -39,6 +39,11 @@ public class DailySell {
     public void setTotalSell(int totalSell) {
         this.totalSell = totalSell;
     }
+
+    @Override
+    public String toString() {
+        return "DailySell{" + "numberOfInvoice=" + numberOfInvoice + ", timestamp=" + timestamp + ", totalSell=" + totalSell + '}';
+    }
     
     
     

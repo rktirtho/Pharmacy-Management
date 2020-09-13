@@ -4,6 +4,7 @@
 <%@page import="com.pharmacy.service.SellsService"%>
 <%@page import="com.pharmacy.dao.AdminDbHelper"%>
 <%@page import="com.pharmacy.admin.Admin"%>
+
 <!------ Include the above in your HEAD tag ---------->
 
 <!DOCTYPE html>
@@ -138,7 +139,7 @@
                                         <%}%>
                                         <!--sells man portal-->
                                         <li>
-                                            <a href="#">My Sells</a>
+                                            <a href="#" id="my-sell">My Sells</a>
                                         </li>
 
 
@@ -486,6 +487,16 @@
 
                 $.ajax({
                     url: domainName + "/jsps/sell/daily-sell.jsp",
+                    type: 'GET',
+                    success: function (data) {
+                        document.getElementById("content").innerHTML = data;
+                    }
+
+                })
+            })
+            $('#my-sell').click(function () {
+                $.ajax({
+                    url: domainName + "/jsps/sell/my-sell.jsp",
                     type: 'GET',
                     success: function (data) {
                         document.getElementById("content").innerHTML = data;

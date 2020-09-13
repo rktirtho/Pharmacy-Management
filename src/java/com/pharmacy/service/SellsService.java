@@ -33,6 +33,9 @@ public class SellsService {
     public static List<DailySell> getDailySellInfo(){
         return dbHelper.getDailySellInfo();
     }
+    public static List<DailySell> getDailySellInfoOfSeller(int id){
+        return dbHelper.getDailySellInfoOfSeller(id);
+    }
     
     public static List<SellView> getPerDaySell(String date){
         return dbHelper.getPerDay(date);
