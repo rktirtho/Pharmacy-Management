@@ -17,14 +17,20 @@
         <%
             String oldPass = request.getParameter("old-password");
             String newPass = request.getParameter("new-password");
-            Admin admin= AdminDbHelper.getBySession(session.getId());
+            String confPass = request.getParameter("confirm-Password");
+            Admin admin = AdminDbHelper.getBySession(session.getId());
+            if(!newPass.equals(confPass)){
+                out.print("New password and confirm password are not same");
+                return;
+            }
             int status = AdminDbHelper.changePassword(oldPass, newPass, admin.getId());
-            
-if (status==1) {
-    out.print("password changed");
-        
-    } else {
-    }
+
+            if (status == 1) {
+                out.print("password changed");
+
+            } else {
+                out.print("Failed");
+            }
         %>
     </body>
 </html>

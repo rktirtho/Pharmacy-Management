@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <h5 class="card-title bg-success text-center py-3">Change Password</h5>
                             <form autocomplete="off" class="form-signin" 
-                                  action="change-pass" method="post">
+                                  action="change-pass" id="change-pass" method="post">
                                 <div class="form-label-group">
                                     <label for="inputEmail">Old Password</label>
                                     <input type="password" name="old-password" 
@@ -36,20 +36,20 @@
                                            placeholder="" required>
                                 </div>
                                 <div class="form-label-group">
-                                    <label for="inputPassword">Re enter New Password</label>
+                                    <label for="inputPassword">Confirm Password</label>
                                     <input type="password" name="password" 
-                                           id="inputPassword" class="form-control" 
+                                           id="confirm-Password" class="form-control" 
                                            placeholder="" required>
                                 </div>
 
-<!--                                <div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1">Remember password</label>
-                                </div>-->
-                                <button class="btn my-3 btn-lg btn-primary btn-block text-uppercase" type="submit">Change Password</button>
+                                <!--                                <div class="custom-control custom-checkbox mb-3">
+                                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                                    <label class="custom-control-label" for="customCheck1">Remember password</label>
+                                                                </div>-->
+                                <button class="btn my-3 btn-lg btn-primary btn-block text-uppercase" id="submit-button" type="submit">Change Password</button>
                             </form>
                             <hr class="my-4">
-                            
+
                         </div>
                     </div>
                 </div>
