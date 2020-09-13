@@ -48,15 +48,12 @@ public class DailySell {
     public void setAmmount(double ammount) {
         this.ammount = ammount;
     }
-    
 
     @Override
     public String toString() {
-        return "DailySell{" + "numberOfInvoice=" + numberOfInvoice + ", timestamp=" + timestamp + ", totalSell=" + totalSell + '}';
+        return "DailySell{" + "numberOfInvoice=" + numberOfInvoice + ", timestamp=" + timestamp + ", totalSell=" + totalSell + ", ammount=" + ammount + '}';
     }
     
-    
-    
-    
-    
+
+   
 }

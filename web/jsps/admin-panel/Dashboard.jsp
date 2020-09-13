@@ -218,7 +218,7 @@
                             </li>
                             <%}
                             %>
-                            <li class="sidebar-dropdown">
+<!--                            <li class="sidebar-dropdown">
                                 <a href="#">
                                     <i class="fa fa-chart-line"></i>
                                     <span>Charts</span>
@@ -239,7 +239,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>-->
                             <li class="sidebar-dropdown">
                                 <a href="#">
                                     <i class="fa fa-globe"></i>

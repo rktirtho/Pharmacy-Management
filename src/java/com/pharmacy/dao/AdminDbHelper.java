@@ -31,11 +31,11 @@ public class AdminDbHelper {
 //        admin.setPassword("qwert");
 //        admin.setIsActive(true);
 
-        List<Admin> admins = AdminDbHelper.getNewRequest();
-        for (Admin admin : admins) {
-            System.out.println(admin);
-        }
-
+//        List<Admin> admins = AdminDbHelper.getNewRequest();
+//        for (Admin admin : admins) {
+//            System.out.println(admin);
+//        }
+System.out.println(getPassword("qwfert", 1));
     }
 
     public static int login(String userName, String password, String session) {
@@ -282,7 +282,9 @@ public class AdminDbHelper {
         return status;
     }
 
-    public static int changePassword(String newPassword, String oldPawwrord, int id) {
+    public static int changePassword(String newPassword,
+            String oldPawwrord,
+            int id) {
         Connection connection = connector.getConnection();
         PreparedStatement statement = null;
         int status = 0;
@@ -293,6 +295,33 @@ public class AdminDbHelper {
             statement.setString(1, newPassword);
             statement.setInt(2, id);
             status = statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
+    }
+    
+    private static boolean getPassword(String password, int id){
+        Connection connection = connector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs =null;
+        boolean status= false;
+        
+        try {
+            statement = connection.prepareCall("SELECT "+DBConnector.PASSWORD
+                    +" FROM "+ DBConnector.ADMIN_TABLE 
+                    +" where " + DBConnector.ID
+                    + "=?");
+            statement.setInt(1, id);
+            
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                if (rs.getString(DBConnector.PASSWORD).equals(password)) {
+//                    System.out.println("Mached");
+                    status =true;
+                }
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(AdminDbHelper.class.getName()).log(Level.SEVERE, null, ex);
         }

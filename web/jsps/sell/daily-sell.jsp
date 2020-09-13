@@ -33,6 +33,7 @@
                 <th>Date</th>
                 <th>Total Invoice</th>
                 <th>Total Product Sell</th>
+                <th>Sell Ammount</th>
                 <th></th>
             </tr>
             <c:forEach items="${sells}" var="p">
@@ -46,6 +47,7 @@
                     </td>
                     <td>${p.getNumberOfInvoice()}</td>
                     <td>${p.getTotalSell()}</td>
+                    <td>${p.getAmmount()}</td>
                     <td><a class="btn btn-success" target="_blank"
                            href="sell-view/${p.getTimestamp()}">Details</a></td>
                     
