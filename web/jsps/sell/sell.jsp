@@ -26,7 +26,7 @@
               href="${pageContext.request.contextPath}/res/libs/bootstrap.css"/>
         <link type="text/css" rel="stylesheet" 
               href="${pageContext.request.contextPath}/res/libs/fontawesome-all.min.css"/>
-        <title>Selling</title>
+        <title>Make Bill</title>
     </head>
     <body>
         <div class="card my-2 "  >

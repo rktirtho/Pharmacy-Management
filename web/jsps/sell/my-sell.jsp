@@ -14,10 +14,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    </head>
-    <body>
         <%
             Admin admin = AdminDbHelper.getBySession(session.getId());
             List<DailySell> sells = SellsService.getDailySellInfoOfSeller(admin.getId());
@@ -26,7 +22,12 @@
 
 
         %>
-        <h2>My Sell <%= sells.size()%></h2>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    </head>
+    <body>
+        
+        <h2>My Sell</h2>
         <hr>
 
         <table class="table table-striped table-bordered">

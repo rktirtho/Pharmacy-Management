@@ -13,10 +13,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
         <%
             List<DailySell> sells = SellsService.getDailySellInfo();
             request.setAttribute("sells", sells);
@@ -24,6 +20,11 @@
            
 
         %>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Daily Sells</title>
+    </head>
+    <body>
+        
         <h2>Daily Sell</h2>
         <hr>
 

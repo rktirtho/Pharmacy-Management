@@ -21,5 +21,15 @@
             </div>
             
         </div>
+        
+        <div class="container-fluid">
+            <div class="d-flex  bd-highlight">
+                <div class="flex-fil">Yesterday </div>
+                <div class="flex-fil">Yesterday </div>
+                <div class="flex-fil">Yesterday </div>
+                
+            </div>
+            
+        </div>
     </body>
 </html>

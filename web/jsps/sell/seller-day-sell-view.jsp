@@ -15,7 +15,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        
         <%
             double total = 0;
             request.setAttribute("total", total);
@@ -26,7 +26,7 @@
             request.setAttribute("sells", svs);
 
         %>
-        <title><%=date%></title>
+        <title><%=date%> | <%= admin.getName() %>'s Sells</title>
         <link type="text/css" rel="stylesheet" 
               href="${pageContext.request.contextPath}/res/libs/bootstrap.css"/>
     </head>
