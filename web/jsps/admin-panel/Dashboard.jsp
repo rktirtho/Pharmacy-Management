@@ -218,28 +218,28 @@
                             </li>
                             <%}
                             %>
-<!--                            <li class="sidebar-dropdown">
-                                <a href="#">
-                                    <i class="fa fa-chart-line"></i>
-                                    <span>Charts</span>
-                                </a>
-                                <div class="sidebar-submenu">
-                                    <ul>
-                                        <li>
-                                            <a href="#">Pie chart</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Line chart</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Bar chart</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Histogram</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>-->
+                            <!--                            <li class="sidebar-dropdown">
+                                                            <a href="#">
+                                                                <i class="fa fa-chart-line"></i>
+                                                                <span>Charts</span>
+                                                            </a>
+                                                            <div class="sidebar-submenu">
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="#">Pie chart</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#">Line chart</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#">Bar chart</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#">Histogram</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>-->
                             <li class="sidebar-dropdown">
                                 <a href="#">
                                     <i class="fa fa-globe"></i>
@@ -307,7 +307,7 @@
             <!-- sidebar-wrapper  -->
             <main class="page-content">
                 <div class="container-fluid">
-
+                    <h5>Overview</h5>
 
                     <div class="my-2 card p-2" id="content">
 
@@ -327,6 +327,44 @@
                             </div>
                             <div class="flex-fill py-3">
                                 <h6 class="text-center">Total</h6>
+                                <center>
+                                    <b>Sell: <%= total%> BDT</b>
+                                </center>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                                
+                <div class="container-fluid">
+<h5>Todays Sells</h5>
+
+                    <div class="my-2 card p-2" id="content">
+
+
+                        <div class="d-flex  bd-highlight">
+                            <div class="flex-fill py-3">
+                                <h6 class="text-center">Rejaul Karim</h6>
+                                <center>
+                                    <b>Sell: <%= todaySell%> BDT</b>
+                                </center>
+                            </div>
+                            <div class="flex-fill border-left border-right py-3">
+                                <h6 class="text-center">Hasan Mahmud</h6> 
+                                <center>
+                                    <b>Sell: <%= yesterdaySell%> BDT</b>
+                                </center>
+                            </div>
+                            <div class="flex-fill py-3">
+                                <h6 class="text-center">Hedayet</h6>
+                                <center>
+                                    <b>Sell: <%= total%> BDT</b>
+                                </center>
+                            </div>
+                                <div class="flex-fill py-3 border-left">
+                                <h6 class="text-center">Rajon Miah</h6>
                                 <center>
                                     <b>Sell: <%= total%> BDT</b>
                                 </center>
