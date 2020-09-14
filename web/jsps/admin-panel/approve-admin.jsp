@@ -29,7 +29,7 @@
             } else {
                 int status = AdminDbHelper.reject(id);
                 if (status == 1) {
-                    out.print("Approved");
+                    out.print("Request rejected");
                 } else {
                     out.print("error");
                 }
