@@ -337,9 +337,9 @@
 
 
                 </div>
-                                
+
                 <div class="container-fluid">
-<h5>Todays Sells</h5>
+                    <h5>Todays Sells</h5>
 
                     <div class="my-2 card p-2" id="content">
 
@@ -363,7 +363,76 @@
                                     <b>Sell: <%= total%> BDT</b>
                                 </center>
                             </div>
-                                <div class="flex-fill py-3 border-left">
+                            <div class="flex-fill py-3 border-left">
+                                <h6 class="text-center">Rajon Miah</h6>
+                                <center>
+                                    <b>Sell: <%= total%> BDT</b>
+                                </center>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="container-fluid">
+                    <h5>Profits</h5>
+
+                    <div class="my-2 card p-2" id="content">
+
+
+                        <div class="d-flex  bd-highlight">
+                            <div class="flex-fill py-3">
+                                <h6 class="text-center">Toady</h6>
+                                <center>
+                                    <b>Sell: <%= todaySell%> BDT</b>
+                                </center>
+                            </div>
+                            <div class="flex-fill border-left border-right py-3">
+                                <h6 class="text-center">Yesterday</h6> 
+                                <center>
+                                    <b>Sell: <%= yesterdaySell%> BDT</b>
+                                </center>
+                            </div>
+                            <div class="flex-fill py-3">
+                                <h6 class="text-center">Total</h6>
+                                <center>
+                                    <b>Sell: <%= total%> BDT</b>
+                                </center>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="container-fluid">
+                    <h5>Profit From sellers</h5>
+
+                    <div class="my-2 card p-2" id="content">
+
+
+                        <div class="d-flex  bd-highlight">
+                            <div class="flex-fill py-3">
+                                <h6 class="text-center">Rejaul Karim</h6>
+                                <center>
+                                    <b>Sell: <%= todaySell%> BDT</b>
+                                </center>
+                            </div>
+                            <div class="flex-fill border-left border-right py-3">
+                                <h6 class="text-center">Hasan Mahmud</h6> 
+                                <center>
+                                    <b>Sell: <%= yesterdaySell%> BDT</b>
+                                </center>
+                            </div>
+                            <div class="flex-fill py-3">
+                                <h6 class="text-center">Hedayet</h6>
+                                <center>
+                                    <b>Sell: <%= total%> BDT</b>
+                                </center>
+                            </div>
+                            <div class="flex-fill py-3 border-left">
                                 <h6 class="text-center">Rajon Miah</h6>
                                 <center>
                                     <b>Sell: <%= total%> BDT</b>
