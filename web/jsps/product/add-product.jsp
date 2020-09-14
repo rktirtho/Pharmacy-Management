@@ -23,7 +23,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" rel="stylesheet" 
               href="${pageContext.request.contextPath}/res/libs/bootstrap.css"/>
-        <title>Add Product</title>
+        <title>Add Product | <%= admin.getName() %></title>
     </head>
     <body>
         <div class="row">
