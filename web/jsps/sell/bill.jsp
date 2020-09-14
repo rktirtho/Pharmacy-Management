@@ -12,16 +12,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
         <%
             String invocationNO = request.getParameter("invocation");
             List<SellView> sv = SellsService.getByInvocationId(invocationNO);
             request.setAttribute("sv", sv);
 
         %>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Invocation no <%=invocationNO %></title>
+    </head>
+    <body>
+        
     <center>
         <h3><%=invocationNO %></h3>
         <table border="1">
