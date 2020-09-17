@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author rktirtho
  */
-public class MedicineDBHelper {
+public class ProductDBHelper {
 
     private final String TABLE = "product";
     private final String ID = "ID";
@@ -45,7 +45,7 @@ public class MedicineDBHelper {
     private final String EXPIRE_DATE = "_expire_date";
 
     public static void main(String[] args) {
-        MedicineDBHelper bHelper = new MedicineDBHelper();
+        ProductDBHelper bHelper = new ProductDBHelper();
 //        Product medicine = new Product();
 //        medicine.setName("Max Pro");
 //        medicine.setDescprition("not data");
@@ -138,7 +138,7 @@ public class MedicineDBHelper {
 //            }
             status = statement.executeUpdate() == 1;
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return status;
     }
@@ -161,7 +161,7 @@ public class MedicineDBHelper {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return medicines;
@@ -189,7 +189,7 @@ public class MedicineDBHelper {
                 products.add(product);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return products;
@@ -216,7 +216,7 @@ public class MedicineDBHelper {
                 products.add(product);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return products;
@@ -239,7 +239,7 @@ public class MedicineDBHelper {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return medicines;
@@ -267,7 +267,7 @@ public class MedicineDBHelper {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return medicines;
@@ -291,7 +291,7 @@ public class MedicineDBHelper {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return medicines;
@@ -325,7 +325,7 @@ public class MedicineDBHelper {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return medicines;
@@ -349,7 +349,7 @@ public class MedicineDBHelper {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return medicines;
@@ -368,7 +368,7 @@ public class MedicineDBHelper {
             status = statement.executeUpdate();
 
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return status;
@@ -389,7 +389,7 @@ public class MedicineDBHelper {
             status = statement.executeUpdate();
 
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return status;
@@ -423,7 +423,7 @@ public class MedicineDBHelper {
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return product1;
     }
@@ -451,7 +451,7 @@ public class MedicineDBHelper {
             
             status = statement.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return status;
 
@@ -474,7 +474,7 @@ public class MedicineDBHelper {
             
             status = statement.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return status;
 
@@ -506,7 +506,7 @@ public class MedicineDBHelper {
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MedicineDBHelper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductDBHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return exist;

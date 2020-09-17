@@ -5,7 +5,7 @@
  */
 package com.pharmacy.service;
 
-import com.pharmacy.dao.MedicineDBHelper;
+import com.pharmacy.dao.ProductDBHelper;
 import com.pharmacy.product.Product;
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class ProductService {
         
     }
     
-    private static MedicineDBHelper dbHelper = new MedicineDBHelper();
+    private static ProductDBHelper dbHelper = new ProductDBHelper();
     public static List<Product> allProduct(){
         
         return dbHelper.getAll();
