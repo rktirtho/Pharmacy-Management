@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" rel="stylesheet" 
               href="${pageContext.request.contextPath}/res/libs/bootstrap.css"/>
-        <title>JSP Page</title>
+        <title>Signup</title>
     </head>
     <body>
         <div class="container">
