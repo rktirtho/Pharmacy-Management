@@ -273,7 +273,7 @@ public class ProductDBHelper {
         return medicines;
     }
 
-    public List<Product> getById(int id) {
+    public List<Product> getById(String code) {
         List<Product> medicines = new ArrayList<>();
         DBConnector connector = DBConnector.getInstance();
         Connection connection = connector.getConnection();
@@ -281,8 +281,8 @@ public class ProductDBHelper {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareCall("SELECT * FROM " + TABLE
-                    + " WHERE " + ID + "=?");
-            statement.setInt(1, id);
+                    + " WHERE " + CODE_NUMBER + "=?");
+            statement.setString(1, code);
             rs = statement.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
