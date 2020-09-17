@@ -222,6 +222,10 @@ public class ProductDBHelper {
         return products;
     }
 
+    /**
+     * Return a list of Product which quantity is less then 100.
+     * @return List of Product
+     */
     public List<Product> getStockOut() {
         List<Product> medicines = new ArrayList<>();
         DBConnector connector = DBConnector.getInstance();
